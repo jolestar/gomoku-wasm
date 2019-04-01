@@ -1,6 +1,16 @@
 var moduleLoader = require('./index.js')
 
-moduleLoader.load("build/untouched.wasm").then(myModule => {
+moduleLoader.load().then(myModule => {
+
+    console.log(myModule)
+
+    const canvas = document.querySelector("#as2d");
+    const ctx = canvas.getContext("2d");
+
+    myModule.useContext("main", ctx);
+
+    myModule.initGUI()
+    myModule.draw()
 
     function putChessOn(row, col) {
         if (myModule.putChessOn(row, col)) {
@@ -11,8 +21,6 @@ moduleLoader.load("build/untouched.wasm").then(myModule => {
             }
         }
     }
-
-    console.log(myModule)
 
     function printChessboard() {
         let boardPtr = myModule.getChessBoard()

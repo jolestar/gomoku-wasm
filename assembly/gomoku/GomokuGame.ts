@@ -1,8 +1,5 @@
 import "allocator/tlsf";
-
-import {CanvasRenderingContext2D, getContextById} from "../../node_modules/as2d/assembly/index";
-
-var ctx: CanvasRenderingContext2D;
+import {CanvasRenderingContext2D} from "../../node_modules/as2d/assembly/index";
 
 @external("env", "logf")
 declare function logf(val: f64): void;
@@ -97,7 +94,7 @@ class GomokuGame {
     //allActions: GomokuAction[]
     currentPlayer: GomokuPlayer = GomokuPlayer.White //白子(AI)先行
     gameIsOver: boolean = false
-    ctx: CanvasRenderingContext2D;
+    ctx: CanvasRenderingContext2D
 
     constructor() {
         this.numberOfRows = 15
@@ -111,8 +108,8 @@ class GomokuGame {
         //this.allActions = []
     }
 
-    public initGUI(): void {
-        ctx = getContextById("main");
+    public initGUI(ctx: CanvasRenderingContext2D): void {
+        this.ctx = ctx;
     }
 
     /**
@@ -344,9 +341,9 @@ class GomokuGame {
     }
 
     draw(): void {
-        ctx.clearRect(0, 0, 800, 600);
-        ctx.fillText("Hello world!", 200, 200);
-        ctx.commit(); // always r
+        this.ctx.clearRect(0, 0, 800, 600);
+        this.ctx.fillText("Hello world!", 200, 200);
+        this.ctx.commit(); // always r
 
     }
 }

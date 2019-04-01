@@ -1,4 +1,7 @@
-// The entry file of your WebAssembly module.
+import "allocator/tlsf";
+
+import {CanvasRenderingContext2D, getContextById} from "../node_modules/as2d/assembly/index";
+
 
 import {GomokuGame} from "./gomoku/GomokuGame"
 
@@ -22,6 +25,11 @@ export function getChessBoard(): Int32Array {
 
 export function printChessBoard(): void {
     game.printChessBoard()
+}
+
+export function initGUI(): void {
+    let ctx: CanvasRenderingContext2D = getContextById("main")
+    game.initGUI(ctx)
 }
 
 export function draw(): void {

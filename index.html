@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gomoku</title>
+    <script type="application/javascript">
+        // Check for wasm support.
+        if (!('WebAssembly' in window)) {
+            alert('you need a browser with wasm support enabled :(');
+        }
+    </script>
+</head>
+<body>
+<canvas id="as2d" width="800" height="600"/>
+<script src="gomoku.ts" type="text/javascript"></script>
+</body>
+</html>
