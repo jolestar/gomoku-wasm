@@ -1,12 +1,15 @@
 {
   "scripts": {
-    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --validate --debug",
-    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize",
+    "asbuild:untouched": "asc node_modules/as2d/assembly/glue.ts assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --validate --debug --use Math=JSMath",
+    "asbuild:optimized": "asc node_modules/as2d/assembly/glue.ts assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize --use Math=JSMath",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
   },
-  "devDependencies": {
+  "dependencies": {
     "as2d": "github:as2d/as2d",
-    "assemblyscript": "github:AssemblyScript/assemblyscript",
+    "assemblyscript": "github:assemblyscript/assemblyscript"
+  },
+  "devDependencies": {
+    "@types/webassembly-js-api": "0.0.2",
     "parcel-bundler": "^1.12.3",
     "typescript": "^3.4.1"
   }
