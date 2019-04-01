@@ -4,10 +4,10 @@
     "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize",
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
   },
-  "dependencies": {
-    "assemblyscript-loader": "github:assemblyscript/loader"
-  },
   "devDependencies": {
-    "assemblyscript": "github:AssemblyScript/assemblyscript"
+    "as2d": "github:as2d/as2d",
+    "assemblyscript": "github:AssemblyScript/assemblyscript",
+    "parcel-bundler": "^1.12.3",
+    "typescript": "^3.4.1"
   }
 }

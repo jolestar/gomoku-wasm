@@ -24,6 +24,6 @@ export function printChessBoard(): void {
     game.printChessBoard()
 }
 
-export function show(): void {
+export function draw(): void {
     game.draw()
 }
