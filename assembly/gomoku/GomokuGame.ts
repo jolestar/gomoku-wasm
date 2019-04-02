@@ -27,6 +27,8 @@ const ChessBlack: Chess = 1
 const ChessWhite: Chess = 2
 const cheeses: Chess[] = [ChessNone, ChessBlack, ChessWhite]
 
+const Blank: string = "#111"
+const White: string = "#EEE"
 
 /**
  * 玩家：黑、白
@@ -44,6 +46,16 @@ enum GomokuPlayer {
  */
 function chessOfPlayer(player: GomokuPlayer): Chess {
     return cheeses[player]
+}
+
+function chessOfColor(chess: Chess): string {
+    if (chess == ChessBlack) {
+        return Blank
+    } else if (chess == ChessWhite) {
+        return White
+    } else {
+        return "none"
+    }
 }
 
 /**
@@ -79,6 +91,18 @@ class GomokuAction {
     player: GomokuPlayer
 }
 
+class Config {
+    chessBoardColor: string = "yellow"//棋盘的颜色
+    gridSize: i32 = 30//棋盘方格大小
+    canvasWidth: i32 = 450//this.gridSize * 15
+    canvasHeight: i32 = 450//this.gridSize * 15
+    gridColor: string = '#000'//棋盘线条的颜色
+    chessSize: i32 = 12//棋子大小
+    playerPieceColor: string = "#f00"//玩家棋子颜色
+    npcPieceColor: string = "#000"//电脑棋子颜色
+    pointColor: string = "#f00"//棋盘hover焦点颜色
+}
+
 /**
  * 五子棋游戏 (MVC) 的 Model 层
  *
@@ -86,8 +110,7 @@ class GomokuAction {
  */
 class GomokuGame {
 
-    private readonly numberOfRows: i32
-    private readonly numberOfColumns: i32
+    private readonly dimension: i32
     private readonly chessboard: Int32Array
 
     lastAction: GomokuAction
@@ -95,17 +118,18 @@ class GomokuGame {
     currentPlayer: GomokuPlayer = GomokuPlayer.White //白子(AI)先行
     gameIsOver: boolean = false
     ctx: CanvasRenderingContext2D
+    cfg: Config
 
     constructor() {
-        this.numberOfRows = 15
-        this.numberOfColumns = 15
-        this.chessboard = new Int32Array(this.numberOfRows * this.numberOfColumns)
-        logAction(-1, this.chessboard.length, this.numberOfRows * this.numberOfColumns, true)
-        for (let i: i32 = 0; i < this.numberOfRows * this.numberOfColumns; i++) {
+        this.dimension = 15
+        this.chessboard = new Int32Array(this.dimension * this.dimension)
+        logAction(-1, this.chessboard.length, this.dimension * this.dimension, true)
+        for (let i: i32 = 0; i < this.dimension * this.dimension; i++) {
             this.chessboard[i] = ChessNone
         }
-        logAction(-2, this.numberOfRows, this.numberOfColumns, true)
+        logAction(-2, this.dimension, this.dimension, true)
         //this.allActions = []
+        this.cfg = new Config()
     }
 
     public initGUI(ctx: CanvasRenderingContext2D): void {
@@ -121,7 +145,7 @@ class GomokuGame {
      */
     public putChessOn(row: i32, col: i32): boolean {
         if (this.gameIsOver) return false
-        //logAction(-3, this.chessboard.numberOfRows, this.chessboard.numberOfColumns, true)
+        //logAction(-3, this.chessboard.numberOfRows, this.chessboard.dimension, true)
         if (this.validRowAndCol(row, col) && !this.hasChess(row, col)) {
             this.putChess(row, col, chessOfPlayer(this.currentPlayer))
             this.lastAction = {
@@ -173,7 +197,7 @@ class GomokuGame {
         //this.winningChesses = []
         //logi(11, this.winningChesses.length)
         let count = 0
-        for (let col = 0; col < this.numberOfColumns; col++) {
+        for (let col = 0; col < this.dimension; col++) {
             logChess(row, col, this.getChess(row, col))
             logAction(10, row, col, this.getChess(row, col) == chessOfPlayer(forPlayer))
             if (this.getChess(row, col) == chessOfPlayer(forPlayer)) {
@@ -199,7 +223,7 @@ class GomokuGame {
     private checkColumn(col: i32, forPlayer: GomokuPlayer): void {
         if (this.gameIsOver) return
         let count = 0
-        for (let row = 0; row <= this.numberOfRows; row++) {
+        for (let row = 0; row <= this.dimension; row++) {
             if (this.getChess(row, col) == chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
@@ -296,26 +320,26 @@ class GomokuGame {
      * @param {Chessman} givenChess 指定棋子的类型
      */
     hasChess(row: i32, col: i32, givenChess: Chess = ChessNone): boolean {
-        let result = this.validRowAndCol(row, col) ? this.chessboard[this.numberOfColumns * row + col] != givenChess : false;
+        let result = this.validRowAndCol(row, col) ? this.chessboard[this.dimension * row + col] != givenChess : false;
         logAction(1, row, col, result)
         return result
     }
 
     getChess(row: i32, col: i32): Chess {
-        return this.validRowAndCol(row, col) ? this.chessboard[this.numberOfColumns * row + col] : ChessNone
+        return this.validRowAndCol(row, col) ? this.chessboard[this.dimension * row + col] : ChessNone
     }
 
     putChess(row: i32, col: i32, chess: Chess): void {
         if (this.validRowAndCol(row, col)) {
-            this.chessboard[this.numberOfColumns * row + col] = chess
+            this.chessboard[this.dimension * row + col] = chess
         }
     }
 
     validRowAndCol(row: i32, col: i32): boolean {
-        let result = i32(0) <= row && row <= this.numberOfRows - 1
-            && i32(0) <= col && col <= this.numberOfColumns - 1
-        //let result = i32(0) <= row && row <= this.numberOfRows -1
-        //logAction(-4, this.numberOfRows , this.numberOfColumns, result)
+        let result = i32(0) <= row && row <= this.dimension - 1
+            && i32(0) <= col && col <= this.dimension - 1
+        //let result = i32(0) <= row && row <= this.dimension -1
+        //logAction(-4, this.dimension , this.dimension, result)
         //logAction(0, row, col, result)
         return result
     }
@@ -325,14 +349,14 @@ class GomokuGame {
     }
 
     printChessBoard(): void {
-        for (let i: i32 = 0; i < this.numberOfRows; i++) {
-            for (let j: i32 = 0; j < this.numberOfColumns; j++) {
+        for (let i: i32 = 0; i < this.dimension; i++) {
+            for (let j: i32 = 0; j < this.dimension; j++) {
                 logChess(i, j, this.chessboard[i + j])
             }
         }
-        // for (let i:i32 = 0; i < this.numberOfRows; i++) {
+        // for (let i:i32 = 0; i < this.dimension; i++) {
         //     let row = ""
-        //     for(let j:i32 = 0; j< this.numberOfColumns; j++) {
+        //     for(let j:i32 = 0; j< this.dimension; j++) {
         //         //logChess(i, j, this.chessboard[i+j])
         //         row = row + this.chessboard[i*j] +" "
         //     }
@@ -341,10 +365,52 @@ class GomokuGame {
     }
 
     draw(): void {
-        this.ctx.clearRect(0, 0, 800, 600);
-        this.ctx.fillText("Hello world!", 200, 200);
-        this.ctx.commit(); // always r
+        let i: i32;
+        this.ctx.save();
+        this.ctx.beginPath();
+        this.ctx.fillStyle = this.cfg.chessBoardColor;
+        this.ctx.fillRect(0, 0, this.cfg.canvasWidth, this.cfg.canvasHeight);
+        for (i = 0; i < this.dimension; i++) {
+            this.ctx.moveTo(this.cfg.gridSize / 2, this.cfg.gridSize / 2 + this.cfg.gridSize * i);
+            this.ctx.lineTo(this.cfg.gridSize * (this.dimension) - this.cfg.gridSize / 2, this.cfg.gridSize / 2 + this.cfg.gridSize * i);
+        }
+        for (i = 0; i < this.dimension; i++) {
+            this.ctx.moveTo(this.cfg.gridSize / 2 + this.cfg.gridSize * i, this.cfg.gridSize / 2);
+            this.ctx.lineTo(this.cfg.gridSize / 2 + this.cfg.gridSize * i, (this.dimension) * this.cfg.gridSize - this.cfg.gridSize / 2);
+        }
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeStyle = this.cfg.gridColor;
+        this.ctx.stroke();
+        this.ctx.restore();
+        //this.drawChess(0,0,ChessWhite);
+        this.ctx.commit();
+    }
 
+    onClick(x: i32, y: i32): void {
+        logAction(20, x, y, true);
+        //x = x - this.cfg.gridSize/2
+        //y = y - this.cfg.gridSize/2
+        let row = i32(Math.round(x / this.cfg.gridSize));
+        let col = i32(Math.round(y / this.cfg.gridSize));
+        if (this.putChessOn(row, col)) {
+            this.drawChess(row, col, chessOfPlayer(this.lastAction.player))
+        }
+    }
+
+    drawChess(row: i32, col: i32, chess: Chess): void {
+        if (chess == ChessNone) {
+            return
+        }
+        let color = chessOfColor(chess)
+        log("drawChess" + color)
+        logChess(row, col, chess)
+        this.ctx.save();
+        this.ctx.beginPath();
+        this.ctx.arc(this.cfg.gridSize * (row) + this.cfg.gridSize / 2, this.cfg.gridSize * (col) + this.cfg.gridSize / 2, this.cfg.chessSize, 0, Math.PI * 2, true);
+        this.ctx.fillStyle = color
+        this.ctx.fill();
+        this.ctx.restore();
+        this.ctx.commit();
     }
 }
 

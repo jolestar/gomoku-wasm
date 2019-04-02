@@ -27,7 +27,7 @@ const env = {
         console.log("idx: " + idx + ": value:" + value);
     },
     log(value) {
-        console.log("log:" + value);
+        console.log("log:" + module.getString(value));
     },
     logAction(idx, row, col, result) {
         console.log(idx + " row:" + row + ", col:" + col + ", result:" + result);
@@ -43,10 +43,16 @@ const env = {
 const imports = {
     env: env
 };
-
+let module;
 instantiateStreaming(fetch(url), imports).then(wasm => {
+    module = wasm
     const canvas = document.querySelector("#as2d");
     const ctx = canvas.getContext("2d");
+
+    ctx.canvas.addEventListener("click", (e) => {
+        var rect: ClientRect = (e.target as HTMLCanvasElement).getBoundingClientRect();
+        wasm.onClick(e.clientX - rect.left, e.clientY - rect.top);
+    });
 
 // notify web assembly to manage this context
     wasm.useContext("main", ctx);
@@ -57,3 +63,4 @@ instantiateStreaming(fetch(url), imports).then(wasm => {
     wasm.draw();
 });
 
+export {module}

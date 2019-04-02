@@ -35,3 +35,7 @@ export function initGUI(): void {
 export function draw(): void {
     game.draw()
 }
+
+export function onClick(x: i32, y: i32): void {
+    game.onClick(x, y)
+}
