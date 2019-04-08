@@ -1,4 +1,4 @@
-import {GamePlayer} from "./GameEngine";
+import {PlayerRole} from "./GameEngine";
 
 export declare namespace console {
     @external("console", "log")
@@ -11,6 +11,6 @@ export declare namespace console {
     function logi(log: string, val: i32): void;
 
     @external("console", "logAction")
-    function logAction(player: GamePlayer, state: Int8Array): void;
+    function logAction(player: PlayerRole, state: Int8Array): void;
 
 }

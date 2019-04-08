@@ -1,14 +1,14 @@
 import {CanvasRenderingContext2D} from "../../node_modules/as2d/assembly/index";
-import {GameEngine, GamePlayer} from "./GameEngine";
+import {GameEngine, PlayerRole} from "./GameEngine";
 import {console} from "./console";
 
 export abstract class GameGUI<E extends GameEngine> {
 
-    player: GamePlayer;
+    player: PlayerRole;
     ctx: CanvasRenderingContext2D;
     engine: E;
 
-    init(ctx: CanvasRenderingContext2D, player: GamePlayer, engine: E): void {
+    init(ctx: CanvasRenderingContext2D, player: PlayerRole, engine: E): void {
         console.log("GameGUI init");
         this.ctx = ctx;
         this.player = player;
@@ -18,15 +18,8 @@ export abstract class GameGUI<E extends GameEngine> {
     draw(): void {
     }
 
-    update(player: GamePlayer, state: Int8Array): boolean {
-        if (this.engine.update(player, state)) {
-            this.updateGUI(player, state);
-            return true
-        }
+    update(player: PlayerRole, state: Int8Array): boolean {
         return false
-    }
-
-    updateGUI(player: GamePlayer, state: Int8Array): void {
     }
 
 
@@ -43,7 +36,7 @@ export abstract class GameGUI<E extends GameEngine> {
         return this.engine.isGameOver()
     }
 
-    getWinner(): GamePlayer {
+    getWinner(): PlayerRole {
         return this.engine.getWinner()
     }
 }

@@ -1,6 +1,6 @@
 import {console} from "./console";
 
-export enum GamePlayer {
+export enum PlayerRole {
     None = 0,
     First = 1,
     Second = 2
@@ -17,7 +17,7 @@ export abstract class GameEngine {
      * @param state new increment state.
      * @return is update success.
      */
-    update(player: GamePlayer, state: Int8Array): boolean {
+    update(player: PlayerRole, state: Int8Array): boolean {
         console.log("GameEngine update");
         return false
     }
@@ -33,8 +33,8 @@ export abstract class GameEngine {
         return false
     }
 
-    getWinner(): GamePlayer {
-        return GamePlayer.None
+    getWinner(): PlayerRole {
+        return PlayerRole.None
     }
 
 }

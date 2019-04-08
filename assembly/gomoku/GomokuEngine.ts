@@ -1,5 +1,5 @@
 import "allocator/tlsf";
-import {GameEngine, GamePlayer} from "../game/GameEngine";
+import {GameEngine, PlayerRole} from "../game/GameEngine";
 import {console} from "../game/console";
 
 export const boardDimension: i32 = 15;
@@ -15,10 +15,10 @@ enum Chess {
  * @param {Player} player 玩家
  * @return {Chess} 玩家的棋子
  */
-function chessOfPlayer(player: GamePlayer): Chess {
-    if (player == GamePlayer.First) {
+function chessOfPlayer(player: PlayerRole): Chess {
+    if (player == PlayerRole.First) {
         return Chess.White
-    } else if (player == GamePlayer.Second) {
+    } else if (player == PlayerRole.Second) {
         return Chess.Black
     } else {
         return Chess.None
@@ -30,11 +30,11 @@ function chessOfPlayer(player: GamePlayer): Chess {
  * @param {Player} player 当前玩家
  * @return {Player} 新玩家
  */
-function changePlayer(player: GamePlayer): GamePlayer {
-    if (player == GamePlayer.Second) {
-        return GamePlayer.First
+function changePlayer(player: PlayerRole): PlayerRole {
+    if (player == PlayerRole.Second) {
+        return PlayerRole.First
     } else {
-        return GamePlayer.Second
+        return PlayerRole.Second
     }
 }
 
@@ -46,7 +46,7 @@ function changePlayer(player: GamePlayer): GamePlayer {
 class GomokuAction {
     row: i32;
     col: i32;
-    player: GamePlayer;
+    player: PlayerRole;
 }
 
 /**
@@ -61,7 +61,7 @@ class GomokuEngine extends GameEngine {
 
     lastAction: GomokuAction;
     //allActions: GomokuAction[]
-    currentPlayer: GamePlayer = GamePlayer.First; //白子(AI)先行
+    currentPlayer: PlayerRole = PlayerRole.First; //白子(AI)先行
     gameIsOver: boolean = false;
 
     constructor() {
@@ -77,7 +77,7 @@ class GomokuEngine extends GameEngine {
         }
     }
 
-    update(player: GamePlayer, state: Int8Array): boolean {
+    update(player: PlayerRole, state: Int8Array): boolean {
         console.log("GomokuEngine update");
         console.logAction(player, state);
         if (state.length != 2) {
@@ -103,9 +103,9 @@ class GomokuEngine extends GameEngine {
         return this.gameIsOver;
     }
 
-    getWinner(): GamePlayer {
+    getWinner(): PlayerRole {
         //TODO
-        return GamePlayer.None;
+        return PlayerRole.None;
     }
 
     /**
@@ -161,7 +161,7 @@ class GomokuEngine extends GameEngine {
      * @param {i32} row 行坐标
      * @param {Player} forPlayer 指定的玩家
      */
-    private checkRow(row: i32, forPlayer: GamePlayer): void {
+    private checkRow(row: i32, forPlayer: PlayerRole): void {
         if (this.gameIsOver) return
         //this.winningChesses = []
         //logi(11, this.winningChesses.length)
@@ -187,7 +187,7 @@ class GomokuEngine extends GameEngine {
      * @param {i32} col 列坐标
      * @param {Player} forPlayer 玩家
      */
-    private checkColumn(col: i32, forPlayer: GamePlayer): void {
+    private checkColumn(col: i32, forPlayer: PlayerRole): void {
         if (this.gameIsOver) return
         let count = 0
         for (let row = 0; row <= this.dimension; row++) {
@@ -210,7 +210,7 @@ class GomokuEngine extends GameEngine {
      * @param {i32} col 列坐标
      * @param {Player} forPlayer 玩家
      */
-    private checkMainDiagonal(row: i32, col: i32, forPlayer: GamePlayer): void {
+    private checkMainDiagonal(row: i32, col: i32, forPlayer: PlayerRole): void {
         if (this.gameIsOver) return
         let count = 0
         let fromR: i32, fromC: i32, toR: i32, toC: i32
@@ -247,7 +247,7 @@ class GomokuEngine extends GameEngine {
      * @param {i32} col 列坐标
      * @param {Player} forPlayer 玩家
      */
-    private checkSubDiagonal(row: i32, col: i32, forPlayer: GamePlayer): void {
+    private checkSubDiagonal(row: i32, col: i32, forPlayer: PlayerRole): void {
         if (this.gameIsOver) return
         let count = 0
         let fromR: i32, fromC: i32, toR: i32, toC: i32
@@ -316,4 +316,4 @@ class GomokuEngine extends GameEngine {
 
 }
 
-export {Chess, chessOfPlayer, GomokuEngine}
+export {Chess, chessOfPlayer, GomokuAction, GomokuEngine}

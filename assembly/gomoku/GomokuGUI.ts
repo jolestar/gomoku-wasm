@@ -1,16 +1,17 @@
 import "allocator/tlsf";
-import {GamePlayer} from "../game/GameEngine";
+import {PlayerRole} from "../game/GameEngine";
 import {GameGUI} from "../game/GameGUI";
 import {boardDimension, Chess, chessOfPlayer, GomokuEngine} from "./GomokuEngine";
 import {console} from "../game/console";
 
 
-const Blank: string = "#111"
+const Black: string = "#111"
 const White: string = "#EEE"
+let EmptyState: Int8Array = new Int8Array(0)
 
 function chessOfColor(chess: Chess): string {
     if (chess == Chess.Black) {
-        return Blank
+        return Black
     } else if (chess == Chess.White) {
         return White
     } else {
@@ -45,8 +46,16 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
         this.cfg = new Config();
     }
 
-    updateGUI(player: GamePlayer, state: Int8Array): void {
-        this.drawChess(state[0], state[1], chessOfPlayer(this.player))
+    update(player: PlayerRole, state: Int8Array): boolean {
+        if (this.engine.update(player, state)) {
+            this.updateGUI(player, state);
+            return true
+        }
+        return false
+    }
+
+    updateGUI(player: PlayerRole, state: Int8Array): void {
+        this.drawChess(state[0], state[1], chessOfPlayer(player))
     }
 
     draw(): void {
@@ -71,7 +80,7 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
         this.ctx.commit();
     }
 
-    onClick(x: i32, y: i32): void {
+    onClick(x: i32, y: i32): Int8Array {
         console.log("onClick");
         //x = x - this.cfg.gridSize/2
         //y = y - this.cfg.gridSize/2
@@ -83,7 +92,9 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
         console.logAction(this.player, state);
         if (this.engine.update(this.player, state)) {
             this.drawChess(row, col, chessOfPlayer(this.player))
+            return state
         }
+        return EmptyState
     }
 
     drawChess(row: i32, col: i32, chess: Chess): void {
