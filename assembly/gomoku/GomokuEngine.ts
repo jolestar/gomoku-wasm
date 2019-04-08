@@ -81,6 +81,11 @@ class GomokuEngine extends GameEngine {
         console.log("GomokuEngine update");
         console.logAction(player, state);
         if (state.length != 2) {
+            console.log("Invalid state");
+            return false;
+        }
+        if (this.currentPlayer != player) {
+            console.log("Not your turn.")
             return false;
         }
         return this.putChessOn(state[0], state[1]);
@@ -112,7 +117,6 @@ class GomokuEngine extends GameEngine {
      */
     private putChessOn(row: i32, col: i32): boolean {
         if (this.gameIsOver) return false;
-        //logAction(-3, this.chessboard.numberOfRows, this.chessboard.dimension, true)
         if (this.validRowAndCol(row, col) && !this.hasChess(row, col)) {
             this.putChess(row, col, chessOfPlayer(this.currentPlayer))
             this.lastAction = {

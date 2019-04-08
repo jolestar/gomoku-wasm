@@ -6,12 +6,6 @@ export enum GamePlayer {
     Second = 2
 }
 
-export enum Turn {
-    None = 0,
-    First = 1,
-    Second = 2
-}
-
 export abstract class GameEngine {
 
     init(): void {
