@@ -14,13 +14,13 @@ declare function log(log: string): void;
 declare function logAction(idx: i32, row: i32, col: i32, result: boolean): void;
 
 @external("env", "logChess")
-declare function logChess(row: i32, col: i32, chess: i32): void
+declare function logChess(row: i32, col: i32, chess: i8): void
 
 /**
  * 棋盘上的棋子：黑子、白子、空
  */
 
-type Chess = i32
+type Chess = i8
 
 const ChessNone: Chess = 0
 const ChessBlack: Chess = 1
@@ -111,7 +111,7 @@ class Config {
 class GomokuGame {
 
     private readonly dimension: i32
-    private readonly chessboard: Int32Array
+    private readonly chessboard: Int8Array
 
     lastAction: GomokuAction
     //allActions: GomokuAction[]
@@ -122,7 +122,7 @@ class GomokuGame {
 
     constructor() {
         this.dimension = 15
-        this.chessboard = new Int32Array(this.dimension * this.dimension)
+        this.chessboard = new Int8Array(this.dimension * this.dimension)
         logAction(-1, this.chessboard.length, this.dimension * this.dimension, true)
         for (let i: i32 = 0; i < this.dimension * this.dimension; i++) {
             this.chessboard[i] = ChessNone
@@ -344,7 +344,7 @@ class GomokuGame {
         return result
     }
 
-    getChessBoard(): Int32Array {
+    getChessBoard(): Int8Array {
         return this.chessboard
     }
 

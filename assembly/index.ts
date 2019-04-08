@@ -19,7 +19,7 @@ export function gameIsOver(): boolean {
     return game.gameIsOver
 }
 
-export function getChessBoard(): Int32Array {
+export function getChessBoard(): Int8Array {
     return game.getChessBoard()
 }
 
