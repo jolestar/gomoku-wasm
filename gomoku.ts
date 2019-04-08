@@ -2,6 +2,7 @@
 import {instantiateStreaming} from "as2d";
 
 const fs = require("fs");
+//if(!window) window = require("window").
 if (!window.Buffer) window.Buffer = require("buffer").Buffer;
 // parcel will inline the module here
 const buffer = fs.readFileSync("./build/optimized.wasm");
@@ -20,28 +21,27 @@ const env = {
     //   element: 'anyfunc'
     // }),
     // import as @external("env", "logf")
-    logf(value) {
-        console.log("logf: " + value);
-    },
-    logi(idx, value) {
-        console.log("idx: " + idx + ": value:" + value);
-    },
-    log(value) {
-        console.log("log:" + module.getString(value));
-    },
-    logAction(idx, row, col, result) {
-        console.log(idx + " row:" + row + ", col:" + col + ", result:" + result);
-    },
-    logChess(row, col, chess) {
-        console.log("chess row:" + row + ", col:" + col + ", chess:" + chess);
-    },
     abort(msg, file, line, column) {
         console.error("abort called at main.ts:" + line + ":" + column);
     }
 };
 
 const imports = {
-    env: env
+    env: env,
+    console: {
+        log(value) {
+            console.log("log:" + module.getString(value));
+        },
+        logf(msg, value) {
+            console.log(msg, value)
+        },
+        logi(msg, value) {
+            console.log(msg, value)
+        },
+        logAction(player, state) {
+            console.log("player:", player, module.getArray(Int8Array, state))
+        }
+    }
 };
 let module;
 instantiateStreaming(fetch(url), imports).then(wasm => {
@@ -58,7 +58,7 @@ instantiateStreaming(fetch(url), imports).then(wasm => {
     wasm.useContext("main", ctx);
 
 // once the context is used, the internal `getContextById()` function should now work
-    wasm.initGUI(); // this is a custom function you must write to get the canvas reference
+    wasm.init(); // this is a custom function you must write to get the canvas reference
 
     wasm.draw();
 });

@@ -6,7 +6,8 @@
   },
   "dependencies": {
     "as2d": "github:as2d/as2d",
-    "assemblyscript": "github:assemblyscript/assemblyscript"
+    "assemblyscript": "github:assemblyscript/assemblyscript",
+    "bitcoin-ts": "^1.4.0"
   },
   "devDependencies": {
     "@types/webassembly-js-api": "0.0.2",
