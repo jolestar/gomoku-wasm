@@ -3,6 +3,30 @@ import {GameEngine, PlayerRole} from "../game/GameEngine";
 import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 
+
+class Chessboard {
+    readonly board: Int8Array;
+
+    constructor() {
+        this.board = new Int8Array(constants.boardDimension * constants.boardDimension);
+        for (let i: i32 = 0; i < this.board.length; i++) {
+            this.board[i] = Chess.None;
+        }
+    }
+
+    hasChess(row: i32, col: i32, givenChess: Chess = Chess.None): boolean {
+        return constants.validRowAndCol(row, col) ? this.board[constants.boardDimension * row + col] != givenChess : false;
+    }
+
+    getChess(row: i32, col: i32): Chess {
+        return constants.validRowAndCol(row, col) ? this.board[constants.boardDimension * row + col] : Chess.None
+    }
+
+    putChess(row: i32, col: i32, chess: Chess): void {
+        this.board[constants.getIndexByRowCol(row, col)] = chess
+    }
+}
+
 /**
  * 五子棋游戏的操作单元：player 在 (row, col) 位置放置一个棋子
  *
@@ -14,32 +38,21 @@ class GomokuAction {
     player: PlayerRole;
 }
 
-/**
- * 五子棋游戏 (MVC) 的 Model 层
- *
- * 控制游戏规则，判断胜负
- */
 class GomokuEngine extends GameEngine {
 
-    public readonly dimension: i32;
-    private readonly chessboard: Int8Array;
+    private readonly chessboard: Chessboard;
 
     lastAction: GomokuAction;
-    //allActions: GomokuAction[]
-    currentPlayer: PlayerRole = PlayerRole.First; //白子(AI)先行
+    currentPlayer: PlayerRole = PlayerRole.First;
     gameIsOver: boolean = false;
 
     constructor() {
         super();
-        this.dimension = constants.boardDimension;
-        this.chessboard = new Int8Array(this.dimension * this.dimension);
+        this.chessboard = new Chessboard()
     }
 
     init(): void {
         console.log("GomokuEngine init");
-        for (let i: i32 = 0; i < this.dimension * this.dimension; i++) {
-            this.chessboard[i] = Chess.None;
-        }
     }
 
     update(player: PlayerRole, state: Int8Array): boolean {
@@ -61,7 +74,7 @@ class GomokuEngine extends GameEngine {
     }
 
     getState(): Int8Array {
-        return this.chessboard;
+        return this.chessboard.board;
     }
 
     isGameOver(): boolean {
@@ -82,8 +95,8 @@ class GomokuEngine extends GameEngine {
      */
     private putChessOn(row: i32, col: i32): boolean {
         if (this.gameIsOver) return false;
-        if (this.validRowAndCol(row, col) && !this.hasChess(row, col)) {
-            this.putChess(row, col, constants.chessOfPlayer(this.currentPlayer))
+        if (constants.validRowAndCol(row, col) && !this.chessboard.hasChess(row, col)) {
+            this.chessboard.putChess(row, col, constants.chessOfPlayer(this.currentPlayer))
             this.lastAction = {
                 row: row,
                 col: col,
@@ -98,7 +111,7 @@ class GomokuEngine extends GameEngine {
     }
 
     public getChessOn(row: i32, col: i32): Chess {
-        return this.getChess(row, col)
+        return this.chessboard.getChess(row, col)
     }
 
     /**
@@ -131,8 +144,8 @@ class GomokuEngine extends GameEngine {
         //this.winningChesses = []
         //logi(11, this.winningChesses.length)
         let count = 0
-        for (let col = 0; col < this.dimension; col++) {
-            if (this.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
+        for (let col = 0; col < constants.boardDimension; col++) {
+            if (this.chessboard.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
                 //this.winningChesses.push(this.getChess(row, col))
                 count = count + 1
                 if (count == 5) {
@@ -155,8 +168,8 @@ class GomokuEngine extends GameEngine {
     private checkColumn(col: i32, forPlayer: PlayerRole): void {
         if (this.gameIsOver) return
         let count = 0
-        for (let row = 0; row <= this.dimension; row++) {
-            if (this.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
+        for (let row = 0; row <= constants.boardDimension; row++) {
+            if (this.chessboard.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkColumn gameIsOver")
@@ -191,7 +204,7 @@ class GomokuEngine extends GameEngine {
             toC = 15 + col - row - 1
         }
         while (fromR <= toR && fromC <= toC) {
-            if (this.getChess(fromR, fromC) == constants.chessOfPlayer(forPlayer)) {
+            if (this.chessboard.getChess(fromR, fromC) == constants.chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkMainDiagonal gameIsOver")
@@ -228,7 +241,7 @@ class GomokuEngine extends GameEngine {
             toC = row + col - (15 - 1)
         }
         while (fromR <= toR && fromC >= toC) {
-            if (this.getChess(fromR, fromC) == constants.chessOfPlayer(forPlayer)) {
+            if (this.chessboard.getChess(fromR, fromC) == constants.chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkSubDiagonal gameIsOver")
@@ -243,40 +256,8 @@ class GomokuEngine extends GameEngine {
         }
     }
 
-    /**
-     * 判断坐标是否有棋子(可以指定棋子类型)
-     *
-     * 坐标越界也返回 false
-     * @param row
-     * @param col
-     * @param {Chessman} givenChess 指定棋子的类型
-     */
-    hasChess(row: i32, col: i32, givenChess: Chess = Chess.None): boolean {
-        let result = this.validRowAndCol(row, col) ? this.chessboard[this.dimension * row + col] != givenChess : false;
-        return result
-    }
-
-    getChess(row: i32, col: i32): Chess {
-        return this.validRowAndCol(row, col) ? this.chessboard[this.dimension * row + col] : Chess.None
-    }
-
-    putChess(row: i32, col: i32, chess: Chess): void {
-        if (this.validRowAndCol(row, col)) {
-            this.chessboard[this.dimension * row + col] = chess
-        }
-    }
-
-    validRowAndCol(row: i32, col: i32): boolean {
-        let result = i32(0) <= row && row <= this.dimension - 1
-            && i32(0) <= col && col <= this.dimension - 1
-        //let result = i32(0) <= row && row <= this.dimension -1
-        //logAction(-4, this.dimension , this.dimension, result)
-        //logAction(0, row, col, result)
-        return result
-    }
-
     getChessBoard(): Int8Array {
-        return this.chessboard
+        return this.chessboard.board
     }
 
 }
