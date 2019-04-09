@@ -3,35 +3,117 @@ import {GameEngine, PlayerRole} from "../game/GameEngine";
 import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 
+class Position {
+    row: i8;
+    col: i8;
+
+    constructor(row: i8, col: i8) {
+        this.row = row;
+        this.col = col;
+    }
+
+    static fromState(state: Int8Array): Position {
+        if (state.length != 2) {
+            throw ERROR("Invalid state")
+        }
+        return new Position(state[0], state[1])
+    }
+
+    static fromIndex(idx: i32): Position {
+        if (idx < 0 || idx >= constants.boardSize) {
+            console.log("Invalid index");
+            throw ERROR("Invalid index")
+        }
+        return new Position(i8(idx / constants.boardDimension), i8(idx % constants.boardDimension))
+    }
+
+    toIndex(): i32 {
+        if (this.row >= constants.boardDimension || this.col >= constants.boardDimension) {
+            return -1
+        }
+        return constants.boardDimension * this.row + this.col;
+    }
+
+    toState(): Int8Array {
+        let state = new Int8Array(2);
+        state[0] = this.row;
+        state[1] = this.col;
+        return state;
+    }
+}
 
 class Chessboard {
     readonly board: Int8Array;
 
     constructor() {
-        this.board = new Int8Array(constants.boardDimension * constants.boardDimension);
-        for (let i: i32 = 0; i < this.board.length; i++) {
+        this.board = new Int8Array(constants.boardSize);
+        for (let i: i32 = 0; i < constants.boardSize; i++) {
             this.board[i] = Chess.None;
         }
     }
 
-    hasChess(row: i32, col: i32, givenChess: Chess = Chess.None): boolean {
-        return constants.validRowAndCol(row, col) ? this.board[constants.boardDimension * row + col] != givenChess : false;
+    hasChess(row: i32, col: i32): boolean {
+        return constants.validRowAndCol(row, col) ? this.get(row, col) != Chess.None : false;
     }
 
     getChess(row: i32, col: i32): Chess {
-        return constants.validRowAndCol(row, col) ? this.board[constants.boardDimension * row + col] : Chess.None
+        return constants.validRowAndCol(row, col) ? this.get(row, col) : Chess.None
+    }
+
+    @inline
+    get(row: i32, col: i32): Chess {
+        return this.board[constants.boardDimension * row + col];
     }
 
     putChess(row: i32, col: i32, chess: Chess): void {
         this.board[constants.getIndexByRowCol(row, col)] = chess
     }
+
+    isFull(): boolean {
+        return this.findEmptyPosition() == null;
+    }
+
+    findEmptyPosition(): Position | null {
+        return this.findPosition(Chess.None);
+    }
+
+    findPosition(chess: Chess): Position | null {
+        let position: Position | null = null;
+        for (let i = 0; i < this.board.length; i++) {
+            if (this.board[i] == chess) {
+                position = Position.fromIndex(i);
+                break
+            }
+        }
+        return position
+    }
+
+    scanPosition(handler: (row: i32, col: i32, chess: Chess) => void): void {
+        for (let row: i32 = 0; row <= constants.boardDimension - 1; row++) {
+            for (let col: i32 = 0; col <= constants.boardDimension - 1; col++) {
+                let idx = constants.getIndexByRowCol(row, col, false);
+                if (idx < 0) {
+                    continue
+                }
+                handler(row, col, this.board[idx])
+            }
+        }
+    }
+
+    scanNearPosition(centerRow: i32, centerCol: i32, handler: (row: i32, col: i32, chess: Chess) => void): void {
+        for (let row: i32 = centerRow - 1; row <= centerRow + 1; row++) {
+            for (let col: i32 = centerCol - 1; col <= centerCol + 1; col++) {
+                let idx = constants.getIndexByRowCol(row, col, false);
+                if (idx < 0) {
+                    continue
+                }
+                handler(row, col, this.board[idx])
+            }
+        }
+    }
+
 }
 
-/**
- * 五子棋游戏的操作单元：player 在 (row, col) 位置放置一个棋子
- *
- * row与col的取值均为1-15
- */
 class GomokuAction {
     row: i32;
     col: i32;
@@ -56,8 +138,7 @@ class GomokuEngine extends GameEngine {
     }
 
     update(player: PlayerRole, state: Int8Array): boolean {
-        console.log("GomokuEngine update");
-        console.logAction(player, state);
+        console.logAction("GomokuEngine update", player, state);
         if (state.length != 2) {
             console.log("Invalid state");
             return false;
@@ -262,4 +343,5 @@ class GomokuEngine extends GameEngine {
 
 }
 
-export {GomokuAction, GomokuEngine}
+export {GomokuAction, Chessboard, Position, GomokuEngine}
+

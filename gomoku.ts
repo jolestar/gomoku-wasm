@@ -22,7 +22,7 @@ const env = {
     // }),
     // import as @external("env", "logf")
     abort(msg, file, line, column) {
-        console.error("abort called at main.ts:" + line + ":" + column);
+        console.error("abort called at " + file + ":" + line + ":" + column + ", msg:" + msg);
     }
 };
 
@@ -38,8 +38,8 @@ const imports = {
         logi(msg, value) {
             console.log(msg, value)
         },
-        logAction(player, state) {
-            console.log("player:", player, module.getArray(Int8Array, state))
+        logAction(msg, player, state) {
+            console.log(module.getString(msg) + " player:", player, module.getArray(Int8Array, state))
         }
     }
 };

@@ -82,15 +82,12 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
     }
 
     onClick(x: i32, y: i32): Int8Array {
-        console.log("onClick");
-        //x = x - this.cfg.gridSize/2
-        //y = y - this.cfg.gridSize/2
         let row = i8(Math.round(x / this.cfg.gridSize));
         let col = i8(Math.round(y / this.cfg.gridSize));
         let state = new Int8Array(2);
         state[0] = row;
         state[1] = col;
-        console.logAction(this.player, state);
+        console.logAction("onClick", this.player, state);
         if (this.engine.update(this.player, state)) {
             this.drawChess(row, col, constants.chessOfPlayer(this.player))
             return state

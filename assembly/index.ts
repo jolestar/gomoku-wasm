@@ -6,12 +6,12 @@ import {CanvasRenderingContext2D, getContextById} from "../node_modules/as2d/ass
 import {GomokuGUI} from "./gomoku/GomokuGUI";
 import {PlayerRole} from "./game/GameEngine";
 import {GomokuEngine} from "./gomoku/GomokuEngine";
-import {StupidAI} from "./gomoku/ai/StupidAI";
+import {BigbenAI} from "./gomoku/ai/BigbenAI";
 
 let game = new GomokuGUI();
 let engine = new GomokuEngine();
 
-let player: StupidAI;
+let player: BigbenAI;
 
 export function add(a: i32, b: i32): i32 {
     return a + b;
@@ -29,7 +29,7 @@ export function init(): void {
     let ctx: CanvasRenderingContext2D = getContextById("main");
     engine.init();
     game.init(ctx, PlayerRole.First, engine);
-    player = new StupidAI(PlayerRole.Second, function (newState: Int8Array): void {
+    player = new BigbenAI(PlayerRole.Second, function (newState: Int8Array): void {
         game.update(PlayerRole.Second, newState)
     });
 }

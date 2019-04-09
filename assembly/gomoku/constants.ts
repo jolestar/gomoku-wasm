@@ -9,6 +9,7 @@ export enum Chess {
 export namespace constants {
 
     export const boardDimension: i8 = 15;
+    export const boardSize: i32 = 225; //15*15
 
 
     export function chessOfPlayer(player: PlayerRole): Chess {
@@ -19,6 +20,10 @@ export namespace constants {
         } else {
             return Chess.None
         }
+    }
+
+    export function chessOfRival(player: PlayerRole): Chess {
+        return chessOfPlayer(changePlayer(player));
     }
 
     export function changePlayer(player: PlayerRole): PlayerRole {

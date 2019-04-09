@@ -11,6 +11,6 @@ export declare namespace console {
     function logi(log: string, val: i32): void;
 
     @external("console", "logAction")
-    function logAction(player: PlayerRole, state: Int8Array): void;
+    function logAction(msg: string, player: PlayerRole, state: Int8Array): void;
 
 }
