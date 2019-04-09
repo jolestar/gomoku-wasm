@@ -4,10 +4,10 @@ import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 
 class Position {
-    row: i8;
-    col: i8;
+    row: i32;
+    col: i32;
 
-    constructor(row: i8, col: i8) {
+    constructor(row: i32, col: i32) {
         this.row = row;
         this.col = col;
     }
@@ -24,7 +24,7 @@ class Position {
             console.log("Invalid index");
             throw ERROR("Invalid index")
         }
-        return new Position(i8(idx / constants.boardDimension), i8(idx % constants.boardDimension))
+        return new Position(idx / constants.boardDimension, idx % constants.boardDimension)
     }
 
     toIndex(): i32 {
@@ -39,6 +39,10 @@ class Position {
         state[0] = this.row;
         state[1] = this.col;
         return state;
+    }
+
+    toString(): String {
+        return this.row.toString() + ":" + this.col.toString()
     }
 }
 
@@ -65,8 +69,22 @@ class Chessboard {
         return this.board[constants.boardDimension * row + col];
     }
 
+    @inline
+    put(row: i32, col: i32, chess: Chess): void {
+        this.board[constants.boardDimension * row + col] = chess
+    }
+
+    @inline
+    clear(row: i32, col: i32): void {
+        this.board[constants.boardDimension * row + col] = Chess.None
+    }
+
     putChess(row: i32, col: i32, chess: Chess): void {
-        this.board[constants.getIndexByRowCol(row, col)] = chess
+        if (constants.validRowAndCol(row, col)) {
+            this.put(row, col, chess);
+        } else {
+            throw ERROR("Invalid put position.")
+        }
     }
 
     isFull(): boolean {
@@ -86,30 +104,6 @@ class Chessboard {
             }
         }
         return position
-    }
-
-    scanPosition(handler: (row: i32, col: i32, chess: Chess) => void): void {
-        for (let row: i32 = 0; row <= constants.boardDimension - 1; row++) {
-            for (let col: i32 = 0; col <= constants.boardDimension - 1; col++) {
-                let idx = constants.getIndexByRowCol(row, col, false);
-                if (idx < 0) {
-                    continue
-                }
-                handler(row, col, this.board[idx])
-            }
-        }
-    }
-
-    scanNearPosition(centerRow: i32, centerCol: i32, handler: (row: i32, col: i32, chess: Chess) => void): void {
-        for (let row: i32 = centerRow - 1; row <= centerRow + 1; row++) {
-            for (let col: i32 = centerCol - 1; col <= centerCol + 1; col++) {
-                let idx = constants.getIndexByRowCol(row, col, false);
-                if (idx < 0) {
-                    continue
-                }
-                handler(row, col, this.board[idx])
-            }
-        }
     }
 
 }

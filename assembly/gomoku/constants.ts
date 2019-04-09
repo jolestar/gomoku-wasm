@@ -26,23 +26,23 @@ export namespace constants {
         return chessOfPlayer(changePlayer(player));
     }
 
+    @inline
+    export function rival(chess: Chess): Chess {
+        if (chess == Chess.Black) {
+            return Chess.White
+        } else if (chess == Chess.White) {
+            return Chess.Black
+        } else {
+            return Chess.None
+        }
+    }
+
     export function changePlayer(player: PlayerRole): PlayerRole {
         if (player == PlayerRole.Second) {
             return PlayerRole.First
         } else {
             return PlayerRole.Second
         }
-    }
-
-    export function getIndexByRowCol(row: i32, col: i32, throwError: boolean = true): i32 {
-        if (!validRowAndCol(row, col)) {
-            if (throwError) {
-                throw ERROR("Invalid position.")
-            } else {
-                return -1;
-            }
-        }
-        return constants.boardDimension * row + col;
     }
 
     export function validRowAndCol(row: i32, col: i32): boolean {
