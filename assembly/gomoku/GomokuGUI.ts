@@ -1,8 +1,9 @@
 import "allocator/tlsf";
 import {PlayerRole} from "../game/GameEngine";
 import {GameGUI} from "../game/GameGUI";
-import {boardDimension, Chess, chessOfPlayer, GomokuEngine} from "./GomokuEngine";
+import {GomokuEngine} from "./GomokuEngine";
 import {console} from "../game/console";
+import {Chess, constants} from "./constants";
 
 
 const Black: string = "#111"
@@ -29,7 +30,7 @@ class Config {
     playerPieceColor: string = "#f00"//玩家棋子颜色
     npcPieceColor: string = "#000"//电脑棋子颜色
     pointColor: string = "#f00"//棋盘hover焦点颜色
-    dimension: i32 = boardDimension
+    dimension: i32 = constants.boardDimension
 }
 
 /**
@@ -55,7 +56,7 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
     }
 
     updateGUI(player: PlayerRole, state: Int8Array): void {
-        this.drawChess(state[0], state[1], chessOfPlayer(player))
+        this.drawChess(state[0], state[1], constants.chessOfPlayer(player))
     }
 
     draw(): void {
@@ -91,7 +92,7 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
         state[1] = col;
         console.logAction(this.player, state);
         if (this.engine.update(this.player, state)) {
-            this.drawChess(row, col, chessOfPlayer(this.player))
+            this.drawChess(row, col, constants.chessOfPlayer(this.player))
             return state
         }
         return EmptyState

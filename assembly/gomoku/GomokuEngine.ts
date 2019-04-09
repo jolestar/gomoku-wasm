@@ -1,42 +1,7 @@
 import "allocator/tlsf";
 import {GameEngine, PlayerRole} from "../game/GameEngine";
 import {console} from "../game/console";
-
-export const boardDimension: i32 = 15;
-
-enum Chess {
-    None = 0,
-    White = 1,
-    Black = 2
-}
-
-/**
- * 返回玩家所持有的棋子
- * @param {Player} player 玩家
- * @return {Chess} 玩家的棋子
- */
-function chessOfPlayer(player: PlayerRole): Chess {
-    if (player == PlayerRole.First) {
-        return Chess.White
-    } else if (player == PlayerRole.Second) {
-        return Chess.Black
-    } else {
-        return Chess.None
-    }    
-}
-
-/**
- * 改变当前玩家, 返回新玩家
- * @param {Player} player 当前玩家
- * @return {Player} 新玩家
- */
-function changePlayer(player: PlayerRole): PlayerRole {
-    if (player == PlayerRole.Second) {
-        return PlayerRole.First
-    } else {
-        return PlayerRole.Second
-    }
-}
+import {Chess, constants} from "./constants";
 
 /**
  * 五子棋游戏的操作单元：player 在 (row, col) 位置放置一个棋子
@@ -66,7 +31,7 @@ class GomokuEngine extends GameEngine {
 
     constructor() {
         super();
-        this.dimension = boardDimension;
+        this.dimension = constants.boardDimension;
         this.chessboard = new Int8Array(this.dimension * this.dimension);
     }
 
@@ -118,7 +83,7 @@ class GomokuEngine extends GameEngine {
     private putChessOn(row: i32, col: i32): boolean {
         if (this.gameIsOver) return false;
         if (this.validRowAndCol(row, col) && !this.hasChess(row, col)) {
-            this.putChess(row, col, chessOfPlayer(this.currentPlayer))
+            this.putChess(row, col, constants.chessOfPlayer(this.currentPlayer))
             this.lastAction = {
                 row: row,
                 col: col,
@@ -126,7 +91,7 @@ class GomokuEngine extends GameEngine {
             }
             //this.allActions.push(this.lastAction)
             this.checkLastAction()
-            this.currentPlayer = changePlayer(this.currentPlayer)
+            this.currentPlayer = constants.changePlayer(this.currentPlayer)
             return true
         }
         return false
@@ -167,7 +132,7 @@ class GomokuEngine extends GameEngine {
         //logi(11, this.winningChesses.length)
         let count = 0
         for (let col = 0; col < this.dimension; col++) {
-            if (this.getChess(row, col) == chessOfPlayer(forPlayer)) {
+            if (this.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
                 //this.winningChesses.push(this.getChess(row, col))
                 count = count + 1
                 if (count == 5) {
@@ -191,7 +156,7 @@ class GomokuEngine extends GameEngine {
         if (this.gameIsOver) return
         let count = 0
         for (let row = 0; row <= this.dimension; row++) {
-            if (this.getChess(row, col) == chessOfPlayer(forPlayer)) {
+            if (this.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkColumn gameIsOver")
@@ -226,7 +191,7 @@ class GomokuEngine extends GameEngine {
             toC = 15 + col - row - 1
         }
         while (fromR <= toR && fromC <= toC) {
-            if (this.getChess(fromR, fromC) == chessOfPlayer(forPlayer)) {
+            if (this.getChess(fromR, fromC) == constants.chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkMainDiagonal gameIsOver")
@@ -263,7 +228,7 @@ class GomokuEngine extends GameEngine {
             toC = row + col - (15 - 1)
         }
         while (fromR <= toR && fromC >= toC) {
-            if (this.getChess(fromR, fromC) == chessOfPlayer(forPlayer)) {
+            if (this.getChess(fromR, fromC) == constants.chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkSubDiagonal gameIsOver")
@@ -316,4 +281,4 @@ class GomokuEngine extends GameEngine {
 
 }
 
-export {Chess, chessOfPlayer, GomokuAction, GomokuEngine}
+export {GomokuAction, GomokuEngine}
