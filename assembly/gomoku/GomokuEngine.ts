@@ -157,29 +157,24 @@ class GomokuEngine extends GameEngine {
     }
 
     getWinner(): PlayerRole {
-        //TODO
-        return PlayerRole.None;
+        return this.currentPlayer;
     }
 
-    /**
-     * 当前玩家在坐标上落子,成功落子后返回 true
-     * (将充分检查以确保安全落子)
-     *  落子后将变更当前玩家
-     * @param {i32} row 行坐标
-     * @param {i32} col 列坐标
-     */
     private putChessOn(row: i32, col: i32): boolean {
         if (this.gameIsOver) return false;
         if (constants.validRowAndCol(row, col) && !this.chessboard.hasChess(row, col)) {
-            this.chessboard.putChess(row, col, constants.chessOfPlayer(this.currentPlayer))
+            this.chessboard.putChess(row, col, constants.chessOfPlayer(this.currentPlayer));
             this.lastAction = {
                 row: row,
                 col: col,
                 player: this.currentPlayer
+            };
+            this.checkLastAction();
+            if (this.isGameOver()) {
+                console.logAction("Game is over, winner:", this.currentPlayer, this.chessboard.board);
+            } else {
+                this.currentPlayer = constants.changePlayer(this.currentPlayer);
             }
-            //this.allActions.push(this.lastAction)
-            this.checkLastAction()
-            this.currentPlayer = constants.changePlayer(this.currentPlayer)
             return true
         }
         return false
@@ -189,82 +184,54 @@ class GomokuEngine extends GameEngine {
         return this.chessboard.getChess(row, col)
     }
 
-    /**
-     * 使用指定的棋局复盘
-     * 当前棋局将被覆盖
-     */
-    public replay(): void {
-        //Todo
-    }
-
-    /**
-     * 判断最近的一次游戏动作是否使一方获胜
-     *  (以最近的一次落子坐标为基准,分别检查横向、纵向、主对角线、副对角线方向是否存在获胜棋组
-     *   并保存获胜棋组)
-     */
     private checkLastAction(): void {
-        this.checkRow(this.lastAction.row, this.lastAction.player)
-        this.checkColumn(this.lastAction.col, this.lastAction.player)
-        this.checkMainDiagonal(this.lastAction.row, this.lastAction.col, this.lastAction.player)
-        this.checkSubDiagonal(this.lastAction.row, this.lastAction.col, this.lastAction.player)
-    }
+        if (this.gameIsOver) return;
+        if (this.checkRow(this.lastAction.row, this.lastAction.player)
+            || this.checkColumn(this.lastAction.col, this.lastAction.player)
+            || this.checkMainDiagonal(this.lastAction.row, this.lastAction.col, this.lastAction.player)
+            || this.checkSubDiagonal(this.lastAction.row, this.lastAction.col, this.lastAction.player)) {
 
-    /**
-     * 检查玩家是否在指定的行上获胜
-     * @param {i32} row 行坐标
-     * @param {Player} forPlayer 指定的玩家
-     */
-    private checkRow(row: i32, forPlayer: PlayerRole): void {
-        if (this.gameIsOver) return
-        //this.winningChesses = []
-        //logi(11, this.winningChesses.length)
-        let count = 0
-        for (let col = 0; col < constants.boardDimension; col++) {
-            if (this.chessboard.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
-                //this.winningChesses.push(this.getChess(row, col))
-                count = count + 1
-                if (count == 5) {
-                    console.log("checkRow gameIsOver")
-                    this.gameIsOver = true
-                    return
-                }
-            } else {
-                count = 0
-                //      this.winningChesses = []
-            }
+            this.gameIsOver = true;
+            return
         }
     }
 
-    /**
-     * 检查玩家是否在指定的列上获胜
-     * @param {i32} col 列坐标
-     * @param {Player} forPlayer 玩家
-     */
-    private checkColumn(col: i32, forPlayer: PlayerRole): void {
-        if (this.gameIsOver) return
+    @inline
+    private checkRow(row: i32, forPlayer: PlayerRole): boolean {
+        let count = 0
+        for (let col = 0; col < constants.boardDimension; col++) {
+            if (this.chessboard.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
+                count = count + 1
+                if (count == 5) {
+                    console.log("checkRow gameIsOver")
+                    return true
+                }
+            } else {
+                count = 0
+            }
+        }
+        return false
+    }
+
+    @inline
+    private checkColumn(col: i32, forPlayer: PlayerRole): boolean {
         let count = 0
         for (let row = 0; row <= constants.boardDimension; row++) {
             if (this.chessboard.getChess(row, col) == constants.chessOfPlayer(forPlayer)) {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkColumn gameIsOver")
-                    this.gameIsOver = true
-                    return
+                    return true
                 }
             } else {
                 count = 0
             }
         }
+        return false
     }
 
-    /**
-     * 检查玩家是否在指定点的主对角线上获胜
-     * @param {i32} row 行坐标
-     * @param {i32} col 列坐标
-     * @param {Player} forPlayer 玩家
-     */
-    private checkMainDiagonal(row: i32, col: i32, forPlayer: PlayerRole): void {
-        if (this.gameIsOver) return
+    @inline
+    private checkMainDiagonal(row: i32, col: i32, forPlayer: PlayerRole): boolean {
         let count = 0
         let fromR: i32, fromC: i32, toR: i32, toC: i32
         if (col >= row) {
@@ -283,8 +250,7 @@ class GomokuEngine extends GameEngine {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkMainDiagonal gameIsOver")
-                    this.gameIsOver = true
-                    return
+                    return true
                 }
             } else {
                 count = 0
@@ -292,16 +258,11 @@ class GomokuEngine extends GameEngine {
             fromR++
             fromC++
         }
+        return false
     }
 
-    /**
-     * 检查玩家是否在指定点的副对角线上获胜
-     * @param {i32} row 行坐标
-     * @param {i32} col 列坐标
-     * @param {Player} forPlayer 玩家
-     */
-    private checkSubDiagonal(row: i32, col: i32, forPlayer: PlayerRole): void {
-        if (this.gameIsOver) return
+    @inline
+    private checkSubDiagonal(row: i32, col: i32, forPlayer: PlayerRole): boolean {
         let count = 0
         let fromR: i32, fromC: i32, toR: i32, toC: i32
         if (col + row <= 16) {
@@ -320,8 +281,7 @@ class GomokuEngine extends GameEngine {
                 count = count + 1
                 if (count == 5) {
                     console.log("checkSubDiagonal gameIsOver")
-                    this.gameIsOver = true
-                    return
+                    return true
                 }
             } else {
                 count = 0
@@ -329,6 +289,7 @@ class GomokuEngine extends GameEngine {
             fromR++
             fromC--
         }
+        return false
     }
 
     getChessBoard(): Int8Array {

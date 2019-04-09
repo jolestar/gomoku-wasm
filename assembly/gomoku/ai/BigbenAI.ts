@@ -151,15 +151,15 @@ export class BigbenAI extends GamePlayer {
         if (scores[idxByRowCol(I, J)] == 100) {
             //直接获胜
             newPosition = new Position(I, J)
-            console.log(`Attack: (${newPosition.toString()}) s:${scores[idxByRowCol(I, J)]}`);
+            console.logi("Attack: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
         } else if (rivalScores[idxByRowCol(rI, rJ)] >= 20) {
             //若出现危险棋局, 选择防守策略
             newPosition = new Position(rI, rJ)
-            console.log(`Defend: (${newPosition.toString()}) s:${rivalScores[idxByRowCol(rI, rJ)]}`);
+            console.logi("Defend: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
         } else {
             //进攻
             newPosition = new Position(I, J)
-            console.log(`Attack: (${newPosition.toString()}) s:${scores[idxByRowCol(I, J)]}`);
+            console.logi("Attack: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
         }
         return newPosition
     }

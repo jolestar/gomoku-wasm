@@ -30,13 +30,13 @@ const imports = {
     env: env,
     console: {
         log(value) {
-            console.log("log:" + module.getString(value));
+            console.log(module.getString(value));
         },
         logf(msg, value) {
-            console.log(msg, value)
+            console.log(module.getString(msg), value)
         },
         logi(msg, value) {
-            console.log(msg, value)
+            console.log(module.getString(msg), value)
         },
         logAction(msg, player, state) {
             console.log(module.getString(msg) + " player:", player, module.getArray(Int8Array, state))
