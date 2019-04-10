@@ -27,16 +27,14 @@ const env = {
     }
 };
 
-//function use array style for keep this ref.
-//see https://github.com/Microsoft/TypeScript/wiki/'this'-in-TypeScript
-class Console {
+class ASModuleWrapper {
     module: ASUtil | null = null;
 
     init(module: ASUtil): void {
         this.module = module;
     }
 
-    private getString = (value) => {
+    protected getString = (value) => {
         if (this.module == null) {
             return value;
         } else {
@@ -44,13 +42,18 @@ class Console {
         }
     };
 
-    private getArray = (type, value) => {
+    protected getArray = (type, value) => {
         if (this.module == null) {
             return value;
         } else {
             return this.module.getArray(type, value);
         }
     };
+}
+
+//function use array style for keep this ref.
+//see https://github.com/Microsoft/TypeScript/wiki/'this'-in-TypeScript
+class Console extends ASModuleWrapper {
 
     public log = (value) => {
         console.log(this.getString(value));
@@ -66,13 +69,28 @@ class Console {
     }
 }
 
+class Listener extends ASModuleWrapper {
+
+    public onUpdate = (player, state) => {
+        console.log("listener onUpdate", player, this.getArray(Int8Array, state));
+    };
+
+    public onGameOver = (player) => {
+        console.log("listener onGameOver", player);
+        alert("Game Over Winner is:" + player);
+    }
+}
+
+
 const engineConsole = new Console();
 const guiConsole = new Console();
+const listener = new Listener();
 
 let module;
 
-instantiateStreaming(fetch(engineURL), {env: env, console: engineConsole}).then(engine => {
+instantiateStreaming(fetch(engineURL), {env: env, console: engineConsole, listener: listener}).then(engine => {
     engineConsole.init(engine);
+    listener.init(engine);
     engine.init();
     return engine;
 }).then(engine => {
@@ -113,7 +131,6 @@ instantiateStreaming(fetch(engineURL), {env: env, console: engineConsole}).then(
 
     }
 );
-
 
 
 export {module}

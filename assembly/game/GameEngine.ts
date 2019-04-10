@@ -6,6 +6,17 @@ export enum PlayerRole {
     Second = 2
 }
 
+
+export declare namespace listener {
+
+    @external("listener", "onUpdate")
+    function onUpdate(player: PlayerRole, state: Int8Array): void;
+
+    @external("listener", "onGameOver")
+    function onGameOver(winner: PlayerRole): void;
+
+}
+
 export abstract class GameEngine {
 
     init(): void {

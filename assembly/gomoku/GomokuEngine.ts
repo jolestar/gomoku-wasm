@@ -1,5 +1,5 @@
 import "allocator/tlsf";
-import {GameEngine, PlayerRole} from "../game/GameEngine";
+import {GameEngine, listener, PlayerRole} from "../game/GameEngine";
 import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 
@@ -132,6 +132,10 @@ class GomokuEngine extends GameEngine {
     }
 
     update(player: PlayerRole, state: Int8Array): boolean {
+        if (this.gameIsOver) {
+            console.log("game is over.")
+            return false
+        }
         console.logAction("GomokuEngine update", player, state);
         if (state.length != 2) {
             console.log("Invalid state");
@@ -141,7 +145,11 @@ class GomokuEngine extends GameEngine {
             console.log("Not your turn.")
             return false;
         }
-        return this.putChessOn(state[0], state[1]);
+        if (this.putChessOn(state[0], state[1])) {
+            listener.onUpdate(player, state);
+            return true;
+        }
+        return false;
     }
 
     loadState(fullState: Int8Array): void {
@@ -161,7 +169,6 @@ class GomokuEngine extends GameEngine {
     }
 
     private putChessOn(row: i32, col: i32): boolean {
-        if (this.gameIsOver) return false;
         if (constants.validRowAndCol(row, col) && !this.chessboard.hasChess(row, col)) {
             this.chessboard.putChess(row, col, constants.chessOfPlayer(this.currentPlayer));
             this.lastAction = {
@@ -169,10 +176,7 @@ class GomokuEngine extends GameEngine {
                 col: col,
                 player: this.currentPlayer
             };
-            this.checkLastAction();
-            if (this.isGameOver()) {
-                console.logAction("Game is over, winner:", this.currentPlayer, this.chessboard.board);
-            } else {
+            if (!this.checkLastAction()) {
                 this.currentPlayer = constants.changePlayer(this.currentPlayer);
             }
             return true
@@ -184,16 +188,21 @@ class GomokuEngine extends GameEngine {
         return this.chessboard.getChess(row, col)
     }
 
-    private checkLastAction(): void {
-        if (this.gameIsOver) return;
+    /**
+     * return is gamer over.
+     */
+    private checkLastAction(): boolean {
         if (this.checkRow(this.lastAction.row, this.lastAction.player)
             || this.checkColumn(this.lastAction.col, this.lastAction.player)
             || this.checkMainDiagonal(this.lastAction.row, this.lastAction.col, this.lastAction.player)
             || this.checkSubDiagonal(this.lastAction.row, this.lastAction.col, this.lastAction.player)) {
 
             this.gameIsOver = true;
-            return
+            console.logAction("Game is over, winner:", this.currentPlayer, this.chessboard.board);
+            listener.onGameOver(this.currentPlayer)
+            return true;
         }
+        return false;
     }
 
     @inline
