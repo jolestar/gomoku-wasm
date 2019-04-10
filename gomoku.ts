@@ -5,7 +5,7 @@ const fs = require("fs");
 //if(!window) window = require("window").
 if (!window.Buffer) window.Buffer = require("buffer").Buffer;
 // parcel will inline the module here
-const buffer = fs.readFileSync("./build/optimized.wasm");
+const buffer = fs.readFileSync("./build/gui_optimized.wasm");
 const blob = new Blob([buffer], {type: "application/wasm"});
 const url = URL.createObjectURL(blob);
 
