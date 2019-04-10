@@ -1,18 +1,35 @@
 import {CanvasRenderingContext2D} from "../../node_modules/as2d/assembly/index";
-import {GameEngine, PlayerRole} from "./GameEngine";
+import {PlayerRole} from "./GameEngine";
 import {console} from "./console";
 
-export abstract class GameGUI<E extends GameEngine> {
+export declare namespace engine {
+
+    @external("engine", "update")
+    function update(player: PlayerRole, state: Int8Array): boolean;
+
+    @external("engine", "loadState")
+    function loadState(fullState: Int8Array): void;
+
+    @external("engine", "getState")
+    function getState(): Int8Array;
+
+    @external("engine", "isGameOver")
+    function isGameOver(): boolean;
+
+    @external("engine", "getWinner")
+    function getWinner(): PlayerRole;
+
+}
+
+export abstract class GameGUI {
 
     player: PlayerRole;
     ctx: CanvasRenderingContext2D;
-    engine: E;
 
-    init(ctx: CanvasRenderingContext2D, player: PlayerRole, engine: E): void {
+    init(ctx: CanvasRenderingContext2D, player: PlayerRole): void {
         console.log("GameGUI init");
         this.ctx = ctx;
         this.player = player;
-        this.engine = engine;
     }
 
     draw(): void {
@@ -24,19 +41,19 @@ export abstract class GameGUI<E extends GameEngine> {
 
 
     loadState(fullState: Int8Array): void {
-        this.engine.loadState(fullState)
+        engine.loadState(fullState)
         this.draw()
     }
 
     getState(): Int8Array {
-        return this.engine.getState()
+        return engine.getState()
     }
 
     isGameOver(): boolean {
-        return this.engine.isGameOver()
+        return engine.isGameOver()
     }
 
     getWinner(): PlayerRole {
-        return this.engine.getWinner()
+        return engine.getWinner()
     }
 }

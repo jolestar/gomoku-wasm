@@ -1,5 +1,6 @@
 import "allocator/tlsf";
 import {GomokuEngine} from "./gomoku/GomokuEngine";
+import {PlayerRole} from "./game/GameEngine";
 
 let engine = new GomokuEngine();
 
@@ -13,4 +14,16 @@ export function getState(): Int8Array {
 
 export function init(): void {
     engine.init();
+}
+
+export function update(player: PlayerRole, state: Int8Array): boolean {
+    return engine.update(player, state);
+}
+
+export function loadState(fullState: Int8Array): void {
+    engine.loadState(fullState)
+}
+
+function getWinner(): PlayerRole {
+    return engine.getWinner();
 }

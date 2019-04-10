@@ -5,11 +5,9 @@ import {CanvasRenderingContext2D, getContextById} from "../node_modules/as2d/ass
 
 import {GomokuGUI} from "./gomoku/GomokuGUI";
 import {PlayerRole} from "./game/GameEngine";
-import {GomokuEngine} from "./gomoku/GomokuEngine";
 import {BigbenAI} from "./gomoku/ai/BigbenAI";
 
 let game = new GomokuGUI();
-let engine = new GomokuEngine();
 
 let player: BigbenAI;
 
@@ -27,8 +25,7 @@ export function getState(): Int8Array {
 
 export function init(): void {
     let ctx: CanvasRenderingContext2D = getContextById("main");
-    engine.init();
-    game.init(ctx, PlayerRole.First, engine);
+    game.init(ctx, PlayerRole.First);
     player = new BigbenAI(PlayerRole.Second, function (newState: Int8Array): void {
         game.update(PlayerRole.Second, newState)
     });

@@ -1,7 +1,6 @@
 import "allocator/tlsf";
 import {PlayerRole} from "../game/GameEngine";
-import {GameGUI} from "../game/GameGUI";
-import {GomokuEngine} from "./GomokuEngine";
+import {engine, GameGUI} from "../game/GameGUI";
 import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 
@@ -21,24 +20,17 @@ function chessOfColor(chess: Chess): string {
 }
 
 class Config {
-    chessBoardColor: string = "yellow"//棋盘的颜色
-    gridSize: i32 = 30//棋盘方格大小
+    chessBoardColor: string = "yellow"
+    gridSize: i32 = 30
     canvasWidth: i32 = 450//this.gridSize * 15
     canvasHeight: i32 = 450//this.gridSize * 15
-    gridColor: string = '#000'//棋盘线条的颜色
-    chessSize: i32 = 12//棋子大小
-    playerPieceColor: string = "#f00"//玩家棋子颜色
-    npcPieceColor: string = "#000"//电脑棋子颜色
-    pointColor: string = "#f00"//棋盘hover焦点颜色
+    gridColor: string = '#000'
+    chessSize: i32 = 12
+    pointColor: string = "#f00" //TODO
     dimension: i32 = constants.boardDimension
 }
 
-/**
- * 五子棋游戏 (MVC) 的 Model 层
- *
- * 控制游戏规则，判断胜负
- */
-class GomokuGUI extends GameGUI<GomokuEngine> {
+class GomokuGUI extends GameGUI {
 
     cfg: Config;
 
@@ -48,7 +40,7 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
     }
 
     update(player: PlayerRole, state: Int8Array): boolean {
-        if (this.engine.update(player, state)) {
+        if (engine.update(player, state)) {
             this.updateGUI(player, state);
             return true
         }
@@ -77,7 +69,6 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
         this.ctx.strokeStyle = this.cfg.gridColor;
         this.ctx.stroke();
         this.ctx.restore();
-        //this.drawChess(0,0,Chess.White);
         this.ctx.commit();
     }
 
@@ -88,7 +79,7 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
         state[0] = row;
         state[1] = col;
         console.logAction("onClick", this.player, state);
-        if (this.engine.update(this.player, state)) {
+        if (engine.update(this.player, state)) {
             this.drawChess(row, col, constants.chessOfPlayer(this.player))
             return state
         }
@@ -96,7 +87,6 @@ class GomokuGUI extends GameGUI<GomokuEngine> {
     }
 
     drawChess(row: i32, col: i32, chess: Chess): void {
-        console.log("drawChess")
         if (chess == Chess.None) {
             return
         }
