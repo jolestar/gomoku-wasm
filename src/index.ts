@@ -1,15 +1,27 @@
-import * as client from "./client"
-
+import * as client from "../sdk/client"
 import Vue from "vue";
+import HelloComponent from "./components/Hello";
+import GameComponent from "./components/Game";
+
+client.init();
 
 let v = new Vue({
     el: "#app",
+    template: `
+    <div>
+        <div>Hello {{name}}!</div>
+        Name: <input v-model="name" type="text">
+        <hello-component :name="name" :initialEnthusiasm="5" />
+        <game-component />
+    </div>`,
     data: {
         name: "World"
+    },
+    components: {
+        HelloComponent,
+        GameComponent
     }
 });
-
-client.init();
 
 function showGameList() {
     client.gameList().then(resp => {
@@ -38,8 +50,6 @@ function showRoomList() {
 function createRoom(gameHash) {
     client.createRoom(gameHash)
 }
-
-showGameList()
 
 // client.createGame().then( game => {
 //     client.createRoom(game.gameHash).then(room =>
