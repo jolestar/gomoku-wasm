@@ -11,6 +11,14 @@
     </script>
 </head>
 <body>
+<div id="app">
+    <div>
+        <div>Hello {{name}}!</div>
+        Name: <input v-model="name" type="text">
+    </div>
+</div>
+<div id="gameList"></div>
+<div id="roomList"></div>
 <canvas id="as2d" width="600" height="600"/>
 <script src="sdk/index.ts" type="text/javascript"></script>
 <script>

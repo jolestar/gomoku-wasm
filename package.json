@@ -4,16 +4,25 @@
     "asbuild:engine_optimized": "asc node_modules/as2d/assembly/glue.ts assembly/engine.ts -b build/engine_optimized.wasm -t build/engine_optimized.wat --sourceMap --validate --optimize --use Math=JSMath",
     "asbuild:gui_untouched": "asc node_modules/as2d/assembly/glue.ts assembly/gui.ts -b build/gui_untouched.wasm -t build/gui_untouched.wat --sourceMap --validate --debug --use Math=JSMath",
     "asbuild:gui_optimized": "asc node_modules/as2d/assembly/glue.ts assembly/gui.ts -b build/gui_optimized.wasm -t build/gui_optimized.wat --sourceMap --validate --optimize --use Math=JSMath",
-    "asbuild": "npm run asbuild:engine_untouched && npm run asbuild:engine_optimized && npm run asbuild:gui_untouched && npm run asbuild:gui_optimized"
+    "asbuild": "npm run asbuild:engine_untouched && npm run asbuild:engine_optimized && npm run asbuild:gui_untouched && npm run asbuild:gui_optimized",
+    "build": "npm run asbuild",
+    "dev": "npx parcel serve -d build index.html"
   },
   "dependencies": {
     "as2d": "github:as2d/as2d",
     "assemblyscript": "github:assemblyscript/assemblyscript",
-    "bitcoin-ts": "^1.4.0"
+    "websocket": "^1.0.28"
   },
   "devDependencies": {
     "@types/webassembly-js-api": "0.0.2",
     "parcel-bundler": "^1.12.3",
-    "typescript": "^3.4.1"
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.4.1",
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
   }
 }
