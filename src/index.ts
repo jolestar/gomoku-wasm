@@ -1,7 +1,7 @@
 import * as client from "../sdk/client"
 import Vue from "vue";
 import HelloComponent from "./components/Hello";
-import GameComponent from "./components/Game";
+import GamelobbyComponent from "./components/Gamelobby";
 
 client.init();
 
@@ -12,14 +12,14 @@ let v = new Vue({
         <div>Hello {{name}}!</div>
         Name: <input v-model="name" type="text">
         <hello-component :name="name" :initialEnthusiasm="5" />
-        <game-component />
+        <gamelobby-component />
     </div>`,
     data: {
         name: "World"
     },
     components: {
         HelloComponent,
-        GameComponent
+        GamelobbyComponent
     }
 });
 
