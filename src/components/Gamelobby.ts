@@ -87,10 +87,11 @@ export default Vue.extend({
         },
         joinRoom: function (roomId) {
             client.joinRoom(roomId);
-            let self = this
-            setTimeout(function () {
-                self.fetchRoomList();
-            }, 100);
+            this.$router.push({name: 'room', params: {roomId: roomId}})
+            // let self = this
+            // setTimeout(function () {
+            //     self.fetchRoomList();
+            // }, 100);
 
         }
     }

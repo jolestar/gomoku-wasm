@@ -11,6 +11,7 @@
   "dependencies": {
     "as2d": "github:as2d/as2d",
     "assemblyscript": "github:assemblyscript/assemblyscript",
+    "vue-router": "^3.0.3",
     "websocket": "^1.0.28"
   },
   "devDependencies": {

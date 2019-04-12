@@ -1,58 +1,38 @@
 import * as client from "../sdk/client"
 import Vue from "vue";
+import VueRouter from "vue-router";
 import HelloComponent from "./components/Hello";
 import GamelobbyComponent from "./components/Gamelobby";
+import GameroomComponent from "./components/Gameroom";
 
 client.init();
 
-let v = new Vue({
-    el: "#app",
+Vue.use(VueRouter)
+
+const Home = {template: '<div>home</div>'}
+
+const routes = [
+    {name: "home", path: '/', component: Home},
+    {name: "lobby", path: '/lobby', component: GamelobbyComponent},
+    {name: "room", path: '/room/:roomId', component: GameroomComponent, props: true},
+    {name: "hello", path: '/hello/:name/:initialEnthusiasm', component: HelloComponent, props: true}
+]
+
+const router = new VueRouter({
+    routes
+})
+
+
+const app = new Vue({
     template: `
-    <div>
-        <div>Hello {{name}}!</div>
-        Name: <input v-model="name" type="text">
-        <hello-component :name="name" :initialEnthusiasm="5" />
-        <gamelobby-component />
-    </div>`,
-    data: {
-        name: "World"
-    },
-    components: {
-        HelloComponent,
-        GamelobbyComponent
-    }
-});
-
-function showGameList() {
-    client.gameList().then(resp => {
-        let html = `<ul>`
-        resp.data.forEach(game => {
-            html += `<li>${game.gameHash}<button onclick="createRoom('${game.gameHash}')">Create game ${game.gameHash} Room</button></li>`
-        });
-        html += `</ul>`
-        // @ts-ignore
-        document.getElementById("gameList").innerHTML = html
-    })
-}
-
-function showRoomList() {
-    client.roomList().then(resp => {
-        let html = `<ul>`
-        resp.data.forEach(room => {
-            html += `<li>${room.id}<button onclick="joinRoom('${room.id}')">Join room ${room.id} Room</button></li>`
-        });
-        html += `</ul>`
-        // @ts-ignore
-        document.getElementById("roomList").innerHTML = html
-    })
-}
-
-function createRoom(gameHash) {
-    client.createRoom(gameHash)
-}
-
-// client.createGame().then( game => {
-//     client.createRoom(game.gameHash).then(room =>
-//         client.joinRoom(room.room)
-//     )
-// })
+        <div>
+        <h1>Hello App!</h1>
+            <p>
+            <router-link to="/hello/world/1">Hello World</router-link>
+            <router-link to="/lobby">Game Lobby</router-link>
+            </p>
+        <router-view></router-view>
+        </div>
+    `,
+    router
+}).$mount('#app')
