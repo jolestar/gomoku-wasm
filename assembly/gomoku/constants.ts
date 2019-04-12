@@ -23,7 +23,7 @@ export namespace constants {
     }
 
     export function chessOfRival(player: PlayerRole): Chess {
-        return chessOfPlayer(changePlayer(player));
+        return chessOfPlayer(rivalPlayer(player));
     }
 
     @inline
@@ -37,7 +37,7 @@ export namespace constants {
         }
     }
 
-    export function changePlayer(player: PlayerRole): PlayerRole {
+    export function rivalPlayer(player: PlayerRole): PlayerRole {
         if (player == PlayerRole.Second) {
             return PlayerRole.First
         } else {

@@ -13,4 +13,6 @@ export declare namespace console {
     @external("console", "logAction")
     function logAction(msg: string, player: PlayerRole, state: Int8Array): void;
 
+    @external("console", "error")
+    function error(error: string): void;
 }

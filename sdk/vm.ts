@@ -53,7 +53,10 @@ class Console extends ASModuleWrapper {
     };
     public logAction = (msg, player, state) => {
         console.log(this.getString(msg) + " player:", player, this.getArray(Int8Array, state))
-    }
+    };
+    public error = (value) => {
+        alert(this.getString(value));
+    };
 }
 
 class Listener extends ASModuleWrapper {
@@ -74,7 +77,7 @@ const guiConsole = new Console();
 const listener = new Listener();
 let module;
 
-export function init(engineURL = "/engine_optimized.wasm", guiURL = "/gui_optimized.wasm") {
+export function init(playerRole: number, playWithAI: boolean = false, engineURL = "/engine_optimized.wasm", guiURL = "/gui_optimized.wasm") {
     return instantiateStreaming(fetch(engineURL), {
         env: env,
         console: engineConsole,
@@ -116,7 +119,7 @@ export function init(engineURL = "/engine_optimized.wasm", guiURL = "/gui_optimi
                 });
 
                 gui.useContext("main", ctx);
-                gui.init();
+                gui.init(playerRole, playWithAI);
                 gui.draw();
             });
 

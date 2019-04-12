@@ -20,7 +20,7 @@ export default Vue.extend({
     watch: {},
     methods: {
         initGame: function () {
-            vm.init()
+            vm.init(1)
         }
     }
 });

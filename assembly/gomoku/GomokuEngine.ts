@@ -177,7 +177,7 @@ class GomokuEngine extends GameEngine {
                 player: this.currentPlayer
             };
             if (!this.checkLastAction()) {
-                this.currentPlayer = constants.changePlayer(this.currentPlayer);
+                this.currentPlayer = constants.rivalPlayer(this.currentPlayer);
             }
             return true
         }
