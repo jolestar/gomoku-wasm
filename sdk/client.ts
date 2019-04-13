@@ -128,6 +128,10 @@ function send(type: WSMsgType, roomId: string, data: any) {
     client.send(JSON.stringify(msg))
 }
 
+export function sendRoomData(roomId: string, data: any) {
+    send(WSMsgType.ROOM_DATA_MSG, roomId, data)
+}
+
 export function createGame() {
     return post(HttpMsgType.CREATE_GAME, {gameHash: myId})
 }

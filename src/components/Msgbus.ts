@@ -8,9 +8,11 @@ let bus = new Vue({
             let self = this;
             client.init();
             client.subscribe(function (msg: WSMessage): void {
+                console.log("emit", msg);
                 if (msg.type == WSMsgType.GAME_BEGIN) {
-                    console.log("Game begin....", self)
-                    self.$emit('game-begin', msg.data)
+                    self.$emit('game-begin', msg.data);
+                } else if (msg.type == WSMsgType.ROOM_DATA_MSG) {
+                    self.$emit("game-state", msg.data);
                 }
             });
         }

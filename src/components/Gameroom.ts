@@ -39,25 +39,42 @@ export default Vue.extend({
                 return room
             }).then(room => {
                 if (room.players[0] == client.getMyId()) {
-                    vm.init(1);
+                    vm.init(1, this.stateUpdate);
                 } else {
-                    vm.init(2);
+                    vm.init(2, this.stateUpdate);
                 }
+                let self = this;
                 if (room.players.length == 2) {
                     this.startGame()
                 } else {
-                    let self = this;
                     MsgBus.$on("game-begin", function (event) {
                         console.log("handle game-begin event", event);
+                        self.room = event.room;
                         self.startGame();
                     })
                 }
+                MsgBus.$on("game-state", function (event) {
+                    console.log("handle game-state event", event);
+                    //convert to TypedArray
+                    let state = Int8Array.from(event.state);
+                    self.rivalStateUpdate(state);
+                })
             }).catch(error => {
                 this.error = error
             })
         },
         startGame: function () {
-            vm.startGame()
+            vm.startGame();
+        },
+        rivalStateUpdate: function (state: Int8Array) {
+            console.log("rivalStateUpdate:", state);
+            vm.rivalUpdate(state);
+        },
+        stateUpdate: function (state: Int8Array) {
+            //convert to normal array, for JSON.stringify
+            let newState = Array.from(state);
+            console.log("stateUpdate:", newState);
+            client.sendRoomData(this.roomId, {"state": newState});
         }
     }
 });

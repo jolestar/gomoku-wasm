@@ -78,7 +78,7 @@ const listener = new Listener();
 let module;
 let promise;
 
-export function init(playerRole: number, playWithAI: boolean = false, engineURL = "/engine_optimized.wasm", guiURL = "/gui_optimized.wasm") {
+export function init(playerRole: number, onStateUpdate: (state: Int8Array) => void, playWithAI: boolean = false, engineURL = "/engine_optimized.wasm", guiURL = "/gui_optimized.wasm") {
     promise = instantiateStreaming(fetch(engineURL), {
         env: env,
         console: engineConsole,
@@ -115,8 +115,12 @@ export function init(playerRole: number, playWithAI: boolean = false, engineURL 
                 const ctx = canvas.getContext("2d");
 
                 ctx.canvas.addEventListener("click", (e) => {
-                    var rect: ClientRect = (e.target as HTMLCanvasElement).getBoundingClientRect();
-                    gui.onClick(e.clientX - rect.left, e.clientY - rect.top);
+                    let rect: ClientRect = (e.target as HTMLCanvasElement).getBoundingClientRect();
+                    let statePointer = gui.onClick(e.clientX - rect.left, e.clientY - rect.top);
+                    let state = gui.getArray(Int8Array, statePointer);
+                    if (state.length > 0) {
+                        onStateUpdate(state);
+                    }
                 });
 
                 gui.useContext("main", ctx);
@@ -135,4 +139,9 @@ export async function startGame() {
     module.startGame();
 }
 
+export async function rivalUpdate(state: Int8Array) {
+    let module = await promise;
+    let pointer = module.newArray(state);
+    module.rivalUpdate(pointer);
+}
 
