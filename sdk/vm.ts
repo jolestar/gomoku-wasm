@@ -76,9 +76,10 @@ const engineConsole = new Console();
 const guiConsole = new Console();
 const listener = new Listener();
 let module;
+let promise;
 
 export function init(playerRole: number, playWithAI: boolean = false, engineURL = "/engine_optimized.wasm", guiURL = "/gui_optimized.wasm") {
-    return instantiateStreaming(fetch(engineURL), {
+    promise = instantiateStreaming(fetch(engineURL), {
         env: env,
         console: engineConsole,
         listener: listener
@@ -88,7 +89,7 @@ export function init(playerRole: number, playWithAI: boolean = false, engineURL 
         engine.init();
         return engine;
     }).then(engine => {
-            instantiateStreaming(fetch(guiURL), {
+        return instantiateStreaming(fetch(guiURL), {
                 env: env, console: guiConsole, engine: {
 
                     update(player, state) {
@@ -121,10 +122,17 @@ export function init(playerRole: number, playWithAI: boolean = false, engineURL 
                 gui.useContext("main", ctx);
                 gui.init(playerRole, playWithAI);
                 gui.draw();
+            return gui
             });
 
         }
     );
+    return promise;
+}
+
+export async function startGame() {
+    let module = await promise;
+    module.startGame();
 }
 
 

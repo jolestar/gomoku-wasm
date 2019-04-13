@@ -5,6 +5,7 @@ let client;
 let wsServer: string;
 let httpServer: string;
 let id: string;
+let handlers: { (msg: WSMessage): void }[] = [];
 
 enum HttpMsgType {
     DEF = 0,
@@ -15,7 +16,7 @@ enum HttpMsgType {
     ERR = 100
 }
 
-enum WSMsgType {
+export enum WSMsgType {
     CONN = 1,
     START_INVITE_REQ = 4,
     START_INVITE_RESP = 5,
@@ -30,6 +31,16 @@ enum WSMsgType {
     JOIN_ROOM = 14,
     ROOM_DATA_MSG = 99,
     UNKNOWN = 100
+}
+
+export class WSMessage {
+    type: WSMsgType;
+    data: any;
+
+    constructor(type: WSMsgType, data: any) {
+        this.type = type;
+        this.data = data;
+    }
 }
 
 function randomString() {
@@ -67,6 +78,9 @@ export function init(ws = 'ws://localhost:8082/ws', http = 'http://localhost:808
     client.onmessage = function (e) {
         if (typeof e.data === 'string') {
             console.log("Received: '" + e.data + "'");
+            let obj = JSON.parse(e.data)
+            let msg = new WSMessage(obj.type, JSON.parse(obj.data));
+            fire(msg);
         }
     };
 }
@@ -112,5 +126,26 @@ export function createRoom(gameHash: String) {
 
 export function joinRoom(roomId: string) {
     send(WSMsgType.JOIN_ROOM, roomId, {roomId: roomId})
+}
+
+export function subscribe(fn: (msg: WSMessage) => void) {
+    handlers.push(fn);
+}
+
+export function unsubscribe(fn: (msg: WSMessage) => void) {
+    handlers = handlers.filter(
+        function (item) {
+            if (item !== fn) {
+                return item;
+            }
+        }
+    );
+}
+
+function fire(msg: WSMessage) {
+    console.log("fire message", msg, "handlers:", handlers.length);
+    handlers.forEach(function (item) {
+        item(msg)
+    });
 }
 

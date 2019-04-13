@@ -1,5 +1,7 @@
 import Vue from "vue";
 import * as vm from "../../sdk/vm"
+import {startGame} from "../../sdk/vm"
+import MsgBus from "./Msgbus";
 
 export default Vue.extend({
     template: `
@@ -15,12 +17,19 @@ export default Vue.extend({
         }
     },
     created() {
-        this.initGame()
+        console.log("room:", this.roomId);
+        this.initGame();
+        MsgBus.$on("game-begin", function () {
+            startGame()
+        })
     },
     watch: {},
     methods: {
         initGame: function () {
             vm.init(1)
+        },
+        startGame: function () {
+            vm.startGame()
         }
     }
 });
