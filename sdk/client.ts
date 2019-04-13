@@ -4,7 +4,8 @@ let W3CWebSocket = require('websocket').w3cwebsocket;
 let client;
 let wsServer: string;
 let httpServer: string;
-let id: string;
+let myId: string = randomString();
+
 let handlers: { (msg: WSMessage): void }[] = [];
 
 enum HttpMsgType {
@@ -13,6 +14,7 @@ enum HttpMsgType {
     GAME_LIST = 2,
     CREATE_ROOM = 3,
     ROOM_LIST = 4,
+    ROOM = 5,
     ERR = 100
 }
 
@@ -47,8 +49,9 @@ function randomString() {
     return Math.random().toString(36);
 }
 
+
 export function init(ws = 'ws://localhost:8082/ws', http = 'http://localhost:8082') {
-    id = randomString();
+
     wsServer = ws;
     httpServer = http;
     client = new W3CWebSocket(wsServer);
@@ -80,7 +83,12 @@ export function init(ws = 'ws://localhost:8082/ws', http = 'http://localhost:808
             console.log("Received: '" + e.data + "'");
             let obj = JSON.parse(e.data)
             let msg = new WSMessage(obj.type, JSON.parse(obj.data));
-            fire(msg);
+            if (msg.type == WSMsgType.CONN) {
+                myId = msg.data.id;
+                console.log("id", myId);
+            } else {
+                fire(msg);
+            }
         }
     };
 }
@@ -111,13 +119,17 @@ export function roomList() {
     return post(HttpMsgType.ROOM_LIST, {page: 1})
 }
 
+export function getRoom(roomId) {
+    return post(HttpMsgType.ROOM, {roomId: roomId})
+}
+
 function send(type: WSMsgType, roomId: string, data: any) {
-    let msg = {from: id, to: roomId, type: type, data: JSON.stringify(data)}
+    let msg = {from: myId, to: roomId, type: type, data: JSON.stringify(data)}
     client.send(JSON.stringify(msg))
 }
 
 export function createGame() {
-    return post(HttpMsgType.CREATE_GAME, {gameHash: id})
+    return post(HttpMsgType.CREATE_GAME, {gameHash: myId})
 }
 
 export function createRoom(gameHash: String) {
@@ -149,3 +161,6 @@ function fire(msg: WSMessage) {
     });
 }
 
+export function getMyId() {
+    return myId;
+}
