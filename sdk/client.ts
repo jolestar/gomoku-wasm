@@ -98,6 +98,7 @@ function post(type: HttpMsgType, data: any) {
         "type": type,
         "data": JSON.stringify(data)
     }
+    console.log("httpServer:", httpServer);
     return fetch(httpServer + "/p", {
         method: "POST",
         body: JSON.stringify(body),

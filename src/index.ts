@@ -27,6 +27,7 @@ const app = new Vue({
         <div>
         <h1>Hello App!</h1>
             <p>
+            <router-link to="/">Home</router-link>
             <router-link to="/hello/world/1">Hello World</router-link>
             <router-link to="/lobby">Game Lobby</router-link>
             </p>
@@ -36,20 +37,7 @@ const app = new Vue({
     router,
     created() {
         console.log("app create", this.$refs);
-        // let self = this;
-        // client.init();
-        // client.subscribe(function (msg: WSMessage): void {
-        //     if (msg.type == WSMsgType.GAME_BEGIN) {
-        //         console.log("Game begin....", self);
-        //         //self.$refs.room.startGame();
-        //         self.$emit('game_begin')
-        //     }
-        // });
-        // this.$on("room", function (msg) {
-        //     console.log("event room", msg);
-        // })
+        MsgBus.init()
     },
     components: {}
 }).$mount('#app')
-
-MsgBus.init()
