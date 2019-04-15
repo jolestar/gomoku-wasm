@@ -31,4 +31,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"as2d":"YW9J"}],"9B6d":[function(require,module,exports) {
 "use strict";var e=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var r in e)Object.hasOwnProperty.call(e,r)&&(t[r]=e[r]);return t.default=e,t};Object.defineProperty(exports,"__esModule",{value:!0});var t=e(require("./vm"));t.init(1,function(e){console.log("state update",e)},!0),t.startGame();
 },{"./vm":"F+7o"}]},{},["9B6d"], null)
-//# sourceMappingURL=/src.c662d0b7.js.map
+//# sourceMappingURL=src.c662d0b7.js.map
