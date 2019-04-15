@@ -1,19 +1,14 @@
 (module
- (type $iii (func (param i32 i32) (result i32)))
- (type $iiiiv (func (param i32 i32 i32 i32)))
- (type $ii (func (param i32) (result i32)))
- (type $iiv (func (param i32 i32)))
- (type $iiiv (func (param i32 i32 i32)))
- (type $iiii (func (param i32 i32 i32) (result i32)))
- (type $iv (func (param i32)))
- (type $iFi (func (param i32 f64) (result i32)))
- (type $i (func (result i32)))
- (type $v (func))
- (type $FUNCSIG$vi (func (param i32)))
- (type $FUNCSIG$vii (func (param i32 i32)))
  (type $FUNCSIG$iii (func (param i32 i32) (result i32)))
- (type $FUNCSIG$i (func (result i32)))
+ (type $FUNCSIG$viiii (func (param i32 i32 i32 i32)))
+ (type $FUNCSIG$ii (func (param i32) (result i32)))
+ (type $FUNCSIG$v (func))
+ (type $FUNCSIG$vii (func (param i32 i32)))
+ (type $FUNCSIG$viii (func (param i32 i32 i32)))
  (type $FUNCSIG$iiii (func (param i32 i32 i32) (result i32)))
+ (type $FUNCSIG$vi (func (param i32)))
+ (type $FUNCSIG$iid (func (param i32 f64) (result i32)))
+ (type $FUNCSIG$i (func (result i32)))
  (import "env" "abort" (func $~lib/env/abort (param i32 i32 i32 i32)))
  (import "console" "log" (func $assembly/game/console/console.log (param i32)))
  (import "console" "logAction" (func $assembly/game/console/console.logAction (param i32 i32 i32)))
@@ -49,36 +44,22 @@
  (global $~lib/allocator/tlsf/ROOT (mut i32) (i32.const 0))
  (global $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/defaultLineDash (mut i32) (i32.const 0))
  (global $node_modules/as2d/assembly/internal/getContext/map (mut i32) (i32.const 0))
- (global $node_modules/as2d/src/shared/CanvasDirection/CanvasDirection.inherit (mut i32) (i32.const 2))
- (global $node_modules/as2d/src/shared/GlobalCompositeOperation/GlobalCompositeOperation.source_over (mut i32) (i32.const 0))
- (global $node_modules/as2d/src/shared/ImageSmoothingQuality/ImageSmoothingQuality.low (mut i32) (i32.const 0))
- (global $node_modules/as2d/src/shared/LineCap/LineCap.butt (mut i32) (i32.const 0))
- (global $node_modules/as2d/src/shared/LineJoin/LineJoin.miter (mut i32) (i32.const 2))
- (global $node_modules/as2d/src/shared/TextAlign/TextAlign.start (mut i32) (i32.const 3))
- (global $node_modules/as2d/src/shared/TextBaseline/TextBaseline.alphabetic (mut i32) (i32.const 3))
- (global $assembly/game/GameEngine/PlayerRole.First (mut i32) (i32.const 1))
- (global $assembly/game/GameEngine/PlayerRole.Second (mut i32) (i32.const 2))
- (global $assembly/gomoku/constants/Chess.None (mut i32) (i32.const 0))
- (global $assembly/gomoku/constants/Chess.White (mut i32) (i32.const 1))
- (global $assembly/gomoku/constants/Chess.Black (mut i32) (i32.const 2))
  (global $assembly/engine/engine (mut i32) (i32.const 0))
  (export "memory" (memory $0))
  (export "table" (table $0))
+ (export "__use_context" (func $node_modules/as2d/assembly/internal/getContext/__use_context))
+ (export "__image_loaded" (func $node_modules/as2d/assembly/renderer/Image/__image_loaded))
+ (export "memory.compare" (func $~lib/memory/memory.compare))
+ (export "memory.allocate" (func $~lib/memory/memory.allocate))
+ (export "memory.free" (func $~lib/memory/memory.free))
+ (export "memory.reset" (func $~lib/memory/memory.reset))
  (export "isGameOver" (func $assembly/engine/isGameOver))
  (export "getState" (func $assembly/engine/getState))
  (export "init" (func $assembly/engine/init))
  (export "update" (func $assembly/engine/update))
  (export "loadState" (func $assembly/engine/loadState))
- (export "__use_context" (func $node_modules/as2d/assembly/internal/getContext/__use_context))
- (export "__image_loaded" (func $node_modules/as2d/assembly/renderer/Image/__image_loaded))
- (export "memory.fill" (func $~lib/memory/memory.fill))
- (export "memory.copy" (func $~lib/memory/memory.copy))
- (export "memory.compare" (func $~lib/memory/memory.compare))
- (export "memory.allocate" (func $~lib/memory/memory.allocate))
- (export "memory.free" (func $~lib/memory/memory.free))
- (export "memory.reset" (func $~lib/memory/memory.reset))
  (start $start)
- (func $~lib/internal/arraybuffer/computeSize (; 5 ;) (type $ii) (param $0 i32) (result i32)
+ (func $~lib/internal/arraybuffer/computeSize (; 5 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   i32.const 1
   i32.const 32
   local.get $0
@@ -93,7 +74,7 @@
   local.get $0
   i32.store
  )
- (func $~lib/allocator/tlsf/Root#setSLMap (; 7 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/allocator/tlsf/Root#setSLMap (; 7 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -113,7 +94,7 @@
   local.get $2
   i32.store offset=4
  )
- (func $~lib/allocator/tlsf/Root#setHead (; 8 ;) (type $iiiiv) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $~lib/allocator/tlsf/Root#setHead (; 8 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -148,8 +129,7 @@
   local.get $3
   i32.store offset=96
  )
- (func $~lib/allocator/tlsf/Block#get:right (; 9 ;) (type $ii) (param $0 i32) (result i32)
-  (local $1 i32)
+ (func $~lib/allocator/tlsf/Block#get:right (; 9 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   i32.const -4
@@ -171,9 +151,9 @@
   i32.const -4
   i32.and
   i32.add
-  local.tee $1
+  local.tee $0
   if (result i32)
-   local.get $1
+   local.get $0
   else   
    i32.const 0
    i32.const 248
@@ -183,7 +163,7 @@
    unreachable
   end
  )
- (func $~lib/allocator/tlsf/fls<usize> (; 10 ;) (type $ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/fls<usize> (; 10 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -199,7 +179,7 @@
   i32.clz
   i32.sub
  )
- (func $~lib/allocator/tlsf/Root#getHead (; 11 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#getHead (; 11 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -233,7 +213,7 @@
   i32.add
   i32.load offset=96
  )
- (func $~lib/allocator/tlsf/Root#getSLMap (; 12 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#getSLMap (; 12 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -252,14 +232,14 @@
   i32.add
   i32.load offset=4
  )
- (func $~lib/allocator/tlsf/Root#remove (; 13 ;) (type $iiv) (param $0 i32) (param $1 i32)
+ (func $~lib/allocator/tlsf/Root#remove (; 13 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
   local.get $1
   i32.load
-  local.tee $3
+  local.tee $2
   i32.const 1
   i32.and
   i32.eqz
@@ -271,19 +251,19 @@
    call $~lib/env/abort
    unreachable
   end
-  local.get $3
+  local.get $2
   i32.const -4
   i32.and
-  local.tee $2
+  local.tee $3
   i32.const 16
   i32.ge_u
-  local.tee $4
+  local.tee $2
   if (result i32)
-   local.get $2
+   local.get $3
    i32.const 1073741824
    i32.lt_u
   else   
-   local.get $4
+   local.get $2
   end
   i32.eqz
   if
@@ -294,67 +274,67 @@
    call $~lib/env/abort
    unreachable
   end
-  local.get $2
+  local.get $3
   i32.const 256
   i32.lt_u
   if (result i32)
-   local.get $2
+   local.get $3
    i32.const 8
    i32.div_u
    local.set $4
    i32.const 0
   else   
-   local.get $2
-   local.get $2
+   local.get $3
+   local.get $3
    call $~lib/allocator/tlsf/fls<usize>
-   local.tee $3
+   local.tee $2
    i32.const 5
    i32.sub
    i32.shr_u
    i32.const 32
    i32.xor
    local.set $4
-   local.get $3
+   local.get $2
    i32.const 7
    i32.sub
   end
-  local.set $3
+  local.set $2
   local.get $1
   i32.load offset=8
-  local.set $2
+  local.set $3
   local.get $1
   i32.load offset=4
   local.tee $5
   if
    local.get $5
-   local.get $2
+   local.get $3
    i32.store offset=8
   end
-  local.get $2
+  local.get $3
   if
-   local.get $2
+   local.get $3
    local.get $5
    i32.store offset=4
   end
   local.get $0
-  local.get $3
+  local.get $2
   local.get $4
   call $~lib/allocator/tlsf/Root#getHead
   local.get $1
   i32.eq
   if
    local.get $0
-   local.get $3
+   local.get $2
    local.get $4
-   local.get $2
+   local.get $3
    call $~lib/allocator/tlsf/Root#setHead
-   local.get $2
+   local.get $3
    i32.eqz
    if
     local.get $0
-    local.get $3
+    local.get $2
     local.get $0
-    local.get $3
+    local.get $2
     call $~lib/allocator/tlsf/Root#getSLMap
     i32.const 1
     local.get $4
@@ -362,16 +342,16 @@
     i32.const -1
     i32.xor
     i32.and
-    local.tee $4
+    local.tee $1
     call $~lib/allocator/tlsf/Root#setSLMap
-    local.get $4
+    local.get $1
     i32.eqz
     if
      local.get $0
      local.get $0
      i32.load
      i32.const 1
-     local.get $3
+     local.get $2
      i32.shl
      i32.const -1
      i32.xor
@@ -381,8 +361,7 @@
    end
   end
  )
- (func $~lib/allocator/tlsf/Block#get:left (; 14 ;) (type $ii) (param $0 i32) (result i32)
-  (local $1 i32)
+ (func $~lib/allocator/tlsf/Block#get:left (; 14 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   i32.const 2
@@ -400,9 +379,9 @@
   i32.const 4
   i32.sub
   i32.load
-  local.tee $1
+  local.tee $0
   if (result i32)
-   local.get $1
+   local.get $0
   else   
    i32.const 0
    i32.const 248
@@ -457,12 +436,11 @@
   local.get $0
   i32.store
  )
- (func $~lib/allocator/tlsf/Root#insert (; 16 ;) (type $iiv) (param $0 i32) (param $1 i32)
+ (func $~lib/allocator/tlsf/Root#insert (; 16 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $1
   i32.eqz
   if
@@ -475,7 +453,7 @@
   end
   local.get $1
   i32.load
-  local.tee $4
+  local.tee $3
   i32.const 1
   i32.and
   i32.eqz
@@ -491,16 +469,16 @@
   i32.load
   i32.const -4
   i32.and
-  local.tee $3
+  local.tee $2
   i32.const 16
   i32.ge_u
-  local.tee $2
+  local.tee $4
   if (result i32)
-   local.get $3
+   local.get $2
    i32.const 1073741824
    i32.lt_u
   else   
-   local.get $2
+   local.get $4
   end
   i32.eqz
   if
@@ -511,66 +489,81 @@
    call $~lib/env/abort
    unreachable
   end
-  local.get $1
-  call $~lib/allocator/tlsf/Block#get:right
-  local.tee $2
-  if (result i32)
+  block (result i32)
+   local.get $1
+   call $~lib/allocator/tlsf/Block#get:right
+   local.tee $2
+   i32.eqz
+   if
+    block
+     i32.const 0
+     i32.const 248
+     i32.const 197
+     i32.const 23
+     call $~lib/env/abort
+     unreachable
+     unreachable
+    end
+    unreachable
+    local.tee $2
+    unreachable
+   end
    local.get $2
-  else   
-   i32.const 0
-   i32.const 248
-   i32.const 197
-   i32.const 23
-   call $~lib/env/abort
-   unreachable
+   i32.load
+   local.tee $4
+   i32.const 1
+   i32.and
   end
-  local.tee $3
-  i32.load
-  local.tee $6
-  i32.const 1
-  i32.and
   if
    local.get $0
-   local.get $3
+   local.get $2
    call $~lib/allocator/tlsf/Root#remove
    local.get $1
+   local.get $3
    local.get $4
-   local.get $6
    i32.const -4
    i32.and
    i32.const 8
    i32.add
    i32.add
-   local.tee $4
+   local.tee $3
    i32.store
    local.get $1
    call $~lib/allocator/tlsf/Block#get:right
-   local.tee $3
+   local.tee $2
    i32.load
-   local.set $6
+   local.set $4
   end
-  local.get $4
+  local.get $3
   i32.const 2
   i32.and
   if
-   local.get $1
-   call $~lib/allocator/tlsf/Block#get:left
-   local.tee $2
-   i32.eqz
-   if
-    i32.const 0
-    i32.const 248
-    i32.const 211
-    i32.const 24
-    call $~lib/env/abort
-    unreachable
+   block (result i32)
+    local.get $1
+    call $~lib/allocator/tlsf/Block#get:left
+    local.tee $1
+    i32.eqz
+    if
+     block
+      i32.const 0
+      i32.const 248
+      i32.const 211
+      i32.const 24
+      call $~lib/env/abort
+      unreachable
+      unreachable
+     end
+     unreachable
+     local.tee $1
+     unreachable
+    end
+    local.get $1
+    i32.load
+    local.tee $5
+    i32.const 1
+    i32.and
+    i32.eqz
    end
-   local.get $2
-   i32.load
-   local.tee $5
-   i32.const 1
-   i32.and
-   i32.eqz
    if
     i32.const 0
     i32.const 248
@@ -580,44 +573,40 @@
     unreachable
    end
    local.get $0
-   local.get $2
+   local.get $1
    call $~lib/allocator/tlsf/Root#remove
-   local.get $2
+   local.get $1
    local.get $5
-   local.get $4
+   local.get $3
    i32.const -4
    i32.and
    i32.const 8
    i32.add
    i32.add
-   local.tee $5
+   local.tee $3
    i32.store
-   local.get $5
-   local.set $4
-   local.get $2
-   local.set $1
   end
-  local.get $3
-  local.get $6
+  local.get $2
+  local.get $4
   i32.const 2
   i32.or
   i32.store
   local.get $1
-  local.get $3
+  local.get $2
   call $~lib/allocator/tlsf/Root#setJump
-  local.get $4
+  local.get $3
   i32.const -4
   i32.and
-  local.tee $3
+  local.tee $2
   i32.const 16
   i32.ge_u
-  local.tee $5
+  local.tee $3
   if (result i32)
-   local.get $3
+   local.get $2
    i32.const 1073741824
    i32.lt_u
   else   
-   local.get $5
+   local.get $3
   end
   i32.eqz
   if
@@ -629,71 +618,71 @@
    unreachable
   end
   local.get $0
-  local.get $3
+  local.get $2
   i32.const 256
   i32.lt_u
   if (result i32)
-   local.get $3
+   local.get $2
    i32.const 8
    i32.div_u
-   local.set $4
+   local.set $2
    i32.const 0
   else   
-   local.get $3
-   local.get $3
+   local.get $2
+   local.get $2
    call $~lib/allocator/tlsf/fls<usize>
-   local.tee $2
+   local.tee $3
    i32.const 5
    i32.sub
    i32.shr_u
    i32.const 32
    i32.xor
-   local.set $4
-   local.get $2
+   local.set $2
+   local.get $3
    i32.const 7
    i32.sub
   end
-  local.tee $2
-  local.get $4
+  local.tee $3
+  local.get $2
   call $~lib/allocator/tlsf/Root#getHead
-  local.set $5
+  local.set $4
   local.get $1
   i32.const 0
   i32.store offset=4
   local.get $1
-  local.get $5
+  local.get $4
   i32.store offset=8
-  local.get $5
+  local.get $4
   if
-   local.get $5
+   local.get $4
    local.get $1
    i32.store offset=4
   end
   local.get $0
+  local.get $3
   local.get $2
-  local.get $4
   local.get $1
   call $~lib/allocator/tlsf/Root#setHead
   local.get $0
   local.get $0
   i32.load
   i32.const 1
-  local.get $2
+  local.get $3
   i32.shl
   i32.or
   i32.store
   local.get $0
-  local.get $2
+  local.get $3
   local.get $0
-  local.get $2
+  local.get $3
   call $~lib/allocator/tlsf/Root#getSLMap
   i32.const 1
-  local.get $4
+  local.get $2
   i32.shl
   i32.or
   call $~lib/allocator/tlsf/Root#setSLMap
  )
- (func $~lib/allocator/tlsf/Root#addMemory (; 17 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#addMemory (; 17 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   local.get $1
@@ -782,7 +771,6 @@
   i32.const 32
   i32.lt_u
   if
-   i32.const 0
    return
   end
   local.get $1
@@ -815,9 +803,8 @@
   local.get $0
   local.get $1
   call $~lib/allocator/tlsf/Root#insert
-  i32.const 1
  )
- (func $~lib/allocator/tlsf/ffs<usize> (; 18 ;) (type $ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/ffs<usize> (; 18 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -831,7 +818,7 @@
   local.get $0
   i32.ctz
  )
- (func $~lib/allocator/tlsf/Root#search (; 19 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#search (; 19 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   i32.const 16
@@ -916,32 +903,26 @@
    i32.add
    i32.shl
    i32.and
-   local.tee $2
+   local.tee $1
    if (result i32)
     local.get $0
-    local.get $2
+    local.get $1
     call $~lib/allocator/tlsf/ffs<usize>
-    local.tee $2
-    call $~lib/allocator/tlsf/Root#getSLMap
     local.tee $1
-    i32.eqz
-    if
-     block
-      i32.const 0
-      i32.const 248
-      i32.const 323
-      i32.const 16
-      call $~lib/env/abort
-      unreachable
-      unreachable
-     end
-     unreachable
-     local.tee $1
+    local.get $0
+    local.get $1
+    call $~lib/allocator/tlsf/Root#getSLMap
+    local.tee $0
+    if (result i32)
+     local.get $0
+    else     
+     i32.const 0
+     i32.const 248
+     i32.const 323
+     i32.const 16
+     call $~lib/env/abort
      unreachable
     end
-    local.get $0
-    local.get $2
-    local.get $1
     call $~lib/allocator/tlsf/ffs<usize>
     call $~lib/allocator/tlsf/Root#getHead
    else    
@@ -949,13 +930,12 @@
    end
   end
  )
- (func $~lib/allocator/tlsf/Root#use (; 20 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#use (; 20 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
   local.get $1
   i32.load
-  local.tee $4
+  local.tee $3
   i32.const 1
   i32.and
   i32.eqz
@@ -970,13 +950,13 @@
   local.get $2
   i32.const 16
   i32.ge_u
-  local.tee $3
+  local.tee $4
   if (result i32)
    local.get $2
    i32.const 1073741824
    i32.lt_u
   else   
-   local.get $3
+   local.get $4
   end
   i32.eqz
   if
@@ -1001,18 +981,18 @@
   local.get $0
   local.get $1
   call $~lib/allocator/tlsf/Root#remove
-  local.get $4
+  local.get $3
   i32.const -4
   i32.and
   local.get $2
   i32.sub
-  local.tee $5
+  local.tee $4
   i32.const 24
   i32.ge_u
   if
    local.get $1
    local.get $2
-   local.get $4
+   local.get $3
    i32.const 2
    i32.and
    i32.or
@@ -1022,36 +1002,42 @@
    i32.add
    local.get $2
    i32.add
-   local.tee $3
-   local.get $5
+   local.tee $2
+   local.get $4
    i32.const 8
    i32.sub
    i32.const 1
    i32.or
    i32.store
    local.get $0
-   local.get $3
+   local.get $2
    call $~lib/allocator/tlsf/Root#insert
   else   
    local.get $1
-   local.get $4
+   local.get $3
    i32.const -2
    i32.and
    i32.store
    local.get $1
    call $~lib/allocator/tlsf/Block#get:right
-   local.tee $3
+   local.tee $0
    i32.eqz
    if
-    i32.const 0
-    i32.const 248
-    i32.const 368
-    i32.const 25
-    call $~lib/env/abort
+    block
+     i32.const 0
+     i32.const 248
+     i32.const 368
+     i32.const 25
+     call $~lib/env/abort
+     unreachable
+     unreachable
+    end
+    unreachable
+    local.tee $0
     unreachable
    end
-   local.get $3
-   local.get $3
+   local.get $0
+   local.get $0
    i32.load
    i32.const -3
    i32.and
@@ -1061,91 +1047,91 @@
   i32.const 8
   i32.add
  )
- (func $~lib/allocator/tlsf/__memory_allocate (; 21 ;) (type $ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/__memory_allocate (; 21 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
   global.get $~lib/allocator/tlsf/ROOT
-  local.tee $2
+  local.tee $1
   i32.eqz
   if
    i32.const 904
-   local.tee $5
+   local.tee $4
    i32.const 68451
    i32.add
    i32.const -65536
    i32.and
    i32.const 16
    i32.shr_u
-   local.tee $1
+   local.tee $2
    current_memory
-   local.tee $4
-   i32.gt_s
    local.tee $3
+   i32.gt_s
+   local.tee $1
    if (result i32)
-    local.get $1
-    local.get $4
+    local.get $2
+    local.get $3
     i32.sub
     grow_memory
     i32.const 0
     i32.lt_s
    else    
-    local.get $3
+    local.get $1
    end
    if
     unreachable
    end
-   local.get $5
-   local.tee $2
+   local.get $4
+   local.tee $1
    global.set $~lib/allocator/tlsf/ROOT
    i32.const 0
    call $~lib/allocator/tlsf/Root#set:tailRef
-   local.get $2
+   local.get $1
    i32.const 0
    i32.store
    i32.const 0
-   local.set $3
+   local.set $2
    loop $repeat|0
     block $break|0
-     local.get $3
+     local.get $2
      i32.const 22
      i32.ge_u
      br_if $break|0
+     local.get $1
      local.get $2
-     local.get $3
      i32.const 0
      call $~lib/allocator/tlsf/Root#setSLMap
      i32.const 0
-     local.set $1
+     local.set $3
      loop $repeat|1
       block $break|1
-       local.get $1
+       local.get $3
        i32.const 32
        i32.ge_u
        br_if $break|1
+       local.get $1
        local.get $2
        local.get $3
-       local.get $1
        i32.const 0
        call $~lib/allocator/tlsf/Root#setHead
-       local.get $1
+       local.get $3
        i32.const 1
        i32.add
-       local.set $1
+       local.set $3
        br $repeat|1
       end
      end
-     local.get $3
+     local.get $2
      i32.const 1
      i32.add
-     local.set $3
+     local.set $2
      br $repeat|0
     end
    end
-   local.get $2
-   local.get $5
+   local.get $1
+   local.get $4
    i32.const 2923
    i32.add
    i32.const -8
@@ -1154,7 +1140,6 @@
    i32.const 16
    i32.shl
    call $~lib/allocator/tlsf/Root#addMemory
-   drop
   end
   local.get $0
   i32.const 1073741824
@@ -1163,28 +1148,28 @@
    unreachable
   end
   block (result i32)
-   local.get $2
+   local.get $1
    local.get $0
    i32.const 7
    i32.add
    i32.const -8
    i32.and
-   local.tee $1
-   i32.const 16
    local.tee $4
-   local.get $1
+   i32.const 16
+   local.tee $0
    local.get $4
+   local.get $0
    i32.gt_u
    select
-   local.tee $0
+   local.tee $5
    call $~lib/allocator/tlsf/Root#search
-   local.tee $1
+   local.tee $0
    i32.eqz
    if
     current_memory
-    local.tee $1
-    local.tee $5
-    local.get $0
+    local.tee $2
+    local.tee $3
+    local.get $5
     i32.const 65535
     i32.add
     i32.const -65536
@@ -1192,9 +1177,9 @@
     i32.const 16
     i32.shr_u
     local.tee $4
-    local.tee $3
-    local.get $5
+    local.tee $0
     local.get $3
+    local.get $0
     i32.gt_s
     select
     grow_memory
@@ -1209,21 +1194,20 @@
       unreachable
      end
     end
-    local.get $2
     local.get $1
+    local.get $2
     i32.const 16
     i32.shl
     current_memory
     i32.const 16
     i32.shl
     call $~lib/allocator/tlsf/Root#addMemory
-    drop
-    local.get $2
-    local.get $0
+    local.get $1
+    local.get $5
     call $~lib/allocator/tlsf/Root#search
-    local.tee $1
+    local.tee $0
     if (result i32)
-     local.get $1
+     local.get $0
     else     
      i32.const 0
      i32.const 248
@@ -1232,13 +1216,13 @@
      call $~lib/env/abort
      unreachable
     end
-    local.set $1
+    local.set $0
    end
-   local.get $1
+   local.get $0
    i32.load
    i32.const -4
    i32.and
-   local.get $0
+   local.get $5
    i32.lt_u
   end
   if
@@ -1249,12 +1233,12 @@
    call $~lib/env/abort
    unreachable
   end
-  local.get $2
   local.get $1
   local.get $0
+  local.get $5
   call $~lib/allocator/tlsf/Root#use
  )
- (func $~lib/internal/arraybuffer/allocateUnsafe (; 22 ;) (type $ii) (param $0 i32) (result i32)
+ (func $~lib/internal/arraybuffer/allocateUnsafe (; 22 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
   i32.const 1073741816
@@ -1275,25 +1259,24 @@
   i32.store
   local.get $1
  )
- (func $~lib/internal/memory/memset (; 23 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
-  (local $3 i64)
-  (local $4 i32)
-  local.get $2
+ (func $~lib/internal/memory/memset (; 23 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  (local $2 i32)
+  local.get $1
   i32.eqz
   if
    return
   end
   local.get $0
-  local.get $1
+  i32.const 0
   i32.store8
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 1
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store8
-  local.get $2
+  local.get $1
   i32.const 2
   i32.le_u
   if
@@ -1302,28 +1285,28 @@
   local.get $0
   i32.const 1
   i32.add
-  local.get $1
+  i32.const 0
   i32.store8
   local.get $0
   i32.const 2
   i32.add
-  local.get $1
+  i32.const 0
   i32.store8
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 2
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store8
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 3
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store8
-  local.get $2
+  local.get $1
   i32.const 6
   i32.le_u
   if
@@ -1332,16 +1315,16 @@
   local.get $0
   i32.const 3
   i32.add
-  local.get $1
+  i32.const 0
   i32.store8
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 4
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store8
-  local.get $2
+  local.get $1
   i32.const 8
   i32.le_u
   if
@@ -1352,30 +1335,25 @@
   i32.sub
   i32.const 3
   i32.and
-  local.tee $4
-  local.get $0
-  i32.add
-  local.tee $0
-  local.get $1
-  i32.const 255
-  i32.and
-  i32.const 16843009
-  i32.mul
-  local.tee $1
-  i32.store
-  local.get $2
-  local.get $4
-  i32.sub
-  i32.const -4
-  i32.and
   local.tee $2
   local.get $0
   i32.add
+  local.tee $0
+  i32.const 0
+  i32.store
+  local.get $1
+  local.get $2
+  i32.sub
+  i32.const -4
+  i32.and
+  local.tee $1
+  local.get $0
+  i32.add
   i32.const 4
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store
-  local.get $2
+  local.get $1
   i32.const 8
   i32.le_u
   if
@@ -1384,28 +1362,28 @@
   local.get $0
   i32.const 4
   i32.add
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
   i32.const 8
   i32.add
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 12
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 8
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store
-  local.get $2
+  local.get $1
   i32.const 24
   i32.le_u
   if
@@ -1414,99 +1392,91 @@
   local.get $0
   i32.const 12
   i32.add
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
   i32.const 16
   i32.add
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
   i32.const 20
   i32.add
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
   i32.const 24
   i32.add
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 28
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 24
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 20
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
-  local.get $2
+  local.get $1
   i32.add
   i32.const 16
   i32.sub
-  local.get $1
+  i32.const 0
   i32.store
   local.get $0
   i32.const 4
   i32.and
   i32.const 24
   i32.add
-  local.tee $4
+  local.tee $2
   local.get $0
   i32.add
   local.set $0
+  local.get $1
   local.get $2
-  local.get $4
   i32.sub
-  local.set $2
-  local.get $1
-  i64.extend_i32_u
-  local.get $1
-  i64.extend_i32_u
-  i64.const 32
-  i64.shl
-  i64.or
-  local.set $3
+  local.set $1
   loop $continue|0
-   local.get $2
+   local.get $1
    i32.const 32
    i32.ge_u
    if
     local.get $0
-    local.get $3
+    i64.const 0
     i64.store
     local.get $0
     i32.const 8
     i32.add
-    local.get $3
+    i64.const 0
     i64.store
     local.get $0
     i32.const 16
     i32.add
-    local.get $3
+    i64.const 0
     i64.store
     local.get $0
     i32.const 24
     i32.add
-    local.get $3
+    i64.const 0
     i64.store
-    local.get $2
+    local.get $1
     i32.const 32
     i32.sub
-    local.set $2
+    local.set $1
     local.get $0
     i32.const 32
     i32.add
@@ -1515,33 +1485,18 @@
    end
   end
  )
- (func $~lib/memory/memory.allocate (; 24 ;) (type $ii) (param $0 i32) (result i32)
+ (func $~lib/memory/memory.allocate (; 24 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   call $~lib/allocator/tlsf/__memory_allocate
  )
- (func $~lib/internal/typedarray/TypedArray<f64>#constructor (; 25 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  local.get $1
-  i32.const 134217727
-  i32.gt_u
-  if
-   i32.const 0
-   i32.const 120
-   i32.const 23
-   i32.const 34
-   call $~lib/env/abort
-   unreachable
-  end
-  local.get $1
-  i32.const 3
-  i32.shl
-  local.tee $1
+ (func $~lib/internal/typedarray/TypedArray<f64>#constructor (; 25 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  i32.const 0
   call $~lib/internal/arraybuffer/allocateUnsafe
-  local.tee $2
+  local.tee $1
   i32.const 8
   i32.add
   i32.const 0
-  local.get $1
   call $~lib/internal/memory/memset
   local.get $0
   i32.eqz
@@ -1560,13 +1515,13 @@
   i32.const 0
   i32.store offset=8
   local.get $0
-  local.get $2
+  local.get $1
   i32.store
   local.get $0
   i32.const 0
   i32.store offset=4
   local.get $0
-  local.get $1
+  i32.const 0
   i32.store offset=8
   local.get $0
  )
@@ -1592,13 +1547,12 @@
    local.get $2
    i32.const 8
    i32.add
-   i32.const 0
    local.get $0
    call $~lib/internal/memory/memset
   end
   local.get $2
  )
- (func $~lib/map/Map<String,CanvasRenderingContext2D>#clear (; 27 ;) (type $iv) (param $0 i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#clear (; 27 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   i32.const 16
   i32.const 0
@@ -1622,7 +1576,7 @@
   i32.const 0
   i32.store offset=20
  )
- (func $~lib/map/Map<String,CanvasRenderingContext2D>#constructor (; 28 ;) (type $FUNCSIG$i) (result i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#constructor (; 28 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   block (result i32)
    i32.const 24
@@ -1647,10 +1601,10 @@
    i32.store offset=20
    local.get $0
   end
-  call $~lib/map/Map<String,CanvasRenderingContext2D>#clear
+  call $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#clear
   local.get $0
  )
- (func $node_modules/as2d/assembly/internal/Buffer/Buffer<i32>#constructor (; 29 ;) (type $ii) (param $0 i32) (result i32)
+ (func $node_modules/as2d/assembly/internal/Buffer/Buffer<i32>#constructor (; 29 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -1668,38 +1622,38 @@
   i32.store offset=4
   local.get $0
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferIdentity (; 30 ;) (type $ii) (param $0 i32) (result i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferIdentity (; 30 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   f64.const 1
   f64.store offset=8
+  local.get $0
   i32.const 8
-  local.get $0
   i32.add
   f64.const 0
   f64.store offset=8
+  local.get $0
   i32.const 16
-  local.get $0
   i32.add
   f64.const 0
   f64.store offset=8
-  i32.const 24
   local.get $0
+  i32.const 24
   i32.add
   f64.const 1
   f64.store offset=8
-  i32.const 32
   local.get $0
+  i32.const 32
   i32.add
   f64.const 0
   f64.store offset=8
-  i32.const 40
   local.get $0
+  i32.const 40
   i32.add
   f64.const 0
   f64.store offset=8
   local.get $0
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32> (; 31 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32> (; 31 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   local.get $1
   i32.store offset=8
@@ -1716,13 +1670,13 @@
   i32.store offset=8
   local.get $0
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<f64> (; 33 ;) (type $iFi) (param $0 i32) (param $1 f64) (result i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<f64> (; 33 ;) (type $FUNCSIG$iid) (param $0 i32) (param $1 f64) (result i32)
   local.get $0
   local.get $1
   f64.store offset=8
   local.get $0
  )
- (func $~lib/array/Array<Path2DElement>#constructor (; 34 ;) (type $FUNCSIG$i) (result i32)
+ (func $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#constructor (; 34 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   i32.const 1020
@@ -1745,7 +1699,6 @@
   local.get $1
   i32.const 8
   i32.add
-  i32.const 0
   i32.const 1020
   call $~lib/internal/memory/memset
   local.get $0
@@ -1807,9 +1760,10 @@
   f64.store offset=120
   local.get $0
  )
- (func $~lib/internal/memory/memcpy (; 36 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/memory/memcpy (; 36 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
+  (local $5 i32)
   loop $continue|0
    local.get $1
    i32.const 3
@@ -1958,14 +1912,8 @@
    i32.and
    if
     local.get $0
-    local.set $3
-    local.get $3
-    block (result i32)
-     local.get $1
-     local.set $3
-     local.get $3
-     i32.load8_u
-    end
+    local.get $1
+    i32.load8_u
     i32.store8
    end
    return
@@ -1989,52 +1937,40 @@
       i32.load
       local.set $4
       local.get $0
-      local.tee $3
+      local.get $1
+      i32.load8_u
+      i32.store8
+      local.get $0
       i32.const 1
       i32.add
-      local.set $0
-      local.get $3
+      local.tee $0
+      i32.const 1
+      i32.add
+      local.set $3
+      local.get $0
       block (result i32)
        local.get $1
-       local.tee $3
        i32.const 1
        i32.add
-       local.set $1
-       local.get $3
+       local.tee $0
+       i32.const 1
+       i32.add
+       local.set $5
+       local.get $0
        i32.load8_u
       end
       i32.store8
-      local.get $0
-      local.tee $3
+      local.get $3
       i32.const 1
       i32.add
       local.set $0
-      local.get $3
-      block (result i32)
-       local.get $1
-       local.tee $3
-       i32.const 1
-       i32.add
-       local.set $1
-       local.get $3
-       i32.load8_u
-      end
-      i32.store8
-      local.get $0
-      local.tee $3
+      local.get $5
       i32.const 1
       i32.add
-      local.set $0
+      local.set $1
       local.get $3
-      block (result i32)
-       local.get $1
-       local.tee $3
-       i32.const 1
-       i32.add
-       local.set $1
-       local.get $3
-       i32.load8_u
-      end
+      local.get $5
+      i32.load8_u
       i32.store8
       local.get $2
       i32.const 3
@@ -2124,22 +2060,12 @@
      i32.load
      local.set $4
      local.get $0
-     local.tee $3
-     i32.const 1
-     i32.add
-     local.set $0
-     local.get $3
-     block (result i32)
-      local.get $1
-      local.tee $3
-      i32.const 1
-      i32.add
-      local.set $1
-      local.get $3
-      i32.load8_u
-     end
+     local.get $1
+     i32.load8_u
      i32.store8
      local.get $0
+     i32.const 1
+     i32.add
      local.tee $3
      i32.const 1
      i32.add
@@ -2147,6 +2073,8 @@
      local.get $3
      block (result i32)
       local.get $1
+      i32.const 1
+      i32.add
       local.tee $3
       i32.const 1
       i32.add
@@ -2347,6 +2275,12 @@
   i32.and
   if
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2354,6 +2288,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2363,6 +2299,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2370,6 +2312,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2379,6 +2323,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2386,6 +2336,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2395,6 +2347,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2402,6 +2360,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2411,6 +2371,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2418,6 +2384,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2427,6 +2395,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2434,6 +2408,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2443,6 +2419,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2450,6 +2432,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2459,22 +2443,12 @@
    end
    i32.store8
    local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
+   local.get $1
+   i32.load8_u
    i32.store8
    local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2482,118 +2456,8 @@
    local.get $3
    block (result i32)
     local.get $1
-    local.tee $3
     i32.const 1
     i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
     local.tee $3
     i32.const 1
     i32.add
@@ -2608,6 +2472,12 @@
   i32.and
   if
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2615,6 +2485,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2624,6 +2496,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2631,6 +2509,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2640,6 +2520,12 @@
    end
    i32.store8
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2647,6 +2533,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2656,22 +2544,12 @@
    end
    i32.store8
    local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
+   local.get $1
+   i32.load8_u
    i32.store8
    local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2679,54 +2557,8 @@
    local.get $3
    block (result i32)
     local.get $1
-    local.tee $3
     i32.const 1
     i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
     local.tee $3
     i32.const 1
     i32.add
@@ -2741,6 +2573,12 @@
   i32.and
   if
    local.get $0
+   local.get $1
+   i32.load8_u
+   i32.store8
+   local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2748,6 +2586,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2757,22 +2597,12 @@
    end
    i32.store8
    local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
+   local.get $1
+   i32.load8_u
    i32.store8
    local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2780,22 +2610,8 @@
    local.get $3
    block (result i32)
     local.get $1
-    local.tee $3
     i32.const 1
     i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
-   i32.store8
-   local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
     local.tee $3
     i32.const 1
     i32.add
@@ -2810,22 +2626,12 @@
   i32.and
   if
    local.get $0
-   local.tee $3
-   i32.const 1
-   i32.add
-   local.set $0
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.tee $3
-    i32.const 1
-    i32.add
-    local.set $1
-    local.get $3
-    i32.load8_u
-   end
+   local.get $1
+   i32.load8_u
    i32.store8
    local.get $0
+   i32.const 1
+   i32.add
    local.tee $3
    i32.const 1
    i32.add
@@ -2833,6 +2639,8 @@
    local.get $3
    block (result i32)
     local.get $1
+    i32.const 1
+    i32.add
     local.tee $3
     i32.const 1
     i32.add
@@ -2847,18 +2655,12 @@
   i32.and
   if
    local.get $0
-   local.set $3
-   local.get $3
-   block (result i32)
-    local.get $1
-    local.set $3
-    local.get $3
-    i32.load8_u
-   end
+   local.get $1
+   i32.load8_u
    i32.store8
   end
  )
- (func $~lib/internal/memory/memmove (; 37 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/memory/memmove (; 37 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   local.get $0
   local.get $1
@@ -3058,7 +2860,7 @@
    end
   end
  )
- (func $~lib/allocator/tlsf/__memory_free (; 38 ;) (type $iv) (param $0 i32)
+ (func $~lib/allocator/tlsf/__memory_free (; 38 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3096,7 +2898,7 @@
    end
   end
  )
- (func $~lib/internal/arraybuffer/reallocateUnsafe (; 39 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/internal/arraybuffer/reallocateUnsafe (; 39 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   local.get $1
@@ -3147,7 +2949,6 @@
    i32.add
    local.get $2
    i32.add
-   i32.const 0
    local.get $1
    local.get $2
    i32.sub
@@ -3175,7 +2976,7 @@
   end
   local.get $0
  )
- (func $~lib/array/Array<Path2DElement>#__set (; 40 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#__set (; 40 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   local.get $1
   local.get $0
@@ -3221,10 +3022,10 @@
   local.get $2
   i32.store offset=8
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/createPathElements (; 41 ;) (type $i) (result i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/createPathElements (; 41 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
-  call $~lib/array/Array<Path2DElement>#constructor
+  call $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#constructor
   local.set $1
   loop $repeat|0
    local.get $0
@@ -3234,7 +3035,7 @@
     local.get $1
     local.get $0
     call $node_modules/as2d/assembly/internal/Path2DElement/Path2DElement#constructor
-    call $~lib/array/Array<Path2DElement>#__set
+    call $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#__set
     local.get $0
     i32.const 1
     i32.add
@@ -3284,11 +3085,11 @@
   i32.const 1020
   i32.const 0
   call $~lib/arraybuffer/ArrayBuffer#constructor
-  global.get $node_modules/as2d/src/shared/CanvasDirection/CanvasDirection.inherit
+  i32.const 2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32>
   i32.store offset=24
   local.get $0
-  global.get $node_modules/as2d/src/shared/CanvasDirection/CanvasDirection.inherit
+  i32.const 2
   i32.store offset=28
   local.get $0
   i32.const 2040
@@ -3337,11 +3138,11 @@
   i32.const 1020
   i32.const 0
   call $~lib/arraybuffer/ArrayBuffer#constructor
-  global.get $node_modules/as2d/src/shared/GlobalCompositeOperation/GlobalCompositeOperation.source_over
+  i32.const 0
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32>
   i32.store offset=72
   local.get $0
-  global.get $node_modules/as2d/src/shared/GlobalCompositeOperation/GlobalCompositeOperation.source_over
+  i32.const 0
   i32.store offset=76
   i32.const 255
   i32.const 0
@@ -3359,21 +3160,21 @@
   i32.const 1020
   i32.const 0
   call $~lib/arraybuffer/ArrayBuffer#constructor
-  global.get $node_modules/as2d/src/shared/ImageSmoothingQuality/ImageSmoothingQuality.low
+  i32.const 0
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32>
   i32.store offset=88
   local.get $0
-  global.get $node_modules/as2d/src/shared/ImageSmoothingQuality/ImageSmoothingQuality.low
+  i32.const 0
   i32.store offset=92
   local.get $0
   i32.const 1020
   i32.const 0
   call $~lib/arraybuffer/ArrayBuffer#constructor
-  global.get $node_modules/as2d/src/shared/LineCap/LineCap.butt
+  i32.const 0
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32>
   i32.store offset=96
   local.get $0
-  global.get $node_modules/as2d/src/shared/LineCap/LineCap.butt
+  i32.const 0
   i32.store offset=100
   local.get $0
   i32.const 1020
@@ -3399,11 +3200,11 @@
   i32.const 1020
   i32.const 0
   call $~lib/arraybuffer/ArrayBuffer#constructor
-  global.get $node_modules/as2d/src/shared/LineJoin/LineJoin.miter
+  i32.const 2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32>
   i32.store offset=128
   local.get $0
-  global.get $node_modules/as2d/src/shared/LineJoin/LineJoin.miter
+  i32.const 2
   i32.store offset=132
   local.get $0
   i32.const 2040
@@ -3476,21 +3277,21 @@
   i32.const 1020
   i32.const 0
   call $~lib/arraybuffer/ArrayBuffer#constructor
-  global.get $node_modules/as2d/src/shared/TextAlign/TextAlign.start
+  i32.const 3
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32>
   i32.store offset=236
   local.get $0
-  global.get $node_modules/as2d/src/shared/TextAlign/TextAlign.start
+  i32.const 3
   i32.store offset=240
   local.get $0
   i32.const 1020
   i32.const 0
   call $~lib/arraybuffer/ArrayBuffer#constructor
-  global.get $node_modules/as2d/src/shared/TextBaseline/TextBaseline.alphabetic
+  i32.const 3
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferValue<i32>
   i32.store offset=244
   local.get $0
-  global.get $node_modules/as2d/src/shared/TextBaseline/TextBaseline.alphabetic
+  i32.const 3
   i32.store offset=248
   local.get $0
   i32.const 255
@@ -3508,7 +3309,7 @@
   i32.store offset=264
   local.get $0
  )
- (func $~lib/internal/hash/hashStr (; 43 ;) (type $ii) (param $0 i32) (result i32)
+ (func $~lib/internal/hash/hashStr (; 43 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3576,7 +3377,7 @@
   end
   local.get $3
  )
- (func $~lib/string/String.__eq (; 45 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__eq (; 45 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $0
   local.get $1
@@ -3614,7 +3415,7 @@
   call $~lib/internal/string/compareUnsafe
   i32.eqz
  )
- (func $~lib/map/Map<String,CanvasRenderingContext2D>#find (; 46 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#find (; 46 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.load
   local.get $2
@@ -3657,7 +3458,7 @@
   end
   i32.const 0
  )
- (func $~lib/map/Map<String,CanvasRenderingContext2D>#rehash (; 47 ;) (type $iiv) (param $0 i32) (param $1 i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#rehash (; 47 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -3765,16 +3566,15 @@
   i32.load offset=20
   i32.store offset=16
  )
- (func $~lib/map/Map<String,CanvasRenderingContext2D>#set (; 48 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#set (; 48 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
-  (local $5 i32)
   local.get $0
   local.get $1
   local.get $1
   call $~lib/internal/hash/hashStr
-  local.tee $5
-  call $~lib/map/Map<String,CanvasRenderingContext2D>#find
+  local.tee $4
+  call $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#find
   local.tee $3
   if
    local.get $3
@@ -3808,7 +3608,7 @@
      i32.const 1
      i32.or
     end
-    call $~lib/map/Map<String,CanvasRenderingContext2D>#rehash
+    call $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#rehash
    end
    local.get $0
    i32.load offset=8
@@ -3818,11 +3618,11 @@
     local.get $0
     local.get $0
     i32.load offset=16
-    local.tee $4
+    local.tee $3
     i32.const 1
     i32.add
     i32.store offset=16
-    local.get $4
+    local.get $3
     i32.const 12
     i32.mul
    end
@@ -3842,22 +3642,22 @@
    local.get $3
    local.get $0
    i32.load
-   local.get $5
+   local.get $4
    local.get $0
    i32.load offset=4
    i32.and
    i32.const 2
    i32.shl
    i32.add
-   local.tee $4
+   local.tee $0
    i32.load offset=8
    i32.store offset=8
-   local.get $4
+   local.get $0
    local.get $3
    i32.store offset=8
   end
  )
- (func $node_modules/as2d/assembly/internal/getContext/__use_context (; 49 ;) (type $iiv) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/internal/getContext/__use_context (; 49 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#constructor
   local.tee $2
@@ -3868,9 +3668,9 @@
   global.get $node_modules/as2d/assembly/internal/getContext/map
   local.get $0
   local.get $2
-  call $~lib/map/Map<String,CanvasRenderingContext2D>#set
+  call $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#set
  )
- (func $node_modules/as2d/assembly/renderer/Image/__image_loaded (; 50 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $node_modules/as2d/assembly/renderer/Image/__image_loaded (; 50 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $0
   i32.const 4
   i32.add
@@ -3887,19 +3687,7 @@
   i32.const 1
   i32.store8
  )
- (func $~lib/memory/memory.fill (; 51 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
-  local.get $0
-  local.get $1
-  local.get $2
-  call $~lib/internal/memory/memset
- )
- (func $~lib/memory/memory.copy (; 52 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
-  local.get $0
-  local.get $1
-  local.get $2
-  call $~lib/internal/memory/memmove
- )
- (func $~lib/internal/memory/memcmp (; 53 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/internal/memory/memcmp (; 51 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $0
   local.get $1
@@ -3949,41 +3737,27 @@
    i32.const 0
   end
  )
- (func $~lib/memory/memory.compare (; 54 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/memory/memory.compare (; 52 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   local.get $1
   local.get $2
   call $~lib/internal/memory/memcmp
  )
- (func $~lib/memory/memory.free (; 55 ;) (type $iv) (param $0 i32)
+ (func $~lib/memory/memory.free (; 53 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $~lib/allocator/tlsf/__memory_free
  )
- (func $~lib/memory/memory.reset (; 56 ;) (type $v)
+ (func $~lib/memory/memory.reset (; 54 ;) (type $FUNCSIG$v)
   unreachable
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#constructor (; 57 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 i32)
-  local.get $1
-  i32.const 1073741816
-  i32.gt_u
-  if
-   i32.const 0
-   i32.const 120
-   i32.const 23
-   i32.const 34
-   call $~lib/env/abort
-   unreachable
-  end
-  local.get $1
-  local.tee $2
+ (func $~lib/internal/typedarray/TypedArray<i8>#constructor (; 55 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  i32.const 225
   call $~lib/internal/arraybuffer/allocateUnsafe
-  local.tee $3
+  local.tee $1
   i32.const 8
   i32.add
-  i32.const 0
-  local.get $1
+  i32.const 225
   call $~lib/internal/memory/memset
   local.get $0
   i32.eqz
@@ -4002,17 +3776,17 @@
   i32.const 0
   i32.store offset=8
   local.get $0
-  local.get $3
+  local.get $1
   i32.store
   local.get $0
   i32.const 0
   i32.store offset=4
   local.get $0
-  local.get $2
+  i32.const 225
   i32.store offset=8
   local.get $0
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 58 ;) (type $iiiv) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 56 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $1
   local.get $0
   i32.load offset=8
@@ -4027,15 +3801,15 @@
   end
   local.get $0
   i32.load offset=4
+  local.get $1
   local.get $0
   i32.load
-  local.get $1
   i32.add
   i32.add
   local.get $2
   i32.store8 offset=8
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#constructor (; 59 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#constructor (; 57 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   i32.const 4
@@ -4046,7 +3820,6 @@
   local.get $0
   i32.const 12
   call $~lib/allocator/tlsf/__memory_allocate
-  i32.const 225
   call $~lib/internal/typedarray/TypedArray<i8>#constructor
   i32.store
   loop $repeat|0
@@ -4057,7 +3830,7 @@
     local.get $0
     i32.load
     local.get $1
-    global.get $assembly/gomoku/constants/Chess.None
+    i32.const 0
     call $~lib/internal/typedarray/TypedArray<i8>#__set
     local.get $1
     i32.const 1
@@ -4068,7 +3841,7 @@
   end
   local.get $0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#constructor (; 60 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#constructor (; 58 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   i32.const 13
   call $~lib/allocator/tlsf/__memory_allocate
@@ -4086,7 +3859,7 @@
   i32.const 0
   i32.store offset=4
   local.get $0
-  global.get $assembly/game/GameEngine/PlayerRole.First
+  i32.const 1
   i32.store offset=8
   local.get $0
   i32.const 0
@@ -4096,22 +3869,22 @@
   i32.store
   local.get $0
  )
- (func $assembly/engine/isGameOver (; 61 ;) (type $i) (result i32)
+ (func $assembly/engine/isGameOver (; 59 ;) (type $FUNCSIG$i) (result i32)
   global.get $assembly/engine/engine
   i32.load8_u offset=12
   i32.const 0
   i32.ne
  )
- (func $assembly/engine/getState (; 62 ;) (type $i) (result i32)
+ (func $assembly/engine/getState (; 60 ;) (type $FUNCSIG$i) (result i32)
   global.get $assembly/engine/engine
   i32.load
   i32.load
  )
- (func $assembly/engine/init (; 63 ;) (type $v)
+ (func $assembly/engine/init (; 61 ;) (type $FUNCSIG$v)
   i32.const 376
   call $assembly/game/console/console.log
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 64 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 62 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $1
   local.get $0
   i32.load offset=8
@@ -4126,46 +3899,45 @@
   end
   local.get $0
   i32.load offset=4
+  local.get $1
   local.get $0
   i32.load
-  local.get $1
   i32.add
   i32.add
   i32.load8_s offset=8
  )
- (func $assembly/gomoku/constants/constants.validRowAndCol (; 65 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gomoku/constants/constants.validRowAndCol (; 63 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   block (result i32)
-   block (result i32)
-    i32.const 0
+   i32.const 0
+   local.get $0
+   i32.le_s
+   local.tee $2
+   if (result i32)
     local.get $0
+    i32.const 14
     i32.le_s
-    local.tee $2
-    if
-     local.get $0
-     i32.const 14
-     i32.le_s
-     local.set $2
-    end
+   else    
     local.get $2
    end
+   local.tee $0
    if
     i32.const 0
     local.get $1
     i32.le_s
-    local.set $2
+    local.set $0
    end
-   local.get $2
+   local.get $0
   end
   if (result i32)
    local.get $1
    i32.const 14
    i32.le_s
   else   
-   local.get $2
+   local.get $0
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#hasChess (; 66 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#hasChess (; 64 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
@@ -4178,30 +3950,28 @@
    local.get $2
    i32.add
    call $~lib/internal/typedarray/TypedArray<i8>#__get
-   i32.const 24
-   i32.shl
-   i32.const 24
-   i32.shr_s
-   global.get $assembly/gomoku/constants/Chess.None
+   i32.const 255
+   i32.and
+   i32.const 0
    i32.ne
   else   
    i32.const 0
   end
  )
- (func $assembly/gomoku/constants/constants.chessOfPlayer (; 67 ;) (type $ii) (param $0 i32) (result i32)
-  global.get $assembly/gomoku/constants/Chess.White
-  global.get $assembly/gomoku/constants/Chess.Black
-  global.get $assembly/gomoku/constants/Chess.None
+ (func $assembly/gomoku/constants/constants.chessOfPlayer (; 65 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  i32.const 1
+  i32.const 2
+  i32.const 0
   local.get $0
-  global.get $assembly/game/GameEngine/PlayerRole.Second
+  i32.const 2
   i32.eq
   select
   local.get $0
-  global.get $assembly/game/GameEngine/PlayerRole.First
+  i32.const 1
   i32.eq
   select
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 68 ;) (type $iiiiv) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 66 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
@@ -4224,7 +3994,7 @@
    unreachable
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 69 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 67 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
@@ -4242,10 +4012,10 @@
    i32.const 24
    i32.shr_s
   else   
-   global.get $assembly/gomoku/constants/Chess.None
+   i32.const 0
   end
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 70 ;) (type $ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 68 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -4258,25 +4028,27 @@
    block (result i32)
     block $assembly/gomoku/GomokuEngine/GomokuEngine#checkRow|inlined.1 (result i32)
      local.get $0
-     i32.load offset=4
-     i32.load
      local.set $1
      local.get $0
      i32.load offset=4
+     i32.load
+     local.set $2
+     local.get $0
+     i32.load offset=4
      i32.load offset=8
-     local.set $4
+     local.set $5
      loop $repeat|4
       block $break|4
-       local.get $2
+       local.get $4
        i32.const 15
        i32.ge_s
        br_if $break|4
-       local.get $0
-       i32.load
        local.get $1
+       i32.load
        local.get $2
-       call $assembly/gomoku/GomokuEngine/Chessboard#getChess
        local.get $4
+       call $assembly/gomoku/GomokuEngine/Chessboard#getChess
+       local.get $5
        call $assembly/gomoku/constants/constants.chessOfPlayer
        i32.eq
        if
@@ -4296,10 +4068,10 @@
         i32.const 0
         local.set $3
        end
-       local.get $2
+       local.get $4
        i32.const 1
        i32.add
-       local.set $2
+       local.set $4
        br $repeat|4
       end
      end
@@ -4310,36 +4082,38 @@
     if
      block $assembly/gomoku/GomokuEngine/GomokuEngine#checkColumn|inlined.1 (result i32)
       local.get $0
+      local.set $1
+      local.get $0
       i32.load offset=4
       i32.load offset=4
       local.set $3
       local.get $0
       i32.load offset=4
       i32.load offset=8
-      local.set $4
-      i32.const 0
-      local.set $1
+      local.set $5
       i32.const 0
       local.set $2
+      i32.const 0
+      local.set $4
       loop $repeat|5
        block $break|5
-        local.get $2
+        local.get $4
         i32.const 15
         i32.gt_s
         br_if $break|5
-        local.get $0
+        local.get $1
         i32.load
-        local.get $2
+        local.get $4
         local.get $3
         call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-        local.get $4
+        local.get $5
         call $assembly/gomoku/constants/constants.chessOfPlayer
         i32.eq
         if
-         local.get $1
+         local.get $2
          i32.const 1
          i32.add
-         local.tee $1
+         local.tee $2
          i32.const 5
          i32.eq
          if
@@ -4350,12 +4124,12 @@
          end
         else         
          i32.const 0
-         local.set $1
+         local.set $2
         end
-        local.get $2
+        local.get $4
         i32.const 1
         i32.add
-        local.set $2
+        local.set $4
         br $repeat|5
        end
       end
@@ -4371,70 +4145,76 @@
      local.get $0
      i32.load offset=4
      i32.load offset=8
-     local.set $3
+     local.set $7
      i32.const 0
-     local.set $2
+     local.set $4
      local.get $0
      i32.load offset=4
      i32.load offset=4
-     local.tee $4
+     local.tee $1
      local.get $0
      i32.load offset=4
      i32.load
-     local.tee $1
+     local.tee $5
      i32.ge_s
      if (result i32)
-      local.get $4
+      i32.const 0
+      local.set $3
       local.get $1
+      local.get $5
       i32.sub
-      local.set $6
+      local.set $2
+      local.get $5
       local.get $1
-      local.get $4
       i32.sub
       i32.const 14
       i32.add
-      local.set $7
+      local.set $6
       i32.const 14
      else      
+      local.get $5
       local.get $1
-      local.get $4
       i32.sub
-      local.set $5
+      local.set $3
+      i32.const 0
+      local.set $2
       i32.const 14
-      local.set $7
-      local.get $4
+      local.set $6
       local.get $1
+      local.get $5
       i32.sub
       i32.const 14
       i32.add
      end
+     local.set $5
+     local.get $0
      local.set $1
      loop $continue|6
-      local.get $5
-      local.get $7
+      local.get $3
+      local.get $6
       i32.le_s
       local.tee $8
       if (result i32)
-       local.get $6
-       local.get $1
+       local.get $2
+       local.get $5
        i32.le_s
       else       
        local.get $8
       end
       if
-       local.get $0
+       local.get $1
        i32.load
-       local.get $5
-       local.get $6
-       call $assembly/gomoku/GomokuEngine/Chessboard#getChess
        local.get $3
+       local.get $2
+       call $assembly/gomoku/GomokuEngine/Chessboard#getChess
+       local.get $7
        call $assembly/gomoku/constants/constants.chessOfPlayer
        i32.eq
        if
-        local.get $2
+        local.get $4
         i32.const 1
         i32.add
-        local.tee $2
+        local.tee $4
         i32.const 5
         i32.eq
         if
@@ -4445,16 +4225,16 @@
         end
        else        
         i32.const 0
-        local.set $2
+        local.set $4
        end
-       local.get $5
+       local.get $3
        i32.const 1
        i32.add
-       local.set $5
-       local.get $6
+       local.set $3
+       local.get $2
        i32.const 1
        i32.add
-       local.set $6
+       local.set $2
        br $continue|6
       end
      end
@@ -4471,76 +4251,78 @@
     local.get $0
     i32.load offset=4
     i32.load offset=8
-    local.set $6
+    local.set $7
     i32.const 0
-    local.set $5
-    local.get $0
-    i32.load offset=4
-    i32.load offset=4
-    local.tee $7
+    local.set $4
     local.get $0
     i32.load offset=4
     i32.load
     local.tee $1
+    local.get $0
+    i32.load offset=4
+    i32.load offset=4
+    local.tee $2
     i32.add
     i32.const 16
     i32.le_s
     if (result i32)
      i32.const 0
-     local.set $2
-     local.get $1
-     local.get $7
-     i32.add
      local.set $3
      local.get $1
-     local.get $7
+     local.get $2
      i32.add
-     local.set $4
+     local.set $5
+     local.get $1
+     local.get $2
+     i32.add
+     local.set $6
      i32.const 0
     else     
      local.get $1
-     local.get $7
+     local.get $2
      i32.add
      i32.const 14
      i32.sub
-     local.set $2
-     i32.const 14
      local.set $3
      i32.const 14
-     local.set $4
+     local.set $5
+     i32.const 14
+     local.set $6
      local.get $1
-     local.get $7
+     local.get $2
      i32.add
      i32.const 14
      i32.sub
     end
+    local.set $2
+    local.get $0
     local.set $1
     loop $continue|7
-     local.get $2
-     local.get $4
+     local.get $3
+     local.get $6
      i32.le_s
      local.tee $8
      if (result i32)
-      local.get $3
-      local.get $1
+      local.get $5
+      local.get $2
       i32.ge_s
      else      
       local.get $8
      end
      if
-      local.get $0
+      local.get $1
       i32.load
-      local.get $2
       local.get $3
+      local.get $5
       call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-      local.get $6
+      local.get $7
       call $assembly/gomoku/constants/constants.chessOfPlayer
       i32.eq
       if
-       local.get $5
+       local.get $4
        i32.const 1
        i32.add
-       local.tee $5
+       local.tee $4
        i32.const 5
        i32.eq
        if
@@ -4551,16 +4333,16 @@
        end
       else       
        i32.const 0
-       local.set $5
+       local.set $4
       end
-      local.get $2
-      i32.const 1
-      i32.add
-      local.set $2
       local.get $3
       i32.const 1
-      i32.sub
+      i32.add
       local.set $3
+      local.get $5
+      i32.const 1
+      i32.sub
+      local.set $5
       br $continue|7
      end
     end
@@ -4586,7 +4368,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 71 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 69 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $1
   local.get $2
@@ -4631,11 +4413,11 @@
    i32.eqz
    if
     local.get $0
-    global.get $assembly/game/GameEngine/PlayerRole.First
-    global.get $assembly/game/GameEngine/PlayerRole.Second
-    global.get $assembly/game/GameEngine/PlayerRole.Second
+    i32.const 1
+    i32.const 2
     local.get $0
     i32.load offset=8
+    i32.const 2
     i32.eq
     select
     i32.store offset=8
@@ -4645,7 +4427,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#update (; 72 ;) (type $iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#update (; 70 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.load8_u offset=12
   if
@@ -4703,27 +4485,26 @@
   end
   i32.const 0
  )
- (func $assembly/engine/update (; 73 ;) (type $iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/engine/update (; 71 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   global.get $assembly/engine/engine
   local.get $0
   local.get $1
   call $assembly/gomoku/GomokuEngine/GomokuEngine#update
  )
- (func $assembly/engine/loadState (; 74 ;) (type $iv) (param $0 i32)
+ (func $assembly/engine/loadState (; 72 ;) (type $FUNCSIG$vi) (param $0 i32)
   nop
  )
- (func $start (; 75 ;) (type $v)
+ (func $start (; 73 ;) (type $FUNCSIG$v)
   i32.const 12
   call $~lib/allocator/tlsf/__memory_allocate
-  i32.const 0
   call $~lib/internal/typedarray/TypedArray<f64>#constructor
   global.set $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/defaultLineDash
-  call $~lib/map/Map<String,CanvasRenderingContext2D>#constructor
+  call $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#constructor
   global.set $node_modules/as2d/assembly/internal/getContext/map
   call $assembly/gomoku/GomokuEngine/GomokuEngine#constructor
   global.set $assembly/engine/engine
  )
- (func $null (; 76 ;) (type $v)
+ (func $null (; 74 ;) (type $FUNCSIG$v)
   nop
  )
 )
