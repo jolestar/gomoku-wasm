@@ -78,7 +78,7 @@ const listener = new Listener();
 let module;
 let promise;
 
-export function init(playerRole: number, onStateUpdate: (state: Int8Array) => void, playWithAI: boolean = false, engineURL = "/engine_optimized.wasm", guiURL = "/gui_optimized.wasm") {
+export function init(playerRole: number, onStateUpdate: (state: Int8Array) => void, playWithAI: boolean = false, engineURL = "./engine_optimized.wasm", guiURL = "./gui_optimized.wasm") {
     promise = instantiateStreaming(fetch(engineURL), {
         env: env,
         console: engineConsole,
