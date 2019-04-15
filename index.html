@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gomoku</title>
+    <title>WebAssembly Gomoku</title>
     <script type="application/javascript">
         // Check for wasm support.
         if (!('WebAssembly' in window)) {
@@ -12,7 +12,9 @@
 </head>
 <body>
 <div id="app">
-    <canvas id="as2d" width="600" height="600"/>
+    <h2>A Gomoku game implements with WebAssembly</h2>
+    <canvas id="as2d" width="600" height="600"></canvas>
+    <a href="https://github.com/jolestar/gomoku-wasm/">source</a>
 </div>
 
 <script src="src/index.ts" type="text/javascript"></script>
