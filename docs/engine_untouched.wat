@@ -10,6 +10,7 @@
  (type $FUNCSIG$iid (func (param i32 f64) (result i32)))
  (type $FUNCSIG$i (func (result i32)))
  (type $FUNCSIG$iiiiii (func (param i32 i32 i32 i32 i32) (result i32)))
+ (type $FUNCSIG$iiiii (func (param i32 i32 i32 i32) (result i32)))
  (import "env" "abort" (func $~lib/env/abort (param i32 i32 i32 i32)))
  (import "console" "log" (func $assembly/game/console/console.log (param i32)))
  (import "console" "logAction" (func $assembly/game/console/console.logAction (param i32 i32 i32)))
@@ -124,6 +125,8 @@
  (global $assembly/gomoku/constants/Chess.Black i32 (i32.const 2))
  (global $assembly/gomoku/constants/constants.boardDimension i32 (i32.const 15))
  (global $assembly/gomoku/constants/constants.boardSize i32 (i32.const 225))
+ (global $~lib/builtins/i32.MAX_VALUE i32 (i32.const 2147483647))
+ (global $~lib/argc (mut i32) (i32.const 0))
  (global $assembly/engine/engine (mut i32) (i32.const 0))
  (global $~lib/memory/HEAP_BASE i32 (i32.const 904))
  (export "memory" (memory $0))
@@ -139,6 +142,7 @@
  (export "init" (func $assembly/engine/init))
  (export "update" (func $assembly/engine/update))
  (export "loadState" (func $assembly/engine/loadState))
+ (export "getWinner" (func $assembly/engine/getWinner))
  (start $start)
  (func $~lib/internal/arraybuffer/computeSize (; 5 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   i32.const 1
@@ -5102,7 +5106,299 @@
   local.set $0
   local.get $0
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 69 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/typedarray/Int8Array#fill (; 69 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+  (local $4 i32)
+  (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
+  (local $8 i32)
+  (local $9 i32)
+  (local $10 i32)
+  (local $11 i32)
+  (local $12 i32)
+  (local $13 i32)
+  local.get $0
+  local.set $4
+  local.get $1
+  local.set $5
+  local.get $2
+  local.set $6
+  local.get $3
+  local.set $7
+  local.get $4
+  i32.load
+  local.set $8
+  local.get $4
+  i32.load offset=4
+  local.set $9
+  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.0 (result i32)
+   local.get $4
+   local.set $10
+   local.get $10
+   i32.load offset=8
+   i32.const 0
+   i32.shr_u
+  end
+  local.set $10
+  local.get $6
+  i32.const 0
+  i32.lt_s
+  if (result i32)
+   local.get $10
+   local.get $6
+   i32.add
+   local.tee $11
+   i32.const 0
+   local.tee $12
+   local.get $11
+   local.get $12
+   i32.gt_s
+   select
+  else   
+   local.get $6
+   local.tee $11
+   local.get $10
+   local.tee $12
+   local.get $11
+   local.get $12
+   i32.lt_s
+   select
+  end
+  local.set $6
+  local.get $7
+  i32.const 0
+  i32.lt_s
+  if (result i32)
+   local.get $10
+   local.get $7
+   i32.add
+   local.tee $11
+   i32.const 0
+   local.tee $12
+   local.get $11
+   local.get $12
+   i32.gt_s
+   select
+  else   
+   local.get $7
+   local.tee $11
+   local.get $10
+   local.tee $12
+   local.get $11
+   local.get $12
+   i32.lt_s
+   select
+  end
+  local.set $7
+  local.get $6
+  local.get $7
+  i32.lt_s
+  if
+   local.get $8
+   local.get $6
+   i32.add
+   local.get $9
+   i32.add
+   i32.const 8
+   i32.add
+   local.set $11
+   local.get $5
+   local.set $12
+   local.get $7
+   local.get $6
+   i32.sub
+   local.set $13
+   local.get $11
+   local.get $12
+   local.get $13
+   call $~lib/internal/memory/memset
+  end
+  local.get $4
+ )
+ (func $~lib/typedarray/Int8Array#fill|trampoline (; 70 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+  block $2of2
+   block $1of2
+    block $0of2
+     block $outOfRange
+      global.get $~lib/argc
+      i32.const 1
+      i32.sub
+      br_table $0of2 $1of2 $2of2 $outOfRange
+     end
+     unreachable
+    end
+    i32.const 0
+    local.set $2
+   end
+   global.get $~lib/builtins/i32.MAX_VALUE
+   local.set $3
+  end
+  local.get $0
+  local.get $1
+  local.get $2
+  local.get $3
+  call $~lib/typedarray/Int8Array#fill
+ )
+ (func $assembly/gomoku/GomokuEngine/Chessboard#constructor (; 71 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  block (result i32)
+   local.get $0
+   i32.eqz
+   if
+    i32.const 4
+    call $~lib/memory/memory.allocate
+    local.set $0
+   end
+   local.get $0
+   i32.const 0
+   i32.store
+   local.get $0
+  end
+  i32.const 0
+  global.get $assembly/gomoku/constants/constants.boardSize
+  call $~lib/typedarray/Int8Array#constructor
+  i32.store
+  block (result i32)
+   i32.const 1
+   global.set $~lib/argc
+   local.get $0
+   i32.load
+   global.get $assembly/gomoku/constants/Chess.None
+   i32.const 0
+   i32.const 0
+   call $~lib/typedarray/Int8Array#fill|trampoline
+  end
+  drop
+  local.get $0
+ )
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#constructor (; 72 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.eqz
+  if
+   i32.const 13
+   call $~lib/memory/memory.allocate
+   local.set $0
+  end
+  local.get $0
+  call $assembly/game/GameEngine/GameEngine#constructor
+  local.set $0
+  local.get $0
+  i32.const 0
+  call $assembly/gomoku/GomokuEngine/Chessboard#constructor
+  i32.store
+  local.get $0
+  i32.const 0
+  i32.store offset=4
+  local.get $0
+  global.get $assembly/game/GameEngine/PlayerRole.First
+  i32.store offset=8
+  local.get $0
+  i32.const 0
+  i32.store8 offset=12
+  local.get $0
+ )
+ (func $start:assembly/engine (; 73 ;) (type $FUNCSIG$v)
+  i32.const 0
+  call $assembly/gomoku/GomokuEngine/GomokuEngine#constructor
+  global.set $assembly/engine/engine
+ )
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#isGameOver (; 74 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load8_u offset=12
+ )
+ (func $assembly/engine/isGameOver (; 75 ;) (type $FUNCSIG$i) (result i32)
+  global.get $assembly/engine/engine
+  call $assembly/gomoku/GomokuEngine/GomokuEngine#isGameOver
+  i32.const 0
+  i32.ne
+ )
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#getState (; 76 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load
+  i32.load
+ )
+ (func $assembly/engine/getState (; 77 ;) (type $FUNCSIG$i) (result i32)
+  global.get $assembly/engine/engine
+  call $assembly/gomoku/GomokuEngine/GomokuEngine#getState
+ )
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#init (; 78 ;) (type $FUNCSIG$vi) (param $0 i32)
+  i32.const 376
+  call $assembly/game/console/console.log
+ )
+ (func $assembly/engine/init (; 79 ;) (type $FUNCSIG$v)
+  global.get $assembly/engine/engine
+  call $assembly/gomoku/GomokuEngine/GomokuEngine#init
+ )
+ (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 80 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  local.get $1
+  local.get $0
+  i32.load offset=8
+  i32.const 0
+  i32.shr_u
+  i32.ge_u
+  if
+   i32.const 0
+   i32.const 120
+   i32.const 39
+   i32.const 63
+   call $~lib/env/abort
+   unreachable
+  end
+  block $~lib/internal/arraybuffer/LOAD<i8,i8>|inlined.0 (result i32)
+   local.get $0
+   i32.load
+   local.set $2
+   local.get $1
+   local.set $3
+   local.get $0
+   i32.load offset=4
+   local.set $4
+   local.get $2
+   local.get $3
+   i32.const 0
+   i32.shl
+   i32.add
+   local.get $4
+   i32.add
+   i32.load8_s offset=8
+  end
+ )
+ (func $assembly/gomoku/constants/constants.validRowAndCol (; 81 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+  (local $2 i32)
+  (local $3 i32)
+  global.get $assembly/gomoku/constants/constants.boardDimension
+  local.set $2
+  local.get $0
+  i32.const 0
+  i32.ge_s
+  local.tee $3
+  if (result i32)
+   local.get $0
+   local.get $2
+   i32.lt_s
+  else   
+   local.get $3
+  end
+  local.tee $3
+  if (result i32)
+   local.get $1
+   i32.const 0
+   i32.ge_s
+  else   
+   local.get $3
+  end
+  local.tee $3
+  if (result i32)
+   local.get $1
+   local.get $2
+   i32.lt_s
+  else   
+   local.get $3
+  end
+ )
+ (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 82 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5143,228 +5439,7 @@
    i32.store8 offset=8
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#constructor (; 70 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  (local $1 i32)
-  block (result i32)
-   local.get $0
-   i32.eqz
-   if
-    i32.const 4
-    call $~lib/memory/memory.allocate
-    local.set $0
-   end
-   local.get $0
-   i32.const 0
-   i32.store
-   local.get $0
-  end
-  i32.const 0
-  global.get $assembly/gomoku/constants/constants.boardSize
-  call $~lib/typedarray/Int8Array#constructor
-  i32.store
-  block $break|0
-   i32.const 0
-   local.set $1
-   loop $repeat|0
-    local.get $1
-    global.get $assembly/gomoku/constants/constants.boardSize
-    i32.lt_s
-    i32.eqz
-    br_if $break|0
-    local.get $0
-    i32.load
-    local.get $1
-    global.get $assembly/gomoku/constants/Chess.None
-    call $~lib/internal/typedarray/TypedArray<i8>#__set
-    local.get $1
-    i32.const 1
-    i32.add
-    local.set $1
-    br $repeat|0
-    unreachable
-   end
-   unreachable
-  end
-  local.get $0
- )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#constructor (; 71 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  if (result i32)
-   local.get $0
-  else   
-   i32.const 13
-   call $~lib/memory/memory.allocate
-  end
-  call $assembly/game/GameEngine/GameEngine#constructor
-  local.set $0
-  local.get $0
-  i32.const 0
-  i32.store
-  local.get $0
-  i32.const 0
-  i32.store offset=4
-  local.get $0
-  global.get $assembly/game/GameEngine/PlayerRole.First
-  i32.store offset=8
-  local.get $0
-  i32.const 0
-  i32.store8 offset=12
-  local.get $0
-  i32.const 0
-  call $assembly/gomoku/GomokuEngine/Chessboard#constructor
-  i32.store
-  local.get $0
- )
- (func $start:assembly/engine (; 72 ;) (type $FUNCSIG$v)
-  i32.const 0
-  call $assembly/gomoku/GomokuEngine/GomokuEngine#constructor
-  global.set $assembly/engine/engine
- )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#isGameOver (; 73 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  i32.load8_u offset=12
- )
- (func $assembly/engine/isGameOver (; 74 ;) (type $FUNCSIG$i) (result i32)
-  global.get $assembly/engine/engine
-  call $assembly/gomoku/GomokuEngine/GomokuEngine#isGameOver
-  i32.const 0
-  i32.ne
- )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#getState (; 75 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  i32.load
-  i32.load
- )
- (func $assembly/engine/getState (; 76 ;) (type $FUNCSIG$i) (result i32)
-  global.get $assembly/engine/engine
-  call $assembly/gomoku/GomokuEngine/GomokuEngine#getState
- )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#init (; 77 ;) (type $FUNCSIG$vi) (param $0 i32)
-  i32.const 376
-  call $assembly/game/console/console.log
- )
- (func $assembly/engine/init (; 78 ;) (type $FUNCSIG$v)
-  global.get $assembly/engine/engine
-  call $assembly/gomoku/GomokuEngine/GomokuEngine#init
- )
- (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 79 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  local.get $1
-  local.get $0
-  i32.load offset=8
-  i32.const 0
-  i32.shr_u
-  i32.ge_u
-  if
-   i32.const 0
-   i32.const 120
-   i32.const 39
-   i32.const 63
-   call $~lib/env/abort
-   unreachable
-  end
-  block $~lib/internal/arraybuffer/LOAD<i8,i8>|inlined.0 (result i32)
-   local.get $0
-   i32.load
-   local.set $2
-   local.get $1
-   local.set $3
-   local.get $0
-   i32.load offset=4
-   local.set $4
-   local.get $2
-   local.get $3
-   i32.const 0
-   i32.shl
-   i32.add
-   local.get $4
-   i32.add
-   i32.load8_s offset=8
-  end
- )
- (func $assembly/gomoku/constants/constants.validRowAndCol (; 80 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  i32.const 0
-  local.get $0
-  i32.le_s
-  local.tee $2
-  if (result i32)
-   local.get $0
-   global.get $assembly/gomoku/constants/constants.boardDimension
-   i32.const 1
-   i32.sub
-   i32.const 24
-   i32.shl
-   i32.const 24
-   i32.shr_s
-   i32.le_s
-  else   
-   local.get $2
-  end
-  local.tee $2
-  if (result i32)
-   i32.const 0
-   local.get $1
-   i32.le_s
-  else   
-   local.get $2
-  end
-  local.tee $2
-  if (result i32)
-   local.get $1
-   global.get $assembly/gomoku/constants/constants.boardDimension
-   i32.const 1
-   i32.sub
-   i32.const 24
-   i32.shl
-   i32.const 24
-   i32.shr_s
-   i32.le_s
-  else   
-   local.get $2
-  end
-  local.set $2
-  local.get $2
- )
- (func $assembly/gomoku/GomokuEngine/Chessboard#hasChess (; 81 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  local.get $1
-  local.get $2
-  call $assembly/gomoku/constants/constants.validRowAndCol
-  i32.const 0
-  i32.ne
-  if (result i32)
-   block $assembly/gomoku/GomokuEngine/Chessboard#get|inlined.0 (result i32)
-    local.get $0
-    local.set $3
-    local.get $1
-    local.set $4
-    local.get $2
-    local.set $5
-    local.get $3
-    i32.load
-    global.get $assembly/gomoku/constants/constants.boardDimension
-    local.get $4
-    i32.mul
-    local.get $5
-    i32.add
-    call $~lib/internal/typedarray/TypedArray<i8>#__get
-    i32.const 24
-    i32.shl
-    i32.const 24
-    i32.shr_s
-   end
-   global.get $assembly/gomoku/constants/Chess.None
-   i32.ne
-  else   
-   i32.const 0
-  end
- )
- (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 82 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 83 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -5372,8 +5447,6 @@
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
-  i32.const 0
-  i32.ne
   if
    local.get $0
    local.set $4
@@ -5401,38 +5474,6 @@
    unreachable
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 83 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
-  (local $3 i32)
-  (local $4 i32)
-  (local $5 i32)
-  local.get $1
-  local.get $2
-  call $assembly/gomoku/constants/constants.validRowAndCol
-  i32.const 0
-  i32.ne
-  if (result i32)
-   local.get $0
-   local.set $3
-   local.get $1
-   local.set $4
-   local.get $2
-   local.set $5
-   local.get $3
-   i32.load
-   global.get $assembly/gomoku/constants/constants.boardDimension
-   local.get $4
-   i32.mul
-   local.get $5
-   i32.add
-   call $~lib/internal/typedarray/TypedArray<i8>#__get
-   i32.const 24
-   i32.shl
-   i32.const 24
-   i32.shr_s
-  else   
-   global.get $assembly/gomoku/constants/Chess.None
-  end
- )
  (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 84 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
@@ -5444,44 +5485,93 @@
   (local $8 i32)
   (local $9 i32)
   (local $10 i32)
+  (local $11 i32)
+  (local $12 i32)
+  (local $13 i32)
+  (local $14 i32)
+  (local $15 i32)
+  (local $16 i32)
+  (local $17 i32)
+  (local $18 i32)
+  local.get $0
+  i32.load offset=4
+  i32.load
+  local.set $1
+  local.get $0
+  i32.load offset=4
+  i32.load offset=4
+  local.set $2
+  local.get $0
+  i32.load offset=4
+  i32.load offset=8
+  local.set $3
   block $assembly/gomoku/GomokuEngine/GomokuEngine#checkRow|inlined.1 (result i32)
    local.get $0
-   local.set $1
-   local.get $0
-   i32.load offset=4
-   i32.load
-   local.set $2
-   local.get $0
-   i32.load offset=4
-   i32.load offset=8
-   local.set $3
-   i32.const 0
    local.set $4
+   local.get $1
+   local.set $5
+   local.get $3
+   local.set $6
+   i32.const 0
+   local.set $7
    block $break|4
-    i32.const 0
-    local.set $5
-    loop $repeat|4
-     local.get $5
+    block
+     i32.const 0
+     local.set $8
      global.get $assembly/gomoku/constants/constants.boardDimension
+     local.set $9
+    end
+    loop $repeat|4
+     local.get $8
+     local.get $9
      i32.lt_s
      i32.eqz
      br_if $break|4
-     local.get $1
-     i32.load
-     local.get $2
-     local.get $5
-     call $assembly/gomoku/GomokuEngine/Chessboard#getChess
+     block $assembly/gomoku/GomokuEngine/Chessboard#getChess|inlined.9 (result i32)
+      local.get $4
+      i32.load
+      local.set $12
+      local.get $5
+      local.set $11
+      local.get $8
+      local.set $10
+      local.get $11
+      local.get $10
+      call $assembly/gomoku/constants/constants.validRowAndCol
+      if (result i32)
+       local.get $12
+       local.set $15
+       local.get $11
+       local.set $14
+       local.get $10
+       local.set $13
+       local.get $15
+       i32.load
+       global.get $assembly/gomoku/constants/constants.boardDimension
+       local.get $14
+       i32.mul
+       local.get $13
+       i32.add
+       call $~lib/internal/typedarray/TypedArray<i8>#__get
+       i32.const 24
+       i32.shl
+       i32.const 24
+       i32.shr_s
+      else       
+       global.get $assembly/gomoku/constants/Chess.None
+      end
+     end
      block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.10 (result i32)
-      local.get $3
-      local.set $6
       local.get $6
+      local.set $10
+      local.get $10
       global.get $assembly/game/GameEngine/PlayerRole.First
       i32.eq
       if
        global.get $assembly/gomoku/constants/Chess.White
        br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.10
       else       
-       local.get $6
+       local.get $10
        global.get $assembly/game/GameEngine/PlayerRole.Second
        i32.eq
        if
@@ -5498,11 +5588,11 @@
      end
      i32.eq
      if
-      local.get $4
+      local.get $7
       i32.const 1
       i32.add
-      local.set $4
-      local.get $4
+      local.set $7
+      local.get $7
       i32.const 5
       i32.eq
       if
@@ -5513,12 +5603,12 @@
       end
      else      
       i32.const 0
-      local.set $4
+      local.set $7
      end
-     local.get $5
+     local.get $8
      i32.const 1
      i32.add
-     local.set $5
+     local.set $8
      br $repeat|4
      unreachable
     end
@@ -5526,50 +5616,79 @@
    end
    i32.const 0
   end
-  local.tee $1
+  local.tee $4
   i32.const 0
   i32.ne
   if (result i32)
-   local.get $1
+   local.get $4
   else   
    block $assembly/gomoku/GomokuEngine/GomokuEngine#checkColumn|inlined.1 (result i32)
     local.get $0
-    local.set $4
-    local.get $0
-    i32.load offset=4
-    i32.load offset=4
-    local.set $3
-    local.get $0
-    i32.load offset=4
-    i32.load offset=8
-    local.set $2
+    local.set $7
+    local.get $2
+    local.set $6
+    local.get $3
+    local.set $5
     i32.const 0
-    local.set $1
+    local.set $4
     block $break|5
-     i32.const 0
-     local.set $5
-     loop $repeat|5
-      local.get $5
+     block
+      i32.const 0
+      local.set $9
       global.get $assembly/gomoku/constants/constants.boardDimension
+      local.set $8
+     end
+     loop $repeat|5
+      local.get $9
+      local.get $8
       i32.le_s
       i32.eqz
       br_if $break|5
-      local.get $4
-      i32.load
-      local.get $5
-      local.get $3
-      call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-      block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.12 (result i32)
-       local.get $2
-       local.set $6
+      block $assembly/gomoku/GomokuEngine/Chessboard#getChess|inlined.11 (result i32)
+       local.get $7
+       i32.load
+       local.set $12
+       local.get $9
+       local.set $11
        local.get $6
+       local.set $10
+       local.get $11
+       local.get $10
+       call $assembly/gomoku/constants/constants.validRowAndCol
+       if (result i32)
+        local.get $12
+        local.set $15
+        local.get $11
+        local.set $14
+        local.get $10
+        local.set $13
+        local.get $15
+        i32.load
+        global.get $assembly/gomoku/constants/constants.boardDimension
+        local.get $14
+        i32.mul
+        local.get $13
+        i32.add
+        call $~lib/internal/typedarray/TypedArray<i8>#__get
+        i32.const 24
+        i32.shl
+        i32.const 24
+        i32.shr_s
+       else        
+        global.get $assembly/gomoku/constants/Chess.None
+       end
+      end
+      block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.12 (result i32)
+       local.get $5
+       local.set $10
+       local.get $10
        global.get $assembly/game/GameEngine/PlayerRole.First
        i32.eq
        if
         global.get $assembly/gomoku/constants/Chess.White
         br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.12
        else        
-        local.get $6
+        local.get $10
         global.get $assembly/game/GameEngine/PlayerRole.Second
         i32.eq
         if
@@ -5586,11 +5705,11 @@
       end
       i32.eq
       if
-       local.get $1
+       local.get $4
        i32.const 1
        i32.add
-       local.set $1
-       local.get $1
+       local.set $4
+       local.get $4
        i32.const 5
        i32.eq
        if
@@ -5601,12 +5720,12 @@
        end
       else       
        i32.const 0
-       local.set $1
+       local.set $4
       end
-      local.get $5
+      local.get $9
       i32.const 1
       i32.add
-      local.set $5
+      local.set $9
       br $repeat|5
       unreachable
      end
@@ -5615,102 +5734,125 @@
     i32.const 0
    end
   end
-  local.tee $9
+  local.tee $12
   i32.const 0
   i32.ne
   if (result i32)
-   local.get $9
+   local.get $12
   else   
    block $assembly/gomoku/GomokuEngine/GomokuEngine#checkMainDiagonal|inlined.1 (result i32)
     local.get $0
-    local.set $1
-    local.get $0
-    i32.load offset=4
-    i32.load
-    local.set $2
-    local.get $0
-    i32.load offset=4
-    i32.load offset=4
-    local.set $3
-    local.get $0
-    i32.load offset=4
-    i32.load offset=8
     local.set $4
-    i32.const 0
+    local.get $1
     local.set $5
-    local.get $3
     local.get $2
+    local.set $6
+    local.get $3
+    local.set $7
+    i32.const 0
+    local.set $8
+    local.get $6
+    local.get $5
     i32.ge_s
     if
      i32.const 0
-     local.set $6
-     local.get $3
-     local.get $2
+     local.set $9
+     local.get $6
+     local.get $5
      i32.sub
-     local.set $7
+     local.set $10
      i32.const 15
-     local.get $3
+     local.get $6
      i32.sub
-     local.get $2
+     local.get $5
      i32.add
      i32.const 1
      i32.sub
-     local.set $8
+     local.set $11
      i32.const 15
      i32.const 1
      i32.sub
-     local.set $9
+     local.set $12
     else     
-     local.get $2
-     local.get $3
-     i32.sub
-     local.set $6
-     i32.const 0
-     local.set $7
-     i32.const 15
-     i32.const 1
-     i32.sub
-     local.set $8
-     i32.const 15
-     local.get $3
-     i32.add
-     local.get $2
-     i32.sub
-     i32.const 1
+     local.get $5
+     local.get $6
      i32.sub
      local.set $9
+     i32.const 0
+     local.set $10
+     i32.const 15
+     i32.const 1
+     i32.sub
+     local.set $11
+     i32.const 15
+     local.get $6
+     i32.add
+     local.get $5
+     i32.sub
+     i32.const 1
+     i32.sub
+     local.set $12
     end
     block $break|6
      loop $continue|6
-      local.get $6
-      local.get $8
+      local.get $9
+      local.get $11
       i32.le_s
-      local.tee $10
+      local.tee $13
       if (result i32)
-       local.get $7
-       local.get $9
+       local.get $10
+       local.get $12
        i32.le_s
       else       
-       local.get $10
+       local.get $13
       end
       if
        block
-        local.get $1
-        i32.load
-        local.get $6
-        local.get $7
-        call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-        block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.14 (result i32)
+        block $assembly/gomoku/GomokuEngine/Chessboard#getChess|inlined.13 (result i32)
          local.get $4
-         local.set $10
+         i32.load
+         local.set $15
+         local.get $9
+         local.set $14
          local.get $10
+         local.set $13
+         local.get $14
+         local.get $13
+         call $assembly/gomoku/constants/constants.validRowAndCol
+         if (result i32)
+          local.get $15
+          local.set $18
+          local.get $14
+          local.set $17
+          local.get $13
+          local.set $16
+          local.get $18
+          i32.load
+          global.get $assembly/gomoku/constants/constants.boardDimension
+          local.get $17
+          i32.mul
+          local.get $16
+          i32.add
+          call $~lib/internal/typedarray/TypedArray<i8>#__get
+          i32.const 24
+          i32.shl
+          i32.const 24
+          i32.shr_s
+         else          
+          global.get $assembly/gomoku/constants/Chess.None
+         end
+        end
+        block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.14 (result i32)
+         local.get $7
+         local.set $13
+         local.get $13
          global.get $assembly/game/GameEngine/PlayerRole.First
          i32.eq
          if
           global.get $assembly/gomoku/constants/Chess.White
           br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.14
          else          
-          local.get $10
+          local.get $13
           global.get $assembly/game/GameEngine/PlayerRole.Second
           i32.eq
           if
@@ -5727,11 +5869,11 @@
         end
         i32.eq
         if
-         local.get $5
+         local.get $8
          i32.const 1
          i32.add
-         local.set $5
-         local.get $5
+         local.set $8
+         local.get $8
          i32.const 5
          i32.eq
          if
@@ -5742,16 +5884,16 @@
          end
         else         
          i32.const 0
-         local.set $5
+         local.set $8
         end
-        local.get $6
+        local.get $9
         i32.const 1
         i32.add
-        local.set $6
-        local.get $7
+        local.set $9
+        local.get $10
         i32.const 1
         i32.add
-        local.set $7
+        local.set $10
        end
        br $continue|6
       end
@@ -5760,104 +5902,127 @@
     i32.const 0
    end
   end
-  local.tee $1
+  local.tee $4
   i32.const 0
   i32.ne
   if (result i32)
-   local.get $1
+   local.get $4
   else   
    block $assembly/gomoku/GomokuEngine/GomokuEngine#checkSubDiagonal|inlined.1 (result i32)
     local.get $0
+    local.set $12
+    local.get $1
+    local.set $11
+    local.get $2
+    local.set $10
+    local.get $3
     local.set $9
-    local.get $0
-    i32.load offset=4
-    i32.load
-    local.set $8
-    local.get $0
-    i32.load offset=4
-    i32.load offset=4
-    local.set $7
-    local.get $0
-    i32.load offset=4
-    i32.load offset=8
-    local.set $6
     i32.const 0
-    local.set $5
-    local.get $7
-    local.get $8
+    local.set $8
+    local.get $10
+    local.get $11
     i32.add
     i32.const 16
     i32.le_s
     if
      i32.const 0
-     local.set $4
-     local.get $8
-     local.get $7
+     local.set $7
+     local.get $11
+     local.get $10
      i32.add
-     local.set $3
-     local.get $8
-     local.get $7
+     local.set $6
+     local.get $11
+     local.get $10
      i32.add
-     local.set $2
+     local.set $5
      i32.const 0
-     local.set $1
+     local.set $4
     else     
-     local.get $8
-     local.get $7
+     local.get $11
+     local.get $10
+     i32.add
+     i32.const 15
+     i32.const 1
+     i32.sub
+     i32.sub
+     local.set $7
+     i32.const 15
+     i32.const 1
+     i32.sub
+     local.set $6
+     i32.const 15
+     i32.const 1
+     i32.sub
+     local.set $5
+     local.get $11
+     local.get $10
      i32.add
      i32.const 15
      i32.const 1
      i32.sub
      i32.sub
      local.set $4
-     i32.const 15
-     i32.const 1
-     i32.sub
-     local.set $3
-     i32.const 15
-     i32.const 1
-     i32.sub
-     local.set $2
-     local.get $8
-     local.get $7
-     i32.add
-     i32.const 15
-     i32.const 1
-     i32.sub
-     i32.sub
-     local.set $1
     end
     block $break|7
      loop $continue|7
-      local.get $4
-      local.get $2
+      local.get $7
+      local.get $5
       i32.le_s
-      local.tee $10
+      local.tee $13
       if (result i32)
-       local.get $3
-       local.get $1
+       local.get $6
+       local.get $4
        i32.ge_s
       else       
-       local.get $10
+       local.get $13
       end
       if
        block
-        local.get $9
-        i32.load
-        local.get $4
-        local.get $3
-        call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-        block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.16 (result i32)
+        block $assembly/gomoku/GomokuEngine/Chessboard#getChess|inlined.15 (result i32)
+         local.get $12
+         i32.load
+         local.set $15
+         local.get $7
+         local.set $14
          local.get $6
-         local.set $10
-         local.get $10
+         local.set $13
+         local.get $14
+         local.get $13
+         call $assembly/gomoku/constants/constants.validRowAndCol
+         if (result i32)
+          local.get $15
+          local.set $18
+          local.get $14
+          local.set $17
+          local.get $13
+          local.set $16
+          local.get $18
+          i32.load
+          global.get $assembly/gomoku/constants/constants.boardDimension
+          local.get $17
+          i32.mul
+          local.get $16
+          i32.add
+          call $~lib/internal/typedarray/TypedArray<i8>#__get
+          i32.const 24
+          i32.shl
+          i32.const 24
+          i32.shr_s
+         else          
+          global.get $assembly/gomoku/constants/Chess.None
+         end
+        end
+        block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.16 (result i32)
+         local.get $9
+         local.set $13
+         local.get $13
          global.get $assembly/game/GameEngine/PlayerRole.First
          i32.eq
          if
           global.get $assembly/gomoku/constants/Chess.White
           br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.16
          else          
-          local.get $10
+          local.get $13
           global.get $assembly/game/GameEngine/PlayerRole.Second
           i32.eq
           if
@@ -5874,11 +6039,11 @@
         end
         i32.eq
         if
-         local.get $5
+         local.get $8
          i32.const 1
          i32.add
-         local.set $5
-         local.get $5
+         local.set $8
+         local.get $8
          i32.const 5
          i32.eq
          if
@@ -5889,16 +6054,16 @@
          end
         else         
          i32.const 0
-         local.set $5
+         local.set $8
         end
-        local.get $4
+        local.get $7
         i32.const 1
         i32.add
-        local.set $4
-        local.get $3
+        local.set $7
+        local.get $6
         i32.const 1
         i32.sub
-        local.set $3
+        local.set $6
        end
        br $continue|7
       end
@@ -5931,24 +6096,59 @@
  (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 85 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
+  (local $5 i32)
+  (local $6 i32)
+  (local $7 i32)
+  (local $8 i32)
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
   local.tee $3
-  i32.const 0
-  i32.ne
   if (result i32)
-   local.get $0
-   i32.load
-   local.get $1
-   local.get $2
-   call $assembly/gomoku/GomokuEngine/Chessboard#hasChess
+   block $assembly/gomoku/GomokuEngine/Chessboard#hasChess|inlined.1 (result i32)
+    local.get $0
+    i32.load
+    local.set $5
+    local.get $1
+    local.set $4
+    local.get $2
+    local.set $3
+    local.get $4
+    local.get $3
+    call $assembly/gomoku/constants/constants.validRowAndCol
+    if (result i32)
+     block $assembly/gomoku/GomokuEngine/Chessboard#get|inlined.1 (result i32)
+      local.get $5
+      local.set $8
+      local.get $4
+      local.set $7
+      local.get $3
+      local.set $6
+      local.get $8
+      i32.load
+      global.get $assembly/gomoku/constants/constants.boardDimension
+      local.get $7
+      i32.mul
+      local.get $6
+      i32.add
+      call $~lib/internal/typedarray/TypedArray<i8>#__get
+      i32.const 24
+      i32.shl
+      i32.const 24
+      i32.shr_s
+     end
+     global.get $assembly/gomoku/constants/Chess.None
+     i32.ne
+    else     
+     i32.const 0
+    end
+   end
+   i32.const 0
+   i32.ne
    i32.eqz
   else   
    local.get $3
   end
-  i32.const 0
-  i32.ne
   if
    local.get $0
    i32.load
@@ -6044,7 +6244,7 @@
   local.get $1
   local.get $2
   call $assembly/game/console/console.logAction
-  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.1 (result i32)
+  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.2 (result i32)
    local.get $2
    local.set $3
    local.get $3
@@ -6109,10 +6309,18 @@
   local.get $0
   call $assembly/gomoku/GomokuEngine/GomokuEngine#loadState
  )
- (func $start (; 90 ;) (type $FUNCSIG$v)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#getWinner (; 90 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  i32.load offset=8
+ )
+ (func $assembly/engine/getWinner (; 91 ;) (type $FUNCSIG$i) (result i32)
+  global.get $assembly/engine/engine
+  call $assembly/gomoku/GomokuEngine/GomokuEngine#getWinner
+ )
+ (func $start (; 92 ;) (type $FUNCSIG$v)
   call $start:node_modules/as2d/assembly/glue
   call $start:assembly/engine
  )
- (func $null (; 91 ;) (type $FUNCSIG$v)
+ (func $null (; 93 ;) (type $FUNCSIG$v)
  )
 )

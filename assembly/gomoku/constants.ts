@@ -8,9 +8,10 @@ export enum Chess {
 
 export namespace constants {
 
-    export const boardDimension: i8 = 15;
-    export const boardSize: i32 = 225; //15*15
+    export const boardDimension: i32 = 15;
+    export const boardSize: i32 = 15 * 15;
 
+    // @ts-ignore
     @inline
     export function chessOfPlayer(player: PlayerRole): Chess {
         if (player == PlayerRole.First) {
@@ -22,11 +23,13 @@ export namespace constants {
         }
     }
 
+    // @ts-ignore
     @inline
     export function chessOfRival(player: PlayerRole): Chess {
         return chessOfPlayer(rivalPlayer(player));
     }
 
+    // @ts-ignore
     @inline
     export function rival(chess: Chess): Chess {
         if (chess == Chess.Black) {
@@ -38,6 +41,7 @@ export namespace constants {
         }
     }
 
+    // @ts-ignore
     @inline
     export function rivalPlayer(player: PlayerRole): PlayerRole {
         if (player == PlayerRole.Second) {
@@ -48,9 +52,11 @@ export namespace constants {
     }
 
     export function validRowAndCol(row: i32, col: i32): boolean {
-        let result = 0 <= row && row <= constants.boardDimension - 1
-            && 0 <= col && col <= constants.boardDimension - 1
-        return result
+        let dim = constants.boardDimension
+        return (
+            row >= 0 && row < dim &&
+            col >= 0 && col < dim
+        )
     }
 
 }

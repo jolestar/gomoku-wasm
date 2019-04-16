@@ -4,11 +4,11 @@ import {engine, GameGUI} from "../game/GameGUI";
 import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 
-
 const Black: string = "#111"
 const White: string = "#EEE"
 let EmptyState: Int8Array = new Int8Array(0)
 
+// @ts-ignore
 @inline
 function chessOfColor(chess: Chess): string {
     if (chess == Chess.Black) {
@@ -52,17 +52,23 @@ class GomokuGUI extends GameGUI {
         let ctx = this.ctx;
         let gridSize = this.cfg.gridSize;
         let dimension = this.cfg.dimension;
+        let halfSize = gridSize / 2;
+        let center = gridSize * dimension - halfSize;
+
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.cfg.chessBoardColor;
         ctx.fillRect(0, 0, this.cfg.canvasWidth, this.cfg.canvasHeight);
+
         for (i = 0; i < dimension; i++) {
-            ctx.moveTo(gridSize / 2, gridSize / 2 + gridSize * i);
-            ctx.lineTo(gridSize * dimension - gridSize / 2, gridSize / 2 + gridSize * i);
+            let end = halfSize + gridSize * i;
+            ctx.moveTo(halfSize, end);
+            ctx.lineTo(center, end);
         }
         for (i = 0; i < dimension; i++) {
-            ctx.moveTo(gridSize / 2 + gridSize * i, gridSize / 2);
-            ctx.lineTo(gridSize / 2 + gridSize * i, dimension * gridSize - gridSize / 2);
+            let start = halfSize + gridSize * i;
+            ctx.moveTo(start, halfSize);
+            ctx.lineTo(start, center);
         }
         ctx.lineWidth = 2;
         ctx.strokeStyle = this.cfg.gridColor;

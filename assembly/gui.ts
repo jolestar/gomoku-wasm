@@ -29,12 +29,10 @@ export function init(_myRole: PlayerRole, _playWithAI: boolean): void {
     playWithAI = _playWithAI;
     myRole = _myRole;
     rivalRole = constants.rivalPlayer(myRole)
-    let ctx: CanvasRenderingContext2D = getContextById("main");
+    let ctx = getContextById("main");
     game.init(ctx, myRole);
     if (playWithAI) {
-        aiPlayer = new BigbenAI(rivalRole, function (newState: Int8Array): void {
-            rivalUpdate(newState);
-        });
+        aiPlayer = new BigbenAI(rivalRole, newState => { rivalUpdate(newState) });
     }
 }
 
