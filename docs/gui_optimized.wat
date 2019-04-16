@@ -7107,6 +7107,8 @@
   i32.store offset=4
  )
  (func $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess (; 95 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+  (local $4 i32)
+  (local $5 i32)
   local.get $3
   i32.eqz
   if
@@ -7124,37 +7126,32 @@
   i32.const 2
   i32.eq
   select
-  local.tee $3
+  local.tee $5
   call $~lib/string/String.__concat
   call $assembly/game/console/console.log
   local.get $0
+  i32.load offset=8
   i32.load offset=4
+  local.set $4
+  local.get $0
+  i32.load offset=4
+  local.tee $3
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#save
-  local.get $0
-  i32.load offset=4
+  local.get $3
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#beginPath
-  local.get $0
-  i32.load offset=4
-  local.get $0
-  i32.load offset=8
-  i32.load offset=4
+  local.get $3
   local.get $1
+  local.get $4
   i32.mul
-  local.get $0
-  i32.load offset=8
-  i32.load offset=4
+  local.get $4
   i32.const 2
   i32.div_s
   i32.add
   f64.convert_i32_s
-  local.get $0
-  i32.load offset=8
-  i32.load offset=4
   local.get $2
+  local.get $4
   i32.mul
-  local.get $0
-  i32.load offset=8
-  i32.load offset=4
+  local.get $4
   i32.const 2
   i32.div_s
   i32.add
@@ -7167,15 +7164,13 @@
   f64.const 2
   f64.mul
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#arc
-  local.get $0
-  i32.load offset=4
   local.get $3
+  local.get $5
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:fillStyle
   i32.const 0
   global.set $~lib/argc
-  local.get $0
-  i32.load offset=4
-  local.set $1
+  local.get $3
+  local.set $0
   block $1of1
    block $outOfRange
     global.get $~lib/argc
@@ -7183,13 +7178,11 @@
    end
    unreachable
   end
-  local.get $1
+  local.get $0
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill
-  local.get $0
-  i32.load offset=4
+  local.get $3
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#restore
-  local.get $0
-  i32.load offset=4
+  local.get $3
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit
  )
  (func $assembly/gomoku/GomokuGUI/GomokuGUI#updateGUI (; 96 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
@@ -10107,20 +10100,29 @@
  )
  (func $assembly/gomoku/GomokuGUI/GomokuGUI#draw (; 107 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  local.get $0
+  i32.load offset=8
+  i32.load offset=4
+  local.set $1
+  local.get $0
+  i32.load offset=8
+  i32.load offset=28
+  local.set $4
   local.get $0
   i32.load offset=4
+  local.tee $2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#save
-  local.get $0
-  i32.load offset=4
+  local.get $2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#beginPath
-  local.get $0
-  i32.load offset=4
+  local.get $2
   local.get $0
   i32.load offset=8
   i32.load
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:fillStyle
-  local.get $0
-  i32.load offset=4
+  local.get $2
   local.get $0
   i32.load offset=8
   i32.load offset=8
@@ -10132,153 +10134,108 @@
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fillRect
   loop $repeat|0
    block $break|0
-    local.get $1
-    local.get $0
-    i32.load offset=8
-    i32.load offset=28
+    local.get $3
+    local.get $4
     i32.ge_s
     br_if $break|0
-    local.get $0
-    i32.load offset=4
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $2
+    local.get $1
     i32.const 2
     i32.div_s
     f64.convert_i32_s
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
     local.get $1
+    local.get $3
     i32.mul
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
     i32.const 2
     i32.div_s
     i32.add
     f64.convert_i32_s
     call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#moveTo
-    local.get $0
-    i32.load offset=4
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
-    local.get $0
-    i32.load offset=8
-    i32.load offset=28
+    local.get $2
+    local.get $1
+    local.get $4
     i32.mul
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
     i32.const 2
     i32.div_s
     i32.sub
     f64.convert_i32_s
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
     local.get $1
+    local.get $3
     i32.mul
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
     i32.const 2
     i32.div_s
     i32.add
     f64.convert_i32_s
     call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#lineTo
-    local.get $1
+    local.get $3
     i32.const 1
     i32.add
-    local.set $1
+    local.set $3
     br $repeat|0
    end
   end
   i32.const 0
-  local.set $1
+  local.set $3
   loop $repeat|1
    block $break|1
-    local.get $1
-    local.get $0
-    i32.load offset=8
-    i32.load offset=28
+    local.get $3
+    local.get $4
     i32.ge_s
     br_if $break|1
-    local.get $0
-    i32.load offset=4
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $2
     local.get $1
+    local.get $3
     i32.mul
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
     i32.const 2
     i32.div_s
     i32.add
     f64.convert_i32_s
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
     i32.const 2
     i32.div_s
     f64.convert_i32_s
     call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#moveTo
-    local.get $0
-    i32.load offset=4
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $2
     local.get $1
+    local.get $3
     i32.mul
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
     i32.const 2
     i32.div_s
     i32.add
     f64.convert_i32_s
-    local.get $0
-    i32.load offset=8
-    i32.load offset=28
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
+    local.get $4
     i32.mul
-    local.get $0
-    i32.load offset=8
-    i32.load offset=4
+    local.get $1
     i32.const 2
     i32.div_s
     i32.sub
     f64.convert_i32_s
     call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#lineTo
-    local.get $1
+    local.get $3
     i32.const 1
     i32.add
-    local.set $1
+    local.set $3
     br $repeat|1
    end
   end
-  local.get $0
-  i32.load offset=4
+  local.get $2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:lineWidth
-  local.get $0
-  i32.load offset=4
+  local.get $2
   local.get $0
   i32.load offset=8
   i32.load offset=16
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:strokeStyle
-  local.get $0
-  i32.load offset=4
+  local.get $2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#stroke
-  local.get $0
-  i32.load offset=4
+  local.get $2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#restore
-  local.get $0
-  i32.load offset=4
+  local.get $2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit
  )
  (func $assembly/gui/draw (; 108 ;) (type $FUNCSIG$v)
