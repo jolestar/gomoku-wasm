@@ -11,7 +11,7 @@ export namespace constants {
     export const boardDimension: i8 = 15;
     export const boardSize: i32 = 225; //15*15
 
-
+    @inline
     export function chessOfPlayer(player: PlayerRole): Chess {
         if (player == PlayerRole.First) {
             return Chess.White
@@ -22,6 +22,7 @@ export namespace constants {
         }
     }
 
+    @inline
     export function chessOfRival(player: PlayerRole): Chess {
         return chessOfPlayer(rivalPlayer(player));
     }
@@ -37,6 +38,7 @@ export namespace constants {
         }
     }
 
+    @inline
     export function rivalPlayer(player: PlayerRole): PlayerRole {
         if (player == PlayerRole.Second) {
             return PlayerRole.First
