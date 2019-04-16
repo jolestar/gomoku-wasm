@@ -46,7 +46,7 @@ class Chessboard {
 
     constructor() {
         this.board = new Int8Array(constants.boardSize);
-        this.board.fill(Chess.None);
+        // this.board.fill(Chess.None);
     }
 
     hasChess(row: i32, col: i32): boolean {

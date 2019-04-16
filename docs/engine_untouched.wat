@@ -125,8 +125,6 @@
  (global $assembly/gomoku/constants/Chess.Black i32 (i32.const 2))
  (global $assembly/gomoku/constants/constants.boardDimension i32 (i32.const 15))
  (global $assembly/gomoku/constants/constants.boardSize i32 (i32.const 225))
- (global $~lib/builtins/i32.MAX_VALUE i32 (i32.const 2147483647))
- (global $~lib/argc (mut i32) (i32.const 0))
  (global $assembly/engine/engine (mut i32) (i32.const 0))
  (global $~lib/memory/HEAP_BASE i32 (i32.const 904))
  (export "memory" (memory $0))
@@ -5106,140 +5104,7 @@
   local.set $0
   local.get $0
  )
- (func $~lib/typedarray/Int8Array#fill (; 69 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
-  (local $4 i32)
-  (local $5 i32)
-  (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
-  (local $9 i32)
-  (local $10 i32)
-  (local $11 i32)
-  (local $12 i32)
-  (local $13 i32)
-  local.get $0
-  local.set $4
-  local.get $1
-  local.set $5
-  local.get $2
-  local.set $6
-  local.get $3
-  local.set $7
-  local.get $4
-  i32.load
-  local.set $8
-  local.get $4
-  i32.load offset=4
-  local.set $9
-  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.0 (result i32)
-   local.get $4
-   local.set $10
-   local.get $10
-   i32.load offset=8
-   i32.const 0
-   i32.shr_u
-  end
-  local.set $10
-  local.get $6
-  i32.const 0
-  i32.lt_s
-  if (result i32)
-   local.get $10
-   local.get $6
-   i32.add
-   local.tee $11
-   i32.const 0
-   local.tee $12
-   local.get $11
-   local.get $12
-   i32.gt_s
-   select
-  else   
-   local.get $6
-   local.tee $11
-   local.get $10
-   local.tee $12
-   local.get $11
-   local.get $12
-   i32.lt_s
-   select
-  end
-  local.set $6
-  local.get $7
-  i32.const 0
-  i32.lt_s
-  if (result i32)
-   local.get $10
-   local.get $7
-   i32.add
-   local.tee $11
-   i32.const 0
-   local.tee $12
-   local.get $11
-   local.get $12
-   i32.gt_s
-   select
-  else   
-   local.get $7
-   local.tee $11
-   local.get $10
-   local.tee $12
-   local.get $11
-   local.get $12
-   i32.lt_s
-   select
-  end
-  local.set $7
-  local.get $6
-  local.get $7
-  i32.lt_s
-  if
-   local.get $8
-   local.get $6
-   i32.add
-   local.get $9
-   i32.add
-   i32.const 8
-   i32.add
-   local.set $11
-   local.get $5
-   local.set $12
-   local.get $7
-   local.get $6
-   i32.sub
-   local.set $13
-   local.get $11
-   local.get $12
-   local.get $13
-   call $~lib/internal/memory/memset
-  end
-  local.get $4
- )
- (func $~lib/typedarray/Int8Array#fill|trampoline (; 70 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
-  block $2of2
-   block $1of2
-    block $0of2
-     block $outOfRange
-      global.get $~lib/argc
-      i32.const 1
-      i32.sub
-      br_table $0of2 $1of2 $2of2 $outOfRange
-     end
-     unreachable
-    end
-    i32.const 0
-    local.set $2
-   end
-   global.get $~lib/builtins/i32.MAX_VALUE
-   local.set $3
-  end
-  local.get $0
-  local.get $1
-  local.get $2
-  local.get $3
-  call $~lib/typedarray/Int8Array#fill
- )
- (func $assembly/gomoku/GomokuEngine/Chessboard#constructor (; 71 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#constructor (; 69 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   block (result i32)
    local.get $0
    i32.eqz
@@ -5257,20 +5122,9 @@
   global.get $assembly/gomoku/constants/constants.boardSize
   call $~lib/typedarray/Int8Array#constructor
   i32.store
-  block (result i32)
-   i32.const 1
-   global.set $~lib/argc
-   local.get $0
-   i32.load
-   global.get $assembly/gomoku/constants/Chess.None
-   i32.const 0
-   i32.const 0
-   call $~lib/typedarray/Int8Array#fill|trampoline
-  end
-  drop
   local.get $0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#constructor (; 72 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#constructor (; 70 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -5296,12 +5150,12 @@
   i32.store8 offset=12
   local.get $0
  )
- (func $start:assembly/engine (; 73 ;) (type $FUNCSIG$v)
+ (func $start:assembly/engine (; 71 ;) (type $FUNCSIG$v)
   i32.const 0
   call $assembly/gomoku/GomokuEngine/GomokuEngine#constructor
   global.set $assembly/engine/engine
  )
- (func $assembly/engine/isGameOver (; 74 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/engine/isGameOver (; 72 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   block $assembly/gomoku/GomokuEngine/GomokuEngine#isGameOver|inlined.0 (result i32)
    global.get $assembly/engine/engine
@@ -5312,7 +5166,7 @@
   i32.const 0
   i32.ne
  )
- (func $assembly/engine/getState (; 75 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/engine/getState (; 73 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   global.get $assembly/engine/engine
   local.set $0
@@ -5320,15 +5174,15 @@
   i32.load
   i32.load
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#init (; 76 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#init (; 74 ;) (type $FUNCSIG$vi) (param $0 i32)
   i32.const 376
   call $assembly/game/console/console.log
  )
- (func $assembly/engine/init (; 77 ;) (type $FUNCSIG$v)
+ (func $assembly/engine/init (; 75 ;) (type $FUNCSIG$v)
   global.get $assembly/engine/engine
   call $assembly/gomoku/GomokuEngine/GomokuEngine#init
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 78 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 76 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -5365,7 +5219,7 @@
    i32.load8_s offset=8
   end
  )
- (func $assembly/gomoku/constants/constants.validRowAndCol (; 79 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gomoku/constants/constants.validRowAndCol (; 77 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   global.get $assembly/gomoku/constants/constants.boardDimension
@@ -5398,7 +5252,7 @@
    local.get $3
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#hasChess (; 80 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#hasChess (; 78 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5432,7 +5286,7 @@
    i32.const 0
   end
  )
- (func $assembly/gomoku/constants/constants.chessOfPlayer (; 81 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/constants/constants.chessOfPlayer (; 79 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   global.get $assembly/game/GameEngine/PlayerRole.First
   i32.eq
@@ -5455,7 +5309,7 @@
   unreachable
   unreachable
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 82 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 80 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5496,7 +5350,7 @@
    i32.store8 offset=8
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 83 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 81 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -5531,7 +5385,7 @@
    unreachable
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 84 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 82 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5561,7 +5415,7 @@
    global.get $assembly/gomoku/constants/Chess.None
   end
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkRow (; 85 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkRow (; 83 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5617,7 +5471,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkColumn (; 86 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkColumn (; 84 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5673,7 +5527,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkMainDiagonal (; 87 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkMainDiagonal (; 85 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -5780,7 +5634,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkSubDiagonal (; 88 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkSubDiagonal (; 86 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -5889,7 +5743,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 89 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 87 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -5958,7 +5812,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 90 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 88 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   local.get $1
@@ -6031,7 +5885,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#update (; 91 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#update (; 89 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $0
   i32.load8_u offset=12
@@ -6047,7 +5901,7 @@
   local.get $1
   local.get $2
   call $assembly/game/console/console.logAction
-  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.2 (result i32)
+  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.1 (result i32)
    local.get $2
    local.set $3
    local.get $3
@@ -6098,13 +5952,13 @@
   end
   i32.const 0
  )
- (func $assembly/engine/update (; 92 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/engine/update (; 90 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   global.get $assembly/engine/engine
   local.get $0
   local.get $1
   call $assembly/gomoku/GomokuEngine/GomokuEngine#update
  )
- (func $assembly/engine/loadState (; 93 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/engine/loadState (; 91 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   global.get $assembly/engine/engine
@@ -6112,17 +5966,17 @@
   local.get $0
   local.set $2
  )
- (func $assembly/engine/getWinner (; 94 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/engine/getWinner (; 92 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   global.get $assembly/engine/engine
   local.set $0
   local.get $0
   i32.load offset=8
  )
- (func $start (; 95 ;) (type $FUNCSIG$v)
+ (func $start (; 93 ;) (type $FUNCSIG$v)
   call $start:node_modules/as2d/assembly/glue
   call $start:assembly/engine
  )
- (func $null (; 96 ;) (type $FUNCSIG$v)
+ (func $null (; 94 ;) (type $FUNCSIG$v)
  )
 )
