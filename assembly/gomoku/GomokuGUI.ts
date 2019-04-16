@@ -53,23 +53,26 @@ class GomokuGUI extends GameGUI {
 
     draw(): void {
         let i: i32;
-        this.ctx.save();
-        this.ctx.beginPath();
-        this.ctx.fillStyle = this.cfg.chessBoardColor;
-        this.ctx.fillRect(0, 0, this.cfg.canvasWidth, this.cfg.canvasHeight);
-        for (i = 0; i < this.cfg.dimension; i++) {
-            this.ctx.moveTo(this.cfg.gridSize / 2, this.cfg.gridSize / 2 + this.cfg.gridSize * i);
-            this.ctx.lineTo(this.cfg.gridSize * (this.cfg.dimension) - this.cfg.gridSize / 2, this.cfg.gridSize / 2 + this.cfg.gridSize * i);
+        const ctx = this.ctx;
+        const gridSize = this.cfg.gridSize;
+        const dimension = this.cfg.dimension;
+        ctx.save();
+        ctx.beginPath();
+        ctx.fillStyle = this.cfg.chessBoardColor;
+        ctx.fillRect(0, 0, this.cfg.canvasWidth, this.cfg.canvasHeight);
+        for (i = 0; i < dimension; i++) {
+            ctx.moveTo(gridSize / 2, gridSize / 2 + gridSize * i);
+            ctx.lineTo(gridSize * dimension - gridSize / 2, gridSize / 2 + gridSize * i);
         }
-        for (i = 0; i < this.cfg.dimension; i++) {
-            this.ctx.moveTo(this.cfg.gridSize / 2 + this.cfg.gridSize * i, this.cfg.gridSize / 2);
-            this.ctx.lineTo(this.cfg.gridSize / 2 + this.cfg.gridSize * i, (this.cfg.dimension) * this.cfg.gridSize - this.cfg.gridSize / 2);
+        for (i = 0; i < dimension; i++) {
+            ctx.moveTo(gridSize / 2 + gridSize * i, gridSize / 2);
+            ctx.lineTo(gridSize / 2 + gridSize * i, dimension * gridSize - gridSize / 2);
         }
-        this.ctx.lineWidth = 2;
-        this.ctx.strokeStyle = this.cfg.gridColor;
-        this.ctx.stroke();
-        this.ctx.restore();
-        this.ctx.commit();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = this.cfg.gridColor;
+        ctx.stroke();
+        ctx.restore();
+        ctx.commit();
     }
 
     onClick(x: i32, y: i32): Int8Array {
@@ -92,13 +95,15 @@ class GomokuGUI extends GameGUI {
         }
         let color = chessOfColor(chess)
         console.log("drawChess:" + color)
-        this.ctx.save();
-        this.ctx.beginPath();
-        this.ctx.arc(this.cfg.gridSize * (row) + this.cfg.gridSize / 2, this.cfg.gridSize * (col) + this.cfg.gridSize / 2, this.cfg.chessSize, 0, Math.PI * 2, true);
-        this.ctx.fillStyle = color
-        this.ctx.fill();
-        this.ctx.restore();
-        this.ctx.commit();
+        const ctx = this.ctx;
+        const gridSize = this.cfg.gridSize;
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(gridSize * row + gridSize / 2, gridSize * col + gridSize / 2, this.cfg.chessSize, 0, Math.PI * 2, true);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.restore();
+        ctx.commit();
     }
 }
 
