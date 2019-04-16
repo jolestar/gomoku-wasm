@@ -4,13 +4,8 @@ import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 
 class Position {
-    row: i32;
-    col: i32;
 
-    constructor(row: i32, col: i32) {
-        this.row = row;
-        this.col = col;
-    }
+    constructor(public row: i32, public col: i32) {}
 
     static fromState(state: Int8Array): Position {
         if (state.length != 2) {
@@ -308,4 +303,3 @@ class GomokuEngine extends GameEngine {
 }
 
 export {GomokuAction, Chessboard, Position, GomokuEngine}
-

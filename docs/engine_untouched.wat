@@ -5364,30 +5364,7 @@
    i32.const 0
   end
  )
- (func $assembly/gomoku/constants/constants.chessOfPlayer (; 82 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  global.get $assembly/game/GameEngine/PlayerRole.First
-  i32.eq
-  if
-   global.get $assembly/gomoku/constants/Chess.White
-   return
-  else   
-   local.get $0
-   global.get $assembly/game/GameEngine/PlayerRole.Second
-   i32.eq
-   if
-    global.get $assembly/gomoku/constants/Chess.Black
-    return
-   else    
-    global.get $assembly/gomoku/constants/Chess.None
-    return
-   end
-   unreachable
-  end
-  unreachable
-  unreachable
- )
- (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 83 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 82 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -5418,13 +5395,13 @@
   else   
    i32.const 0
    i32.const 560
-   i32.const 86
+   i32.const 81
    i32.const 12
    call $~lib/env/abort
    unreachable
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 84 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 83 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5456,7 +5433,7 @@
    global.get $assembly/gomoku/constants/Chess.None
   end
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 85 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 84 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -5494,8 +5471,31 @@
      local.get $2
      local.get $5
      call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-     local.get $3
-     call $assembly/gomoku/constants/constants.chessOfPlayer
+     block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.10 (result i32)
+      local.get $3
+      local.set $6
+      local.get $6
+      global.get $assembly/game/GameEngine/PlayerRole.First
+      i32.eq
+      if
+       global.get $assembly/gomoku/constants/Chess.White
+       br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.10
+      else       
+       local.get $6
+       global.get $assembly/game/GameEngine/PlayerRole.Second
+       i32.eq
+       if
+        global.get $assembly/gomoku/constants/Chess.Black
+        br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.10
+       else        
+        global.get $assembly/gomoku/constants/Chess.None
+        br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.10
+       end
+       unreachable
+      end
+      unreachable
+      unreachable
+     end
      i32.eq
      if
       local.get $4
@@ -5559,8 +5559,31 @@
       local.get $5
       local.get $3
       call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-      local.get $2
-      call $assembly/gomoku/constants/constants.chessOfPlayer
+      block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.12 (result i32)
+       local.get $2
+       local.set $6
+       local.get $6
+       global.get $assembly/game/GameEngine/PlayerRole.First
+       i32.eq
+       if
+        global.get $assembly/gomoku/constants/Chess.White
+        br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.12
+       else        
+        local.get $6
+        global.get $assembly/game/GameEngine/PlayerRole.Second
+        i32.eq
+        if
+         global.get $assembly/gomoku/constants/Chess.Black
+         br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.12
+        else         
+         global.get $assembly/gomoku/constants/Chess.None
+         br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.12
+        end
+        unreachable
+       end
+       unreachable
+       unreachable
+      end
       i32.eq
       if
        local.get $1
@@ -5677,8 +5700,31 @@
         local.get $6
         local.get $7
         call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-        local.get $4
-        call $assembly/gomoku/constants/constants.chessOfPlayer
+        block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.14 (result i32)
+         local.get $4
+         local.set $10
+         local.get $10
+         global.get $assembly/game/GameEngine/PlayerRole.First
+         i32.eq
+         if
+          global.get $assembly/gomoku/constants/Chess.White
+          br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.14
+         else          
+          local.get $10
+          global.get $assembly/game/GameEngine/PlayerRole.Second
+          i32.eq
+          if
+           global.get $assembly/gomoku/constants/Chess.Black
+           br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.14
+          else           
+           global.get $assembly/gomoku/constants/Chess.None
+           br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.14
+          end
+          unreachable
+         end
+         unreachable
+         unreachable
+        end
         i32.eq
         if
          local.get $5
@@ -5801,8 +5847,31 @@
         local.get $4
         local.get $3
         call $assembly/gomoku/GomokuEngine/Chessboard#getChess
-        local.get $6
-        call $assembly/gomoku/constants/constants.chessOfPlayer
+        block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.16 (result i32)
+         local.get $6
+         local.set $10
+         local.get $10
+         global.get $assembly/game/GameEngine/PlayerRole.First
+         i32.eq
+         if
+          global.get $assembly/gomoku/constants/Chess.White
+          br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.16
+         else          
+          local.get $10
+          global.get $assembly/game/GameEngine/PlayerRole.Second
+          i32.eq
+          if
+           global.get $assembly/gomoku/constants/Chess.Black
+           br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.16
+          else           
+           global.get $assembly/gomoku/constants/Chess.None
+           br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.16
+          end
+          unreachable
+         end
+         unreachable
+         unreachable
+        end
         i32.eq
         if
          local.get $5
@@ -5859,22 +5928,9 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/constants/constants.rivalPlayer (; 86 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  global.get $assembly/game/GameEngine/PlayerRole.Second
-  i32.eq
-  if
-   global.get $assembly/game/GameEngine/PlayerRole.First
-   return
-  else   
-   global.get $assembly/game/GameEngine/PlayerRole.Second
-   return
-  end
-  unreachable
-  unreachable
- )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 87 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 85 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
+  (local $4 i32)
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
@@ -5898,9 +5954,32 @@
    i32.load
    local.get $1
    local.get $2
-   local.get $0
-   i32.load offset=8
-   call $assembly/gomoku/constants/constants.chessOfPlayer
+   block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0 (result i32)
+    local.get $0
+    i32.load offset=8
+    local.set $3
+    local.get $3
+    global.get $assembly/game/GameEngine/PlayerRole.First
+    i32.eq
+    if
+     global.get $assembly/gomoku/constants/Chess.White
+     br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0
+    else     
+     local.get $3
+     global.get $assembly/game/GameEngine/PlayerRole.Second
+     i32.eq
+     if
+      global.get $assembly/gomoku/constants/Chess.Black
+      br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0
+     else      
+      global.get $assembly/gomoku/constants/Chess.None
+      br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0
+     end
+     unreachable
+    end
+    unreachable
+    unreachable
+   end
    call $assembly/gomoku/GomokuEngine/Chessboard#putChess
    local.get $0
    block (result i32)
@@ -5925,9 +6004,23 @@
    i32.eqz
    if
     local.get $0
-    local.get $0
-    i32.load offset=8
-    call $assembly/gomoku/constants/constants.rivalPlayer
+    block $assembly/gomoku/constants/constants.rivalPlayer|inlined.0 (result i32)
+     local.get $0
+     i32.load offset=8
+     local.set $4
+     local.get $4
+     global.get $assembly/game/GameEngine/PlayerRole.Second
+     i32.eq
+     if
+      global.get $assembly/game/GameEngine/PlayerRole.First
+      br $assembly/gomoku/constants/constants.rivalPlayer|inlined.0
+     else      
+      global.get $assembly/game/GameEngine/PlayerRole.Second
+      br $assembly/gomoku/constants/constants.rivalPlayer|inlined.0
+     end
+     unreachable
+     unreachable
+    end
     i32.store offset=8
    end
    i32.const 1
@@ -5935,7 +6028,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#update (; 88 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#update (; 86 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $0
   i32.load8_u offset=12
@@ -6002,24 +6095,24 @@
   end
   i32.const 0
  )
- (func $assembly/engine/update (; 89 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/engine/update (; 87 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   global.get $assembly/engine/engine
   local.get $0
   local.get $1
   call $assembly/gomoku/GomokuEngine/GomokuEngine#update
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#loadState (; 90 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#loadState (; 88 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   nop
  )
- (func $assembly/engine/loadState (; 91 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/engine/loadState (; 89 ;) (type $FUNCSIG$vi) (param $0 i32)
   global.get $assembly/engine/engine
   local.get $0
   call $assembly/gomoku/GomokuEngine/GomokuEngine#loadState
  )
- (func $start (; 92 ;) (type $FUNCSIG$v)
+ (func $start (; 90 ;) (type $FUNCSIG$v)
   call $start:node_modules/as2d/assembly/glue
   call $start:assembly/engine
  )
- (func $null (; 93 ;) (type $FUNCSIG$v)
+ (func $null (; 91 ;) (type $FUNCSIG$v)
  )
 )

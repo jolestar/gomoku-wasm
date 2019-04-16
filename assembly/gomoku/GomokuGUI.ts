@@ -9,6 +9,7 @@ const Black: string = "#111"
 const White: string = "#EEE"
 let EmptyState: Int8Array = new Int8Array(0)
 
+@inline
 function chessOfColor(chess: Chess): string {
     if (chess == Chess.Black) {
         return Black
@@ -21,23 +22,18 @@ function chessOfColor(chess: Chess): string {
 
 class Config {
     chessBoardColor: string = "yellow"
-    gridSize: i32 = 30
-    canvasWidth: i32 = 450//this.gridSize * 15
-    canvasHeight: i32 = 450//this.gridSize * 15
+    gridSize: u32 = 30
+    canvasWidth: u32 = 450//this.gridSize * 15
+    canvasHeight: u32 = 450//this.gridSize * 15
     gridColor: string = '#000'
-    chessSize: i32 = 12
+    chessSize: u32 = 12
     pointColor: string = "#f00" //TODO
-    dimension: i32 = constants.boardDimension
+    dimension: u32 = constants.boardDimension
 }
 
 class GomokuGUI extends GameGUI {
 
-    cfg: Config;
-
-    constructor() {
-        super();
-        this.cfg = new Config();
-    }
+    cfg: Config = new Config();
 
     update(player: PlayerRole, state: Int8Array): boolean {
         if (engine.update(player, state)) {
@@ -52,7 +48,7 @@ class GomokuGUI extends GameGUI {
     }
 
     draw(): void {
-        let i: i32;
+        let i: u32;
         let ctx = this.ctx;
         let gridSize = this.cfg.gridSize;
         let dimension = this.cfg.dimension;
@@ -76,8 +72,8 @@ class GomokuGUI extends GameGUI {
     }
 
     onClick(x: i32, y: i32): Int8Array {
-        let row = i8(Math.round(x / this.cfg.gridSize));
-        let col = i8(Math.round(y / this.cfg.gridSize));
+        let row = i8(x / this.cfg.gridSize);
+        let col = i8(y / this.cfg.gridSize);
         let state = new Int8Array(2);
         state[0] = row;
         state[1] = col;
