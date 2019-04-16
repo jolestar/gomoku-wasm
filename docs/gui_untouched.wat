@@ -5510,7 +5510,30 @@
   drop
   local.get $0
  )
- (func $~lib/internal/number/decimalCount32 (; 89 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/constants/constants.chessOfPlayer (; 89 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  global.get $assembly/game/GameEngine/PlayerRole.First
+  i32.eq
+  if
+   global.get $assembly/gomoku/constants/Chess.White
+   return
+  else   
+   local.get $0
+   global.get $assembly/game/GameEngine/PlayerRole.Second
+   i32.eq
+   if
+    global.get $assembly/gomoku/constants/Chess.Black
+    return
+   else    
+    global.get $assembly/gomoku/constants/Chess.None
+    return
+   end
+   unreachable
+  end
+  unreachable
+  unreachable
+ )
+ (func $~lib/internal/number/decimalCount32 (; 90 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
   i32.const 100000
@@ -5579,7 +5602,7 @@
   unreachable
   unreachable
  )
- (func $~lib/internal/string/allocateUnsafe (; 90 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/internal/string/allocateUnsafe (; 91 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -5619,7 +5642,7 @@
   i32.store
   local.get $2
  )
- (func $~lib/internal/number/utoa32_lut (; 91 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/number/utoa32_lut (; 92 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -5805,7 +5828,7 @@
    i32.store16 offset=4
   end
  )
- (func $~lib/internal/number/itoa32 (; 92 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/internal/number/itoa32 (; 93 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -5857,16 +5880,16 @@
   end
   local.get $3
  )
- (func $~lib/internal/number/itoa<i32> (; 93 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/internal/number/itoa<i32> (; 94 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   call $~lib/internal/number/itoa32
   return
  )
- (func $~lib/number/I32#toString (; 94 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/number/I32#toString (; 95 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   call $~lib/internal/number/itoa<i32>
  )
- (func $~lib/internal/string/copyUnsafe (; 95 ;) (type $FUNCSIG$viiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32)
+ (func $~lib/internal/string/copyUnsafe (; 96 ;) (type $FUNCSIG$viiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (param $4 i32)
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
@@ -5895,7 +5918,7 @@
   local.get $7
   call $~lib/internal/memory/memmove
  )
- (func $~lib/string/String#concat (; 96 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String#concat (; 97 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -5953,7 +5976,7 @@
   call $~lib/internal/string/copyUnsafe
   local.get $5
  )
- (func $~lib/string/String.__concat (; 97 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__concat (; 98 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -5964,7 +5987,7 @@
   local.get $1
   call $~lib/string/String#concat
  )
- (func $assembly/gomoku/constants/constants.validRowAndCol (; 98 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gomoku/constants/constants.validRowAndCol (; 99 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   global.get $assembly/gomoku/constants/constants.boardDimension
@@ -5997,7 +6020,7 @@
    local.get $3
   end
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 99 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 100 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -6038,7 +6061,7 @@
    i32.store8 offset=8
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 100 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 101 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -6067,13 +6090,13 @@
   else   
    i32.const 0
    i32.const 1304
-   i32.const 81
+   i32.const 79
    i32.const 12
    call $~lib/env/abort
    unreachable
   end
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#first (; 101 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#first (; 102 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -6107,7 +6130,7 @@
   i32.load offset=4
   call_indirect (type $FUNCSIG$vi)
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#constructor (; 102 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#constructor (; 103 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   local.get $0
@@ -6135,76 +6158,30 @@
   call $assembly/gomoku/GomokuEngine/Chessboard#constructor
   i32.store offset=8
   local.get $0
-  block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0 (result i32)
-   local.get $1
-   local.set $3
-   local.get $3
-   global.get $assembly/game/GameEngine/PlayerRole.First
-   i32.eq
-   if
-    global.get $assembly/gomoku/constants/Chess.White
-    br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0
-   else    
-    local.get $3
-    global.get $assembly/game/GameEngine/PlayerRole.Second
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.Black
-     br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0
-    else     
-     global.get $assembly/gomoku/constants/Chess.None
-     br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.0
-    end
-    unreachable
-   end
-   unreachable
-   unreachable
-  end
+  local.get $1
+  call $assembly/gomoku/constants/constants.chessOfPlayer
   i32.store offset=12
   local.get $0
   block $assembly/gomoku/constants/constants.chessOfRival|inlined.0 (result i32)
    local.get $1
    local.set $3
-   block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.1 (result i32)
-    block $assembly/gomoku/constants/constants.rivalPlayer|inlined.1 (result i32)
-     local.get $3
-     local.set $4
-     local.get $4
-     global.get $assembly/game/GameEngine/PlayerRole.Second
-     i32.eq
-     if
-      global.get $assembly/game/GameEngine/PlayerRole.First
-      br $assembly/gomoku/constants/constants.rivalPlayer|inlined.1
-     else      
-      global.get $assembly/game/GameEngine/PlayerRole.Second
-      br $assembly/gomoku/constants/constants.rivalPlayer|inlined.1
-     end
-     unreachable
-     unreachable
-    end
+   block $assembly/gomoku/constants/constants.rivalPlayer|inlined.1 (result i32)
+    local.get $3
     local.set $4
     local.get $4
-    global.get $assembly/game/GameEngine/PlayerRole.First
+    global.get $assembly/game/GameEngine/PlayerRole.Second
     i32.eq
     if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.1
+     global.get $assembly/game/GameEngine/PlayerRole.First
+     br $assembly/gomoku/constants/constants.rivalPlayer|inlined.1
     else     
-     local.get $4
      global.get $assembly/game/GameEngine/PlayerRole.Second
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.1
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.1
-     end
-     unreachable
+     br $assembly/gomoku/constants/constants.rivalPlayer|inlined.1
     end
     unreachable
     unreachable
    end
+   call $assembly/gomoku/constants/constants.chessOfPlayer
   end
   i32.store offset=16
   i32.const 592
@@ -6228,7 +6205,7 @@
   end
   local.get $0
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 103 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 104 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -6265,7 +6242,7 @@
    i32.load8_s offset=8
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#save (; 104 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#save (; 105 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -7503,7 +7480,7 @@
   local.get $3
   i32.store8 offset=12
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#beginPath (; 105 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#beginPath (; 106 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   i32.const 1
   i32.store offset=260
@@ -7511,14 +7488,14 @@
   i32.const 0
   i32.store offset=264
  )
- (func $~lib/builtins/isFinite<f64> (; 106 ;) (type $FUNCSIG$id) (param $0 f64) (result i32)
+ (func $~lib/builtins/isFinite<f64> (; 107 ;) (type $FUNCSIG$id) (param $0 f64) (result i32)
   local.get $0
   local.get $0
   f64.sub
   f64.const 0
   f64.eq
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#arc (; 107 ;) (type $FUNCSIG$vidddddi) (param $0 i32) (param $1 f64) (param $2 f64) (param $3 f64) (param $4 f64) (param $5 f64) (param $6 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#arc (; 108 ;) (type $FUNCSIG$vidddddi) (param $0 i32) (param $1 f64) (param $2 f64) (param $3 f64) (param $4 f64) (param $5 f64) (param $6 i32)
   (local $7 i32)
   (local $8 i32)
   (local $9 i32)
@@ -7771,7 +7748,7 @@
    i32.store offset=260
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:fillStyle (; 108 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:fillStyle (; 109 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -7836,13 +7813,13 @@
    i32.store offset=8
   end
  )
- (func $~lib/string/String.__ne (; 109 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__ne (; 110 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   local.get $1
   call $~lib/string/String.__eq
   i32.eqz
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#_updateTransform (; 110 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#_updateTransform (; 111 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -8451,7 +8428,7 @@
    end
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill (; 111 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill (; 112 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -11479,7 +11456,7 @@
    i32.store offset=4
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill|trampoline (; 112 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill|trampoline (; 113 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   block $1of1
    block $0of1
     block $outOfRange
@@ -11495,7 +11472,7 @@
   local.get $1
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#restore (; 113 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#restore (; 114 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -12284,7 +12261,7 @@
   local.get $2
   i32.store8 offset=12
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit (; 114 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit (; 115 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -12374,7 +12351,7 @@
    i32.store offset=4
   end
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess (; 115 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess (; 116 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -12466,8 +12443,7 @@
   local.get $5
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#updateGUI (; 116 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
-  (local $3 i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#updateGUI (; 117 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $0
   local.get $2
   i32.const 0
@@ -12483,34 +12459,11 @@
   i32.shl
   i32.const 24
   i32.shr_s
-  block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.2 (result i32)
-   local.get $1
-   local.set $3
-   local.get $3
-   global.get $assembly/game/GameEngine/PlayerRole.First
-   i32.eq
-   if
-    global.get $assembly/gomoku/constants/Chess.White
-    br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.2
-   else    
-    local.get $3
-    global.get $assembly/game/GameEngine/PlayerRole.Second
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.Black
-     br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.2
-    else     
-     global.get $assembly/gomoku/constants/Chess.None
-     br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.2
-    end
-    unreachable
-   end
-   unreachable
-   unreachable
-  end
+  local.get $1
+  call $assembly/gomoku/constants/constants.chessOfPlayer
   call $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#update (; 117 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#update (; 118 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $1
   local.get $2
   call $assembly/game/GameGUI/engine.update
@@ -12526,7 +12479,7 @@
   end
   i32.const 0
  )
- (func $assembly/gui/rivalUpdate (; 118 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gui/rivalUpdate (; 119 ;) (type $FUNCSIG$vi) (param $0 i32)
   global.get $assembly/gui/gameBegin
   if
    global.get $assembly/gui/game
@@ -12539,11 +12492,11 @@
    call $assembly/game/console/console.log
   end
  )
- (func $assembly/gui/init~anonymous|0 (; 119 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gui/init~anonymous|0 (; 120 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $assembly/gui/rivalUpdate
  )
- (func $assembly/gui/init (; 120 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $assembly/gui/init (; 121 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   local.get $1
   i32.const 0
@@ -12584,11 +12537,11 @@
    global.set $assembly/gui/aiPlayer
   end
  )
- (func $assembly/gui/startGame (; 121 ;) (type $FUNCSIG$v)
+ (func $assembly/gui/startGame (; 122 ;) (type $FUNCSIG$v)
   i32.const 1
   global.set $assembly/gui/gameBegin
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fillRect (; 122 ;) (type $FUNCSIG$vidddd) (param $0 i32) (param $1 f64) (param $2 f64) (param $3 f64) (param $4 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fillRect (; 123 ;) (type $FUNCSIG$vidddd) (param $0 i32) (param $1 f64) (param $2 f64) (param $3 f64) (param $4 f64)
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
@@ -14025,7 +13978,7 @@
    i32.store offset=4
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#moveTo (; 123 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#moveTo (; 124 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -14257,7 +14210,7 @@
    i32.store offset=260
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#lineTo (; 124 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#lineTo (; 125 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -14489,7 +14442,7 @@
    i32.store offset=260
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:lineWidth (; 125 ;) (type $FUNCSIG$vid) (param $0 i32) (param $1 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:lineWidth (; 126 ;) (type $FUNCSIG$vid) (param $0 i32) (param $1 f64)
   (local $2 i32)
   (local $3 i32)
   (local $4 f64)
@@ -14530,7 +14483,7 @@
    f64.store offset=8
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:strokeStyle (; 126 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:strokeStyle (; 127 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -14595,7 +14548,7 @@
    i32.store offset=8
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#stroke (; 127 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#stroke (; 128 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -18470,7 +18423,7 @@
    i32.store offset=4
   end
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#draw (; 128 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#draw (; 129 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -18612,15 +18565,14 @@
   local.get $2
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit
  )
- (func $assembly/gui/draw (; 129 ;) (type $FUNCSIG$v)
+ (func $assembly/gui/draw (; 130 ;) (type $FUNCSIG$v)
   global.get $assembly/gui/game
   call $assembly/gomoku/GomokuGUI/GomokuGUI#draw
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#onClick (; 130 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#onClick (; 131 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
-  (local $6 i32)
   local.get $1
   local.get $0
   i32.load offset=8
@@ -18676,39 +18628,16 @@
    i32.shl
    i32.const 24
    i32.shr_s
-   block $assembly/gomoku/constants/constants.chessOfPlayer|inlined.3 (result i32)
-    local.get $0
-    i32.load
-    local.set $6
-    local.get $6
-    global.get $assembly/game/GameEngine/PlayerRole.First
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.3
-    else     
-     local.get $6
-     global.get $assembly/game/GameEngine/PlayerRole.Second
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.3
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.chessOfPlayer|inlined.3
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $0
+   i32.load
+   call $assembly/gomoku/constants/constants.chessOfPlayer
    call $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess
    local.get $5
    return
   end
   global.get $assembly/gomoku/GomokuGUI/EmptyState
  )
- (func $assembly/gomoku/GomokuEngine/Position#constructor (; 131 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Position#constructor (; 132 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -18724,7 +18653,7 @@
   i32.store offset=4
   local.get $0
  )
- (func $assembly/gomoku/GomokuEngine/Position.fromIndex (; 132 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Position.fromIndex (; 133 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
   i32.const 0
@@ -18756,7 +18685,7 @@
   i32.rem_s
   call $assembly/gomoku/GomokuEngine/Position#constructor
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#findPosition (; 133 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#findPosition (; 134 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -18810,7 +18739,30 @@
   end
   local.get $2
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle (; 134 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/constants/constants.rival (; 135 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  local.get $0
+  global.get $assembly/gomoku/constants/Chess.Black
+  i32.eq
+  if
+   global.get $assembly/gomoku/constants/Chess.White
+   return
+  else   
+   local.get $0
+   global.get $assembly/gomoku/constants/Chess.White
+   i32.eq
+   if
+    global.get $assembly/gomoku/constants/Chess.Black
+    return
+   else    
+    global.get $assembly/gomoku/constants/Chess.None
+    return
+   end
+   unreachable
+  end
+  unreachable
+  unreachable
+ )
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle (; 136 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   local.get $1
   i32.const 5
@@ -18912,7 +18864,7 @@
   unreachable
   unreachable
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle (; 135 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle (; 137 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   local.get $1
   i32.const 5
@@ -19014,7 +18966,7 @@
   unreachable
   unreachable
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#computeScore (; 136 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#computeScore (; 138 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -19115,31 +19067,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.0 (result i32)
-    local.get $3
-    local.set $10
-    local.get $10
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.0
-    else     
-     local.get $10
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.0
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.0
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $10
@@ -19217,31 +19146,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.1 (result i32)
-    local.get $3
-    local.set $12
-    local.get $12
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.1
-    else     
-     local.get $12
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.1
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.1
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $12
@@ -19354,31 +19260,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.2 (result i32)
-    local.get $3
-    local.set $16
-    local.get $16
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.2
-    else     
-     local.get $16
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.2
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.2
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $16
@@ -19456,31 +19339,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.3 (result i32)
-    local.get $3
-    local.set $18
-    local.get $18
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.3
-    else     
-     local.get $18
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.3
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.3
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $18
@@ -19625,31 +19485,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.4 (result i32)
-    local.get $3
-    local.set $19
-    local.get $19
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.4
-    else     
-     local.get $19
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.4
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.4
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $19
@@ -19761,31 +19598,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.5 (result i32)
-    local.get $3
-    local.set $20
-    local.get $20
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.5
-    else     
-     local.get $20
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.5
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.5
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $20
@@ -19929,31 +19743,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.6 (result i32)
-    local.get $3
-    local.set $21
-    local.get $21
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.6
-    else     
-     local.get $21
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.6
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.6
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $21
@@ -20065,31 +19856,8 @@
     i32.const 24
     i32.shr_s
    end
-   block $assembly/gomoku/constants/constants.rival|inlined.7 (result i32)
-    local.get $3
-    local.set $22
-    local.get $22
-    global.get $assembly/gomoku/constants/Chess.Black
-    i32.eq
-    if
-     global.get $assembly/gomoku/constants/Chess.White
-     br $assembly/gomoku/constants/constants.rival|inlined.7
-    else     
-     local.get $22
-     global.get $assembly/gomoku/constants/Chess.White
-     i32.eq
-     if
-      global.get $assembly/gomoku/constants/Chess.Black
-      br $assembly/gomoku/constants/constants.rival|inlined.7
-     else      
-      global.get $assembly/gomoku/constants/Chess.None
-      br $assembly/gomoku/constants/constants.rival|inlined.7
-     end
-     unreachable
-    end
-    unreachable
-    unreachable
-   end
+   local.get $3
+   call $assembly/gomoku/constants/constants.rival
    i32.eq
   end
   local.set $22
@@ -20127,7 +19895,7 @@
   local.set $4
   local.get $4
  )
- (func $assembly/gomoku/GomokuEngine/Position#toString (; 137 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Position#toString (; 139 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   call $~lib/number/I32#toString
@@ -20138,7 +19906,7 @@
   call $~lib/number/I32#toString
   call $~lib/string/String.__concat
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextPosition (; 138 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextPosition (; 140 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -20735,7 +20503,7 @@
   end
   local.get $1
  )
- (func $assembly/gomoku/GomokuEngine/Position#toState (; 139 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Position#toState (; 141 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   i32.const 0
   i32.const 2
@@ -20753,7 +20521,7 @@
   call $~lib/internal/typedarray/TypedArray<i8>#__set
   local.get $1
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextAction (; 140 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextAction (; 142 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -20819,7 +20587,7 @@
   i32.load offset=4
   call_indirect (type $FUNCSIG$vi)
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#update (; 141 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#update (; 143 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   i32.load offset=8
   local.get $1
@@ -20843,7 +20611,7 @@
   call $assembly/gomoku/ai/BigbenAI/BigbenAI#nextAction
   i32.const 1
  )
- (func $assembly/gui/onClick (; 142 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gui/onClick (; 144 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   global.get $assembly/gui/gameBegin
@@ -20885,10 +20653,10 @@
   end
   local.get $2
  )
- (func $start (; 143 ;) (type $FUNCSIG$v)
+ (func $start (; 145 ;) (type $FUNCSIG$v)
   call $start:node_modules/as2d/assembly/glue
   call $start:assembly/gui
  )
- (func $null (; 144 ;) (type $FUNCSIG$v)
+ (func $null (; 146 ;) (type $FUNCSIG$v)
  )
 )

@@ -185,6 +185,7 @@ export class BigbenAI extends GamePlayer {
         return newPosition
     }
 
+    @inline
     static getIndexByState(state: Int8Array): i32 {
         return idxByRowCol(state[0], state[1]);
     }

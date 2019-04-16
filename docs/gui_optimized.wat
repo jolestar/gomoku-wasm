@@ -4348,7 +4348,7 @@
   else   
    i32.const 0
    i32.const 1304
-   i32.const 81
+   i32.const 79
    i32.const 12
    call $~lib/env/abort
    unreachable
@@ -10551,21 +10551,21 @@
   (local $9 i32)
   (local $10 i32)
   local.get $1
-  local.set $6
+  local.set $7
   local.get $2
   local.set $5
   local.get $0
   i32.load offset=8
   local.set $8
   loop $continue|0
-   local.get $6
+   local.get $7
    i32.const 0
    i32.gt_s
    local.tee $4
-   if
+   if (result i32)
     local.get $8
     i32.load
-    local.get $6
+    local.get $7
     i32.const 1
     i32.sub
     i32.const 15
@@ -10579,22 +10579,23 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $4
+   else    
+    local.get $4
    end
-   local.get $4
    if
-    local.get $6
+    local.get $7
     i32.const 1
     i32.sub
-    local.set $6
+    local.set $7
     br $continue|0
    end
   end
-  local.get $6
+  local.get $7
   i32.eqz
   local.tee $4
-  i32.eqz
-  if
+  if (result i32)
+   local.get $4
+  else   
    local.get $3
    i32.const 2
    i32.eq
@@ -10610,7 +10611,7 @@
    end
    local.get $8
    i32.load
-   local.get $6
+   local.get $7
    i32.const 1
    i32.sub
    i32.const 15
@@ -10623,9 +10624,7 @@
    i32.const 24
    i32.shr_s
    i32.eq
-   local.set $4
   end
-  local.get $4
   local.set $9
   local.get $1
   local.set $4
@@ -10633,8 +10632,8 @@
    local.get $4
    i32.const 14
    i32.lt_s
-   local.tee $7
-   if
+   local.tee $6
+   if (result i32)
     local.get $8
     i32.load
     local.get $4
@@ -10651,9 +10650,9 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $7
+   else    
+    local.get $6
    end
-   local.get $7
    if
     local.get $4
     i32.const 1
@@ -10665,7 +10664,7 @@
   local.get $4
   i32.const 14
   i32.eq
-  local.tee $7
+  local.tee $6
   i32.eqz
   if
    local.get $3
@@ -10696,49 +10695,49 @@
    i32.const 24
    i32.shr_s
    i32.eq
-   local.set $7
+   local.set $6
   end
   i32.const 1
   local.get $4
-  local.get $6
+  local.get $7
   i32.sub
   i32.const 1
   i32.add
   local.get $4
-  local.get $6
+  local.get $7
   i32.eq
   select
-  local.set $6
+  local.set $4
   local.get $0
   i32.load offset=12
   local.get $3
   i32.eq
   if (result i32)
-   local.get $6
+   local.get $4
    local.get $9
-   local.get $7
+   local.get $6
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle
   else   
-   local.get $6
+   local.get $4
    local.get $9
-   local.get $7
+   local.get $6
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle
   end
-  local.set $10
+  local.set $9
   local.get $1
-  local.set $6
+  local.set $7
   loop $continue|2
    local.get $5
    i32.const 0
    i32.gt_s
    local.tee $4
-   if
+   if (result i32)
     local.get $8
     i32.load
     local.get $5
     i32.const 1
     i32.sub
-    local.get $6
+    local.get $7
     i32.const 15
     i32.mul
     i32.add
@@ -10749,9 +10748,9 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $4
+   else    
+    local.get $4
    end
-   local.get $4
    if
     local.get $5
     i32.const 1
@@ -10763,8 +10762,9 @@
   local.get $5
   i32.eqz
   local.tee $4
-  i32.eqz
-  if
+  if (result i32)
+   local.get $4
+  else   
    local.get $3
    i32.const 2
    i32.eq
@@ -10783,7 +10783,7 @@
    local.get $5
    i32.const 1
    i32.sub
-   local.get $6
+   local.get $7
    i32.const 15
    i32.mul
    i32.add
@@ -10793,24 +10793,22 @@
    i32.const 24
    i32.shr_s
    i32.eq
-   local.set $4
   end
-  local.get $4
-  local.set $9
+  local.set $10
   local.get $2
-  local.set $7
+  local.set $6
   loop $continue|3
-   local.get $7
+   local.get $6
    i32.const 14
    i32.lt_s
    local.tee $4
-   if
+   if (result i32)
     local.get $8
     i32.load
-    local.get $7
+    local.get $6
     i32.const 1
     i32.add
-    local.get $6
+    local.get $7
     i32.const 15
     i32.mul
     i32.add
@@ -10821,18 +10819,18 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $4
+   else    
+    local.get $4
    end
-   local.get $4
    if
-    local.get $7
+    local.get $6
     i32.const 1
     i32.add
-    local.set $7
+    local.set $6
     br $continue|3
    end
   end
-  local.get $7
+  local.get $6
   i32.const 14
   i32.eq
   local.tee $4
@@ -10853,10 +10851,10 @@
    end
    local.get $8
    i32.load
-   local.get $7
+   local.get $6
    i32.const 1
    i32.add
-   local.get $6
+   local.get $7
    i32.const 15
    i32.mul
    i32.add
@@ -10869,55 +10867,57 @@
    local.set $4
   end
   i32.const 1
-  local.get $7
+  local.get $6
   local.get $5
   i32.sub
   i32.const 1
   i32.add
   local.get $5
-  local.get $7
+  local.get $6
   i32.eq
   select
-  local.set $5
+  local.set $6
   local.get $0
   i32.load offset=12
   local.get $3
   i32.eq
   if (result i32)
-   local.get $5
-   local.get $9
+   local.get $6
+   local.get $10
    local.get $4
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle
   else   
-   local.get $5
-   local.get $9
+   local.get $6
+   local.get $10
    local.get $4
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle
   end
-  local.get $10
+  local.get $9
   i32.add
-  local.set $10
+  local.set $9
   local.get $2
   local.set $5
   loop $continue|4
-   local.get $6
-   i32.const 0
-   i32.gt_s
-   local.tee $4
-   if
-    local.get $5
+   block (result i32)
+    local.get $7
     i32.const 0
     i32.gt_s
-    local.set $4
+    local.tee $4
+    if
+     local.get $5
+     i32.const 0
+     i32.gt_s
+     local.set $4
+    end
+    local.get $4
    end
-   local.get $4
-   if
+   if (result i32)
     local.get $8
     i32.load
-    local.get $5
-    local.get $6
+    local.get $7
     i32.const 15
     i32.mul
+    local.get $5
     i32.add
     i32.const -16
     i32.add
@@ -10928,14 +10928,14 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $4
+   else    
+    local.get $4
    end
-   local.get $4
    if
-    local.get $6
+    local.get $7
     i32.const 1
     i32.sub
-    local.set $6
+    local.set $7
     local.get $5
     i32.const 1
     i32.sub
@@ -10943,18 +10943,20 @@
     br $continue|4
    end
   end
-  local.get $6
-  i32.eqz
-  local.tee $4
-  i32.eqz
-  if
-   local.get $5
+  block (result i32)
+   local.get $7
    i32.eqz
-   local.set $4
+   local.tee $4
+   i32.eqz
+   if
+    local.get $5
+    i32.eqz
+    local.set $4
+   end
+   local.get $4
+   i32.eqz
   end
-  local.get $4
-  i32.eqz
-  if
+  if (result i32)
    local.get $3
    i32.const 2
    i32.eq
@@ -10970,10 +10972,10 @@
    end
    local.get $8
    i32.load
-   local.get $5
-   local.get $6
+   local.get $7
    i32.const 15
    i32.mul
+   local.get $5
    i32.add
    i32.const -16
    i32.add
@@ -10983,33 +10985,35 @@
    i32.const 24
    i32.shr_s
    i32.eq
-   local.set $4
+  else   
+   local.get $4
   end
-  local.get $4
-  local.set $9
+  local.set $0
   local.get $1
   local.set $4
   local.get $2
-  local.set $7
+  local.set $6
   loop $continue|5
-   local.get $4
-   i32.const 14
-   i32.lt_s
-   local.tee $5
-   if
-    local.get $7
+   block (result i32)
+    local.get $4
     i32.const 14
     i32.lt_s
-    local.set $5
+    local.tee $5
+    if
+     local.get $6
+     i32.const 14
+     i32.lt_s
+     local.set $5
+    end
+    local.get $5
    end
-   local.get $5
-   if
+   if (result i32)
     local.get $8
     i32.load
-    local.get $7
     local.get $4
     i32.const 15
     i32.mul
+    local.get $6
     i32.add
     i32.const 16
     i32.add
@@ -11020,34 +11024,36 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $5
+   else    
+    local.get $5
    end
-   local.get $5
    if
     local.get $4
     i32.const 1
     i32.add
     local.set $4
-    local.get $7
+    local.get $6
     i32.const 1
     i32.add
-    local.set $7
+    local.set $6
     br $continue|5
    end
   end
-  local.get $4
-  i32.const 14
-  i32.eq
-  local.tee $5
-  i32.eqz
-  if
-   local.get $7
+  block (result i32)
+   local.get $4
    i32.const 14
    i32.eq
-   local.set $5
+   local.tee $5
+   i32.eqz
+   if
+    local.get $6
+    i32.const 14
+    i32.eq
+    local.set $5
+   end
+   local.get $5
+   i32.eqz
   end
-  local.get $5
-  i32.eqz
   if
    local.get $3
    i32.const 2
@@ -11064,10 +11070,10 @@
    end
    local.get $8
    i32.load
-   local.get $7
    local.get $4
    i32.const 15
    i32.mul
+   local.get $6
    i32.add
    i32.const 16
    i32.add
@@ -11081,55 +11087,57 @@
   end
   i32.const 1
   local.get $4
-  local.get $6
+  local.get $7
   i32.sub
   i32.const 1
   i32.add
   local.get $4
-  local.get $6
+  local.get $7
   i32.eq
   select
-  local.set $6
+  local.set $4
   local.get $3
   i32.const 1
   i32.eq
   if (result i32)
-   local.get $6
-   local.get $9
+   local.get $4
+   local.get $0
    local.get $5
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle
   else   
-   local.get $6
-   local.get $9
+   local.get $4
+   local.get $0
    local.get $5
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle
   end
-  local.get $10
+  local.get $9
   i32.add
   local.set $9
   local.get $1
-  local.set $6
+  local.set $7
   local.get $2
   local.set $5
   loop $continue|6
-   local.get $6
-   i32.const 14
-   i32.lt_s
-   local.tee $4
-   if
-    local.get $5
-    i32.const 0
-    i32.gt_s
-    local.set $4
+   block (result i32)
+    local.get $7
+    i32.const 14
+    i32.lt_s
+    local.tee $4
+    if
+     local.get $5
+     i32.const 0
+     i32.gt_s
+     local.set $4
+    end
+    local.get $4
    end
-   local.get $4
-   if
+   if (result i32)
     local.get $8
     i32.load
-    local.get $5
-    local.get $6
+    local.get $7
     i32.const 15
     i32.mul
+    local.get $5
     i32.add
     i32.const 14
     i32.add
@@ -11140,14 +11148,14 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $4
+   else    
+    local.get $4
    end
-   local.get $4
    if
-    local.get $6
+    local.get $7
     i32.const 1
     i32.add
-    local.set $6
+    local.set $7
     local.get $5
     i32.const 1
     i32.sub
@@ -11155,20 +11163,21 @@
     br $continue|6
    end
   end
-  local.get $6
-  i32.const 14
-  i32.eq
-  local.tee $4
-  i32.eqz
-  if
-   local.get $5
+  block (result i32)
+   local.get $7
+   i32.const 14
+   i32.eq
+   local.tee $4
    i32.eqz
-   local.set $4
-  end
-  local.get $4
-  if (result i32)
+   if
+    local.get $5
+    i32.eqz
+    local.set $4
+   end
    local.get $4
-  else   
+   i32.eqz
+  end
+  if
    local.get $3
    i32.const 2
    i32.eq
@@ -11184,10 +11193,10 @@
    end
    local.get $8
    i32.load
-   local.get $5
-   local.get $6
+   local.get $7
    i32.const 15
    i32.mul
+   local.get $5
    i32.add
    i32.const 14
    i32.add
@@ -11197,31 +11206,35 @@
    i32.const 24
    i32.shr_s
    i32.eq
+   local.set $4
   end
-  local.set $6
+  local.get $4
+  local.set $0
   local.get $1
   local.set $4
   local.get $2
-  local.set $7
+  local.set $6
   loop $continue|7
-   local.get $4
-   i32.const 0
-   i32.gt_s
-   local.tee $1
-   if
-    local.get $7
-    i32.const 14
-    i32.lt_s
-    local.set $1
+   block (result i32)
+    local.get $4
+    i32.const 0
+    i32.gt_s
+    local.tee $1
+    if
+     local.get $6
+     i32.const 14
+     i32.lt_s
+     local.set $1
+    end
+    local.get $1
    end
-   local.get $1
-   if
+   if (result i32)
     local.get $8
     i32.load
-    local.get $7
     local.get $4
     i32.const 15
     i32.mul
+    local.get $6
     i32.add
     i32.const -14
     i32.add
@@ -11232,33 +11245,35 @@
     i32.shr_s
     local.get $3
     i32.eq
-    local.set $1
+   else    
+    local.get $1
    end
-   local.get $1
    if
     local.get $4
     i32.const 1
     i32.sub
     local.set $4
-    local.get $7
+    local.get $6
     i32.const 1
     i32.add
-    local.set $7
+    local.set $6
     br $continue|7
    end
   end
-  local.get $4
-  i32.eqz
-  local.tee $1
-  i32.eqz
-  if
-   local.get $7
-   i32.const 14
-   i32.eq
-   local.set $1
+  block (result i32)
+   local.get $4
+   i32.eqz
+   local.tee $1
+   i32.eqz
+   if
+    local.get $6
+    i32.const 14
+    i32.eq
+    local.set $1
+   end
+   local.get $1
+   i32.eqz
   end
-  local.get $1
-  i32.eqz
   if
    local.get $3
    i32.const 2
@@ -11275,10 +11290,10 @@
    end
    local.get $8
    i32.load
-   local.get $7
    local.get $4
    i32.const 15
    i32.mul
+   local.get $6
    i32.add
    i32.const -14
    i32.add
@@ -11291,13 +11306,13 @@
    local.set $1
   end
   i32.const 1
-  local.get $7
+  local.get $6
   local.get $5
   i32.sub
   i32.const 1
   i32.add
   local.get $5
-  local.get $7
+  local.get $6
   i32.eq
   select
   local.set $2
@@ -11306,12 +11321,12 @@
   i32.eq
   if (result i32)
    local.get $2
-   local.get $6
+   local.get $0
    local.get $1
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle
   else   
    local.get $2
-   local.get $6
+   local.get $0
    local.get $1
    call $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle
   end

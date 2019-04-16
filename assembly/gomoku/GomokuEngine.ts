@@ -49,12 +49,10 @@ class Chessboard {
         this.board.fill(Chess.None);
     }
 
-    @inline
     hasChess(row: i32, col: i32): boolean {
         return constants.validRowAndCol(row, col) ? this.get(row, col) != Chess.None : false;
     }
 
-    @inline
     getChess(row: i32, col: i32): Chess {
         return constants.validRowAndCol(row, col) ? this.get(row, col) : Chess.None
     }
@@ -146,18 +144,22 @@ class GomokuEngine extends GameEngine {
         return false;
     }
 
+    @inline
     loadState(fullState: Int8Array): void {
         //TODO
     }
 
+    @inline
     getState(): Int8Array {
         return this.chessboard.board;
     }
 
+    @inline
     isGameOver(): boolean {
         return this.gameIsOver;
     }
 
+    @inline
     getWinner(): PlayerRole {
         return this.currentPlayer;
     }
@@ -178,6 +180,7 @@ class GomokuEngine extends GameEngine {
         return false
     }
 
+    @inline
     public getChessOn(row: i32, col: i32): Chess {
         return this.chessboard.getChess(row, col)
     }
@@ -202,7 +205,6 @@ class GomokuEngine extends GameEngine {
         return false;
     }
 
-    @inline
     private checkRow(row: i32, forPlayer: PlayerRole): boolean {
         let count = 0
         for (let col = 0, dim = constants.boardDimension; col < dim; col++) {
@@ -219,7 +221,6 @@ class GomokuEngine extends GameEngine {
         return false
     }
 
-    @inline
     private checkColumn(col: i32, forPlayer: PlayerRole): boolean {
         let count = 0
         for (let row = 0, dim = constants.boardDimension; row <= dim; row++) {
@@ -236,7 +237,6 @@ class GomokuEngine extends GameEngine {
         return false
     }
 
-    @inline
     private checkMainDiagonal(row: i32, col: i32, forPlayer: PlayerRole): boolean {
         let count = 0
         let fromR: i32, fromC: i32, toR: i32, toC: i32
@@ -267,7 +267,6 @@ class GomokuEngine extends GameEngine {
         return false
     }
 
-    @inline
     private checkSubDiagonal(row: i32, col: i32, forPlayer: PlayerRole): boolean {
         let count = 0
         let fromR: i32, fromC: i32, toR: i32, toC: i32
@@ -298,6 +297,7 @@ class GomokuEngine extends GameEngine {
         return false
     }
 
+    @inline
     getChessBoard(): Int8Array {
         return this.chessboard.board
     }
