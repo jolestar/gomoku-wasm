@@ -53,9 +53,9 @@ class GomokuGUI extends GameGUI {
 
     draw(): void {
         let i: i32;
-        const ctx = this.ctx;
-        const gridSize = this.cfg.gridSize;
-        const dimension = this.cfg.dimension;
+        let ctx = this.ctx;
+        let gridSize = this.cfg.gridSize;
+        let dimension = this.cfg.dimension;
         ctx.save();
         ctx.beginPath();
         ctx.fillStyle = this.cfg.chessBoardColor;
@@ -95,8 +95,8 @@ class GomokuGUI extends GameGUI {
         }
         let color = chessOfColor(chess)
         console.log("drawChess:" + color)
-        const ctx = this.ctx;
-        const gridSize = this.cfg.gridSize;
+        let ctx = this.ctx;
+        let gridSize = this.cfg.gridSize;
         ctx.save();
         ctx.beginPath();
         ctx.arc(gridSize * row + gridSize / 2, gridSize * col + gridSize / 2, this.cfg.chessSize, 0, Math.PI * 2, true);
