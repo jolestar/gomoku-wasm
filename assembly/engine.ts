@@ -24,6 +24,6 @@ export function loadState(fullState: Int8Array): void {
     engine.loadState(fullState)
 }
 
-function getWinner(): PlayerRole {
+export function getWinner(): PlayerRole {
     return engine.getWinner();
 }

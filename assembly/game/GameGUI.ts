@@ -4,18 +4,23 @@ import {console} from "./console";
 
 export declare namespace engine {
 
+    // @ts-ignore
     @external("engine", "update")
     function update(player: PlayerRole, state: Int8Array): boolean;
 
+    // @ts-ignore
     @external("engine", "loadState")
     function loadState(fullState: Int8Array): void;
 
+    // @ts-ignore
     @external("engine", "getState")
     function getState(): Int8Array;
 
+    // @ts-ignore
     @external("engine", "isGameOver")
     function isGameOver(): boolean;
 
+    // @ts-ignore
     @external("engine", "getWinner")
     function getWinner(): PlayerRole;
 

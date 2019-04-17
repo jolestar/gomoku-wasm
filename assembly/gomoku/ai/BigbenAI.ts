@@ -50,15 +50,15 @@ class AIRivalScore {
     static readonly o: i32 = 0
 }
 
+// @ts-ignore
+@inline
 function makeMatrix(r: i32, c: i32, value: i32): Int8Array {
     let array = new Int8Array(r * c);
-    for (let i: i32 = 0; i < r * c; i++) {
-        array[i] = value
-    }
-    return array
+    array.fill(value);
+    return array;
 }
 
-
+// @ts-ignore
 @inline
 function idxByRowCol(row: i32, col: i32): i32 {
     return constants.boardDimension * row + col;
@@ -185,6 +185,7 @@ export class BigbenAI extends GamePlayer {
         return newPosition
     }
 
+    @inline
     static getIndexByState(state: Int8Array): i32 {
         return idxByRowCol(state[0], state[1]);
     }
@@ -198,16 +199,10 @@ export class BigbenAI extends GamePlayer {
         if (line == 5) return AIScore.ooooo
         if (block1 && block2) return 0
         switch (line) {
-            case 4:
-                return (block1 || block2) ? AIScore.Ioooo : AIScore.oooo
-            case 3:
-                return (block1 || block2) ? AIScore.Iooo : AIScore.ooo
-            case 2:
-                return (block1 || block2) ? AIScore.Ioo : AIScore.oo
-            case 1:
-                return 0
-            default:
-                return 0
+            case 4: return (block1 || block2) ? AIScore.Ioooo : AIScore.oooo
+            case 3: return (block1 || block2) ? AIScore.Iooo : AIScore.ooo
+            case 2: return (block1 || block2) ? AIScore.Ioo : AIScore.oo
+            default: return 0
         }
     }
 
@@ -220,16 +215,10 @@ export class BigbenAI extends GamePlayer {
         if (line == 5) return AIRivalScore.ooooo
         if (block1 && block2) return 0
         switch (line) {
-            case 4:
-                return (block1 || block2) ? AIRivalScore.Ioooo : AIRivalScore.oooo
-            case 3:
-                return (block1 || block2) ? AIRivalScore.Iooo : AIRivalScore.ooo
-            case 2:
-                return (block1 || block2) ? AIRivalScore.Ioo : AIRivalScore.oo
-            case 1:
-                return 0
-            default:
-                return 0
+            case 4: return (block1 || block2) ? AIRivalScore.Ioooo : AIRivalScore.oooo
+            case 3: return (block1 || block2) ? AIRivalScore.Iooo : AIRivalScore.ooo
+            case 2: return (block1 || block2) ? AIRivalScore.Ioo : AIRivalScore.oo
+            default: return 0
         }
     }
 
@@ -240,11 +229,12 @@ export class BigbenAI extends GamePlayer {
         let score = 0
         //上、下 (r先减后加, c不变)
         let r1 = row, c = col
-        while (r1 > 0 && this.chessboard.get(r1 - 1, c) == playerChess) r1--
-        let upIsBlocked = (r1 == 0) || this.chessboard.get(r1 - 1, c) == constants.rival(playerChess)
+        let chessboard = this.chessboard;
+        while (r1 > 0 && chessboard.get(r1 - 1, c) == playerChess) r1--
+        let upIsBlocked = (r1 == 0) || chessboard.get(r1 - 1, c) == constants.rival(playerChess)
         let r2 = row
-        while (r2 < 14 && this.chessboard.get(r2 + 1, c) == playerChess) r2++
-        let downIsBlocked = (r2 == 14) || this.chessboard.get(r2 + 1, c) == constants.rival(playerChess)
+        while (r2 < 14 && chessboard.get(r2 + 1, c) == playerChess) r2++
+        let downIsBlocked = (r2 == 14) || chessboard.get(r2 + 1, c) == constants.rival(playerChess)
         let line = (r1 == r2) ? 1 : (r2 - r1 + 1)
         // 判断棋型
         score += (playerChess == this.myChess) ?
@@ -253,11 +243,11 @@ export class BigbenAI extends GamePlayer {
 
         //左、右 (r不变, c先减后加)
         let r = row, c1 = col
-        while (c1 > 0 && this.chessboard.get(r, c1 - 1) == playerChess) c1--
-        let leftIsBlocked = (c1 == 0) || this.chessboard.get(r, c1 - 1) == constants.rival(playerChess)
+        while (c1 > 0 && chessboard.get(r, c1 - 1) == playerChess) c1--
+        let leftIsBlocked = (c1 == 0) || chessboard.get(r, c1 - 1) == constants.rival(playerChess)
         let c2 = col
-        while (c2 < 14 && this.chessboard.get(r, c2 + 1) == playerChess) c2++
-        let rightIsBlocked = (c2 == 14) || this.chessboard.get(r, c2 + 1) == constants.rival(playerChess)
+        while (c2 < 14 && chessboard.get(r, c2 + 1) == playerChess) c2++
+        let rightIsBlocked = (c2 == 14) || chessboard.get(r, c2 + 1) == constants.rival(playerChess)
         line = (c1 == c2) ? 1 : (c2 - c1 + 1)
         // 判断棋型
         score += (playerChess == this.myChess) ?
@@ -266,18 +256,18 @@ export class BigbenAI extends GamePlayer {
 
         //主对角线方向 (rc先减后加)
         r1 = row, c1 = col
-        while (r1 > 0 && c1 > 0 && this.chessboard.get(r1 - 1, c1 - 1) == playerChess) {
+        while (r1 > 0 && c1 > 0 && chessboard.get(r1 - 1, c1 - 1) == playerChess) {
             r1--;
             c1--
         }
-        let leftUpIsBlocked = (r1 == 0 || c1 == 0) || this.chessboard.get(r1 - 1, c1 - 1) == constants.rival(playerChess)
+        let leftUpIsBlocked = (r1 == 0 || c1 == 0) || chessboard.get(r1 - 1, c1 - 1) == constants.rival(playerChess)
         r2 = row
         c2 = col
-        while (r2 < 14 && c2 < 14 && this.chessboard.get(r2 + 1, c2 + 1) == playerChess) {
+        while (r2 < 14 && c2 < 14 && chessboard.get(r2 + 1, c2 + 1) == playerChess) {
             r2++;
             c2++
         }
-        let rightDownIsBlocked = (r2 == 14 || c2 == 14) || this.chessboard.get(r2 + 1, c2 + 1) == constants.rival(playerChess)
+        let rightDownIsBlocked = (r2 == 14 || c2 == 14) || chessboard.get(r2 + 1, c2 + 1) == constants.rival(playerChess)
         line = (r1 == r2) ? 1 : (r2 - r1 + 1)
         // 判断棋型
         score += (playerChess == 1) ?
@@ -286,18 +276,18 @@ export class BigbenAI extends GamePlayer {
 
         //副对角线方向 (r先加后减, c先减后加)
         r1 = row, c1 = col
-        while (r1 < 14 && c1 > 0 && this.chessboard.get(r1 + 1, c1 - 1) == playerChess) {
+        while (r1 < 14 && c1 > 0 && chessboard.get(r1 + 1, c1 - 1) == playerChess) {
             r1++;
             c1--
         }
-        let leftDownIsBlocked = (r1 == 14 || c1 == 0) || this.chessboard.get(r1 + 1, c1 - 1) == constants.rival(playerChess)
+        let leftDownIsBlocked = (r1 == 14 || c1 == 0) || chessboard.get(r1 + 1, c1 - 1) == constants.rival(playerChess)
         r2 = row
         c2 = col
-        while (r2 > 0 && c2 < 14 && this.chessboard.get(r2 - 1, c2 + 1) == playerChess) {
+        while (r2 > 0 && c2 < 14 && chessboard.get(r2 - 1, c2 + 1) == playerChess) {
             r2--;
             c2++
         }
-        let rightUpIsBlocked = (r2 == 0 || c2 == 14) || this.chessboard.get(r2 - 1, c2 + 1) == constants.rival(playerChess)
+        let rightUpIsBlocked = (r2 == 0 || c2 == 14) || chessboard.get(r2 - 1, c2 + 1) == constants.rival(playerChess)
         line = (c1 == c2) ? 1 : (c2 - c1 + 1)
         // 判断棋型
         score += (playerChess == 1) ?

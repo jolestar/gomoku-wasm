@@ -9,9 +9,11 @@ export enum PlayerRole {
 
 export declare namespace listener {
 
+    // @ts-ignore
     @external("listener", "onUpdate")
     function onUpdate(player: PlayerRole, state: Int8Array): void;
 
+    // @ts-ignore
     @external("listener", "onGameOver")
     function onGameOver(winner: PlayerRole): void;
 
@@ -49,5 +51,3 @@ export abstract class GameEngine {
     }
 
 }
-
-
