@@ -5946,7 +5946,7 @@
   else   
    i32.const 0
    i32.const 1304
-   i32.const 79
+   i32.const 78
    i32.const 12
    call $~lib/env/abort
    unreachable
@@ -18527,7 +18527,7 @@
    call $assembly/game/console/console.log
    i32.const 0
    i32.const 1304
-   i32.const 20
+   i32.const 19
    i32.const 12
    call $~lib/env/abort
    unreachable

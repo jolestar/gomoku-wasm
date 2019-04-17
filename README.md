@@ -9,7 +9,13 @@ So it is possible that WebAssembly developers can develop cloud and client appli
 
 ```bash
     npm install
-    npm build
+    npm run build
+```
+
+### Release
+
+```bash
+    npm run release
 ```
 
 ### Run
