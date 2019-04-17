@@ -1,4 +1,3 @@
-import "allocator/tlsf";
 import {PlayerRole} from "../game/GameEngine";
 import {engine, GameGUI} from "../game/GameGUI";
 import {console} from "../game/console";

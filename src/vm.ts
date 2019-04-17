@@ -1,6 +1,6 @@
 // this is a shallow wrapper for the assemblyscript loader
 import {instantiateStreaming} from "as2d";
-import {ASUtil} from "assemblyscript/lib/loader";
+import * as loader from "assemblyscript/lib/loader";
 
 
 const env = {
@@ -15,9 +15,9 @@ const env = {
 };
 
 class ASModuleWrapper {
-    module: ASUtil | null = null;
+    module: loader.ASUtil | null = null;
 
-    init(module: ASUtil): void {
+    init(module: loader.ASUtil): void {
         this.module = module;
     }
 
@@ -79,7 +79,7 @@ let module;
 let promise;
 
 export function init(playerRole: number, onStateUpdate: (state: Int8Array) => void, playWithAI: boolean = false, engineURL = "./engine_optimized.wasm", guiURL = "./gui_optimized.wasm") {
-    promise = instantiateStreaming(fetch(engineURL), {
+    promise = loader.instantiateStreaming(fetch(engineURL), {
         env: env,
         console: engineConsole,
         listener: listener

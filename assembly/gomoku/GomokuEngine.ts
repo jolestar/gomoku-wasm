@@ -1,4 +1,3 @@
-import "allocator/tlsf";
 import {GameEngine, listener, PlayerRole} from "../game/GameEngine";
 import {console} from "../game/console";
 import {Chess, constants} from "./constants";

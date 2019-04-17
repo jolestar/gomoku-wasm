@@ -27,3 +27,6 @@ export function loadState(fullState: Int8Array): void {
 export function getWinner(): PlayerRole {
     return engine.getWinner();
 }
+
+// @ts-ignore
+export {memory}

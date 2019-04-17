@@ -1,8 +1,6 @@
 import "allocator/tlsf";
 
-import {CanvasRenderingContext2D, getContextById} from "../node_modules/as2d/assembly/index";
-
-
+import {getContextById} from "../node_modules/as2d/assembly/index";
 import {GomokuGUI} from "./gomoku/GomokuGUI";
 import {PlayerRole} from "./game/GameEngine";
 import {BigbenAI} from "./gomoku/ai/BigbenAI";
