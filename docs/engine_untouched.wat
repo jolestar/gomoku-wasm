@@ -2114,7 +2114,7 @@
   else   
    i32.const 0
    i32.const 368
-   i32.const 78
+   i32.const 79
    i32.const 12
    call $~lib/env/abort
    unreachable
@@ -2693,22 +2693,200 @@
   local.get $1
   call $assembly/gomoku/GomokuEngine/GomokuEngine#update
  )
- (func $assembly/engine/loadState (; 53 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#load (; 53 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.2 (result i32)
+   local.get $0
+   i32.load
+   local.set $2
+   local.get $2
+   i32.load offset=8
+   i32.const 0
+   i32.shr_u
+  end
+  block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.3 (result i32)
+   local.get $1
+   local.set $2
+   local.get $2
+   i32.load offset=8
+   i32.const 0
+   i32.shr_u
+  end
+  i32.eq
+  i32.eqz
+  if
+   i32.const 0
+   i32.const 368
+   i32.const 118
+   i32.const 8
+   call $~lib/env/abort
+   unreachable
+  end
+  block $break|0
+   block
+    i32.const 0
+    local.set $2
+    block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.4 (result i32)
+     local.get $0
+     i32.load
+     local.set $3
+     local.get $3
+     i32.load offset=8
+     i32.const 0
+     i32.shr_u
+    end
+    local.set $3
+   end
+   loop $repeat|0
+    local.get $2
+    local.get $3
+    i32.lt_s
+    i32.eqz
+    br_if $break|0
+    local.get $0
+    i32.load
+    local.get $2
+    local.get $1
+    local.get $2
+    call $~lib/internal/typedarray/TypedArray<i8>#__get
+    i32.const 24
+    i32.shl
+    i32.const 24
+    i32.shr_s
+    call $~lib/internal/typedarray/TypedArray<i8>#__set
+    local.get $2
+    i32.const 1
+    i32.add
+    local.set $2
+    br $repeat|0
+    unreachable
+   end
+   unreachable
+  end
+ )
+ (func $assembly/gomoku/GomokuEngine/Chessboard#nextPlayer (; 54 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  i32.const 0
+  local.set $1
+  block $break|0
+   block
+    i32.const 0
+    local.set $2
+    block $~lib/internal/typedarray/TypedArray<i8>#get:length|inlined.5 (result i32)
+     local.get $0
+     i32.load
+     local.set $3
+     local.get $3
+     i32.load offset=8
+     i32.const 0
+     i32.shr_u
+    end
+    local.set $3
+   end
+   loop $repeat|0
+    local.get $2
+    local.get $3
+    i32.lt_s
+    i32.eqz
+    br_if $break|0
+    block
+     local.get $0
+     i32.load
+     local.get $2
+     call $~lib/internal/typedarray/TypedArray<i8>#__get
+     local.set $4
+     local.get $4
+     i32.const 24
+     i32.shl
+     i32.const 24
+     i32.shr_s
+     global.get $assembly/gomoku/constants/Chess.Black
+     i32.eq
+     if
+      local.get $1
+      i32.const 1
+      i32.sub
+      local.set $1
+     else      
+      local.get $4
+      i32.const 24
+      i32.shl
+      i32.const 24
+      i32.shr_s
+      global.get $assembly/gomoku/constants/Chess.White
+      i32.eq
+      if
+       local.get $1
+       i32.const 1
+       i32.add
+       local.set $1
+      end
+     end
+    end
+    local.get $2
+    i32.const 1
+    i32.add
+    local.set $2
+    br $repeat|0
+    unreachable
+   end
+   unreachable
+  end
+  local.get $1
+  i32.const 0
+  i32.eq
+  if
+   global.get $assembly/game/GameEngine/PlayerRole.First
+   return
+  else   
+   local.get $1
+   i32.const 0
+   i32.gt_s
+   if
+    global.get $assembly/game/GameEngine/PlayerRole.Second
+    return
+   else    
+    i32.const 0
+    i32.const 368
+    i32.const 139
+    i32.const 12
+    call $~lib/env/abort
+    unreachable
+   end
+   unreachable
+  end
+  unreachable
+  unreachable
+ )
+ (func $assembly/engine/loadState (; 55 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   global.get $assembly/engine/engine
   local.set $1
   local.get $0
   local.set $2
+  local.get $1
+  i32.load
+  local.get $2
+  call $assembly/gomoku/GomokuEngine/Chessboard#load
+  local.get $1
+  local.get $1
+  i32.load
+  call $assembly/gomoku/GomokuEngine/Chessboard#nextPlayer
+  i32.store offset=8
  )
- (func $assembly/engine/getWinner (; 54 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/engine/getWinner (; 56 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   global.get $assembly/engine/engine
   local.set $0
   local.get $0
   i32.load offset=8
  )
- (func $~lib/internal/memory/memcmp (; 55 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/internal/memory/memcmp (; 57 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $0
   local.get $1
@@ -2762,13 +2940,13 @@
    i32.const 0
   end
  )
- (func $~lib/memory/memory.compare (; 56 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/memory/memory.compare (; 58 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   local.get $1
   local.get $2
   call $~lib/internal/memory/memcmp
  )
- (func $~lib/allocator/tlsf/__memory_free (; 57 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/allocator/tlsf/__memory_free (; 59 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2811,21 +2989,21 @@
    end
   end
  )
- (func $~lib/memory/memory.free (; 58 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/memory/memory.free (; 60 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $~lib/allocator/tlsf/__memory_free
   return
  )
- (func $~lib/allocator/tlsf/__memory_reset (; 59 ;) (type $FUNCSIG$v)
+ (func $~lib/allocator/tlsf/__memory_reset (; 61 ;) (type $FUNCSIG$v)
   unreachable
  )
- (func $~lib/memory/memory.reset (; 60 ;) (type $FUNCSIG$v)
+ (func $~lib/memory/memory.reset (; 62 ;) (type $FUNCSIG$v)
   call $~lib/allocator/tlsf/__memory_reset
   return
  )
- (func $start (; 61 ;) (type $FUNCSIG$v)
+ (func $start (; 63 ;) (type $FUNCSIG$v)
   call $start:assembly/engine
  )
- (func $null (; 62 ;) (type $FUNCSIG$v)
+ (func $null (; 64 ;) (type $FUNCSIG$v)
  )
 )

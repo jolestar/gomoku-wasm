@@ -1566,7 +1566,7 @@
   else   
    i32.const 0
    i32.const 368
-   i32.const 78
+   i32.const 79
    i32.const 12
    call $~lib/env/abort
    unreachable
@@ -2092,14 +2092,137 @@
   local.get $1
   call $assembly/gomoku/GomokuEngine/GomokuEngine#update
  )
- (func $assembly/engine/loadState (; 41 ;) (type $FUNCSIG$vi) (param $0 i32)
-  nop
+ (func $assembly/gomoku/GomokuEngine/Chessboard#load (; 41 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  local.get $0
+  i32.load
+  i32.load offset=8
+  local.get $1
+  i32.load offset=8
+  i32.ne
+  if
+   i32.const 0
+   i32.const 368
+   i32.const 118
+   i32.const 8
+   call $~lib/env/abort
+   unreachable
+  end
+  local.get $0
+  i32.load
+  i32.load offset=8
+  local.set $3
+  loop $repeat|0
+   block $break|0
+    local.get $2
+    local.get $3
+    i32.ge_s
+    br_if $break|0
+    local.get $0
+    i32.load
+    local.get $2
+    local.get $1
+    local.get $2
+    call $~lib/internal/typedarray/TypedArray<i8>#__get
+    i32.const 24
+    i32.shl
+    i32.const 24
+    i32.shr_s
+    call $~lib/internal/typedarray/TypedArray<i8>#__set
+    local.get $2
+    i32.const 1
+    i32.add
+    local.set $2
+    br $repeat|0
+   end
+  end
  )
- (func $assembly/engine/getWinner (; 42 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#nextPlayer (; 42 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+  (local $1 i32)
+  (local $2 i32)
+  (local $3 i32)
+  (local $4 i32)
+  local.get $0
+  i32.load
+  i32.load offset=8
+  local.set $3
+  loop $repeat|0
+   block $break|0
+    local.get $2
+    local.get $3
+    i32.ge_s
+    br_if $break|0
+    local.get $0
+    i32.load
+    local.get $2
+    call $~lib/internal/typedarray/TypedArray<i8>#__get
+    local.tee $4
+    i32.const 255
+    i32.and
+    i32.const 2
+    i32.eq
+    if (result i32)
+     local.get $1
+     i32.const 1
+     i32.sub
+    else     
+     local.get $1
+     i32.const 1
+     i32.add
+     local.get $1
+     local.get $4
+     i32.const 255
+     i32.and
+     i32.const 1
+     i32.eq
+     select
+    end
+    local.set $1
+    local.get $2
+    i32.const 1
+    i32.add
+    local.set $2
+    br $repeat|0
+   end
+  end
+  local.get $1
+  if (result i32)
+   local.get $1
+   i32.const 0
+   i32.gt_s
+   if (result i32)
+    i32.const 2
+   else    
+    i32.const 0
+    i32.const 368
+    i32.const 139
+    i32.const 12
+    call $~lib/env/abort
+    unreachable
+   end
+  else   
+   i32.const 1
+  end
+ )
+ (func $assembly/engine/loadState (; 43 ;) (type $FUNCSIG$vi) (param $0 i32)
+  (local $1 i32)
+  global.get $assembly/engine/engine
+  local.tee $1
+  i32.load
+  local.get $0
+  call $assembly/gomoku/GomokuEngine/Chessboard#load
+  local.get $1
+  local.get $1
+  i32.load
+  call $assembly/gomoku/GomokuEngine/Chessboard#nextPlayer
+  i32.store offset=8
+ )
+ (func $assembly/engine/getWinner (; 44 ;) (type $FUNCSIG$i) (result i32)
   global.get $assembly/engine/engine
   i32.load offset=8
  )
- (func $~lib/internal/memory/memcmp (; 43 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/internal/memory/memcmp (; 45 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $0
   local.get $1
@@ -2149,13 +2272,13 @@
    i32.const 0
   end
  )
- (func $~lib/memory/memory.compare (; 44 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/memory/memory.compare (; 46 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   local.get $1
   local.get $2
   call $~lib/internal/memory/memcmp
  )
- (func $~lib/allocator/tlsf/__memory_free (; 45 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/allocator/tlsf/__memory_free (; 47 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2193,18 +2316,18 @@
    end
   end
  )
- (func $~lib/memory/memory.free (; 46 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/memory/memory.free (; 48 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $~lib/allocator/tlsf/__memory_free
  )
- (func $~lib/memory/memory.reset (; 47 ;) (type $FUNCSIG$v)
+ (func $~lib/memory/memory.reset (; 49 ;) (type $FUNCSIG$v)
   unreachable
  )
- (func $start (; 48 ;) (type $FUNCSIG$v)
+ (func $start (; 50 ;) (type $FUNCSIG$v)
   call $assembly/gomoku/GomokuEngine/GomokuEngine#constructor
   global.set $assembly/engine/engine
  )
- (func $null (; 49 ;) (type $FUNCSIG$v)
+ (func $null (; 51 ;) (type $FUNCSIG$v)
   nop
  )
 )
