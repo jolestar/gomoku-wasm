@@ -46,8 +46,6 @@ export abstract class GameGUI {
 
 
     loadState(fullState: Int8Array): void {
-        engine.loadState(fullState)
-        this.draw()
     }
 
     getState(): Int8Array {

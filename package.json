@@ -9,9 +9,10 @@
     "clean": "rm build/*",
     "build": "npm run clean && npm run asbuild && npm run pagebuild",
     "release": "rm docs/* && npm run build && cp build/* docs/",
-    "dev": "npx parcel serve -d build index.html"
+    "dev": "npm run asbuild && npx parcel serve -d build index.html"
   },
   "dependencies": {
+    "@types/node": "^11.13.5",
     "as2d": "github:as2d/as2d",
     "assemblyscript": "github:assemblyscript/assemblyscript"
   },

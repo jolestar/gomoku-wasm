@@ -14,4 +14,5 @@ export interface GameGUI {
 
     rivalUpdate(newState: number): void
 
+    loadState(fullState: number): void
 }

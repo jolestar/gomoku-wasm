@@ -4,7 +4,8 @@ import {Chess, constants} from "./constants";
 
 class Position {
 
-    constructor(public row: i32, public col: i32) {}
+    constructor(public row: i32, public col: i32) {
+    }
 
     static fromState(state: Int8Array): Position {
         if (state.length != 2) {
@@ -87,6 +88,17 @@ class Chessboard {
 
     // @ts-ignore
     @inline
+    isEmpty(): boolean {
+        for (let i = 0, len = this.board.length; i < len; i++) {
+            if (this.board[i] != Chess.None) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // @ts-ignore
+    @inline
     findEmptyPosition(): Position | null {
         return this.findPosition(Chess.None);
     }
@@ -102,6 +114,31 @@ class Chessboard {
         return position
     }
 
+    load(fullState: Int8Array): void {
+        assert(this.board.length == fullState.length);
+        for (let i = 0, len = this.board.length; i < len; i++) {
+            this.board[i] = fullState[i];
+        }
+    }
+
+    nextPlayer(): PlayerRole {
+        let chessDiff = 0;
+        for (let i = 0, len = this.board.length; i < len; i++) {
+            let value = this.board[i];
+            if (value == Chess.Black) {
+                chessDiff = chessDiff - 1;
+            } else if (value == Chess.White) {
+                chessDiff = chessDiff + 1;
+            }
+        }
+        if (chessDiff == 0) {
+            return PlayerRole.First
+        } else if (chessDiff > 0) {
+            return PlayerRole.Second
+        } else {
+            throw ERROR("Invalid state.");
+        }
+    }
 }
 
 class GomokuAction {
@@ -145,7 +182,8 @@ class GomokuEngine extends GameEngine {
 
     @inline
     loadState(fullState: Int8Array): void {
-        //TODO
+        this.chessboard.load(fullState);
+        this.currentPlayer = this.chessboard.nextPlayer();
     }
 
     @inline

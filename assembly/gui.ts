@@ -30,12 +30,15 @@ export function init(_myRole: PlayerRole, _playWithAI: boolean): void {
     let ctx = getContextById("main");
     game.init(ctx, myRole);
     if (playWithAI) {
-        aiPlayer = new BigbenAI(rivalRole, newState => { rivalUpdate(newState) });
+        aiPlayer = new BigbenAI(rivalRole, newState => {
+            rivalUpdate(newState)
+        });
     }
 }
 
 export function startGame(): void {
     gameBegin = true;
+    aiPlayer.startGame();
 }
 
 export function draw(): void {
@@ -59,5 +62,12 @@ export function rivalUpdate(newState: Int8Array): void {
         game.update(rivalRole, newState)
     } else {
         console.log("Game not begin, but receive rivalUpdate.")
+    }
+}
+
+export function loadState(fullState: Int8Array): void {
+    game.loadState(fullState);
+    if (playWithAI) {
+        aiPlayer.loadState(fullState);
     }
 }

@@ -76,9 +76,7 @@ export class BigbenAI extends GamePlayer {
         this.myChess = constants.chessOfPlayer(role);
         this.rivalChess = constants.chessOfRival(role);
         console.log("BigbenAI myChess:" + this.myChess.toString() + ", rivalChess:" + this.rivalChess.toString())
-        if (role == PlayerRole.First) {
-            this.first()
-        }
+
     }
 
     first(): void {
@@ -89,6 +87,23 @@ export class BigbenAI extends GamePlayer {
         state[0] = row;
         state[1] = col;
         this.newStateCallback(state);
+    }
+
+    startGame(): void {
+        if (this.chessboard.isEmpty()) {
+            if (this.role == PlayerRole.First) {
+                this.first()
+            }
+        } else {
+            let nextPlayer = this.chessboard.nextPlayer();
+            if (nextPlayer == this.role) {
+                this.nextAction();
+            }
+        }
+    }
+
+    loadState(fullState: Int8Array): void {
+        this.chessboard.load(fullState);
     }
 
     update(state: Int8Array): boolean {
@@ -199,10 +214,14 @@ export class BigbenAI extends GamePlayer {
         if (line == 5) return AIScore.ooooo
         if (block1 && block2) return 0
         switch (line) {
-            case 4: return (block1 || block2) ? AIScore.Ioooo : AIScore.oooo
-            case 3: return (block1 || block2) ? AIScore.Iooo : AIScore.ooo
-            case 2: return (block1 || block2) ? AIScore.Ioo : AIScore.oo
-            default: return 0
+            case 4:
+                return (block1 || block2) ? AIScore.Ioooo : AIScore.oooo
+            case 3:
+                return (block1 || block2) ? AIScore.Iooo : AIScore.ooo
+            case 2:
+                return (block1 || block2) ? AIScore.Ioo : AIScore.oo
+            default:
+                return 0
         }
     }
 
@@ -215,10 +234,14 @@ export class BigbenAI extends GamePlayer {
         if (line == 5) return AIRivalScore.ooooo
         if (block1 && block2) return 0
         switch (line) {
-            case 4: return (block1 || block2) ? AIRivalScore.Ioooo : AIRivalScore.oooo
-            case 3: return (block1 || block2) ? AIRivalScore.Iooo : AIRivalScore.ooo
-            case 2: return (block1 || block2) ? AIRivalScore.Ioo : AIRivalScore.oo
-            default: return 0
+            case 4:
+                return (block1 || block2) ? AIRivalScore.Ioooo : AIRivalScore.oooo
+            case 3:
+                return (block1 || block2) ? AIRivalScore.Iooo : AIRivalScore.ooo
+            case 2:
+                return (block1 || block2) ? AIRivalScore.Ioo : AIRivalScore.oo
+            default:
+                return 0
         }
     }
 

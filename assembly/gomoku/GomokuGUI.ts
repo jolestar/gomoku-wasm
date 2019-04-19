@@ -2,6 +2,7 @@ import {PlayerRole} from "../game/GameEngine";
 import {engine, GameGUI} from "../game/GameGUI";
 import {console} from "../game/console";
 import {Chess, constants} from "./constants";
+import {Position} from "./GomokuEngine";
 
 const Black: string = "#111"
 const White: string = "#EEE"
@@ -46,6 +47,18 @@ class GomokuGUI extends GameGUI {
         this.drawChess(state[0], state[1], constants.chessOfPlayer(player))
     }
 
+    loadState(fullState: Int8Array): void {
+        engine.loadState(fullState);
+        this.draw();
+        for (let i = 0, len = fullState.length; i < len; i++) {
+            let value = fullState[i];
+            if (value != Chess.None) {
+                let position = Position.fromIndex(i);
+                this.drawChess(position.row, position.col, value);
+            }
+        }
+    }
+
     draw(): void {
         let i: u32;
         let ctx = this.ctx;
@@ -74,6 +87,7 @@ class GomokuGUI extends GameGUI {
         ctx.stroke();
         ctx.restore();
         ctx.commit();
+        engine.getState();
     }
 
     onClick(x: i32, y: i32): Int8Array {
