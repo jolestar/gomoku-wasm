@@ -12,6 +12,14 @@ vm.init(1, function (state, module) {
     let stateString = JSON.stringify(storageObject);
     localStorage.setItem(storageKey, stateString);
     console.log("update storage value", stateString);
+}, function (player: number) {
+    if (confirm('Game over, winner is:' + player + ', restart again?')) {
+        console.log("remove storage.");
+        localStorage.removeItem(storageKey);
+        location.reload();
+    } else {
+        // Do nothing!
+    }
 }, true).then(gameGUI => {
     try {
         let stateStr = localStorage.getItem(storageKey);

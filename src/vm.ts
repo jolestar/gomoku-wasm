@@ -67,11 +67,6 @@ class Listener extends ASModuleWrapper {
     public onUpdate = (player: number, state: number) => {
         console.log("listener onUpdate", player, this.getArray(Int8Array, state));
     };
-
-    public onGameOver = (player: number) => {
-        console.log("listener onGameOver", player);
-        alert("Game Over Winner is:" + player);
-    }
 }
 
 
@@ -81,11 +76,20 @@ const listener = new Listener();
 let module: ICanvasSYS & ASUtil & GameGUI;
 let promise: Promise<ICanvasSYS & ASUtil & GameGUI>;
 
-export function init(playerRole: number, onStateUpdate: (state: Int8Array, module: ICanvasSYS & ASUtil & GameGUI) => void, playWithAI: boolean = false, engineURL = "./engine_optimized.wasm", guiURL = "./gui_optimized.wasm") {
+export function init(playerRole: number, onStateUpdate: (state: Int8Array, module: ICanvasSYS & ASUtil & GameGUI) => void, onGameOver: (player: number) => void, playWithAI: boolean = false, engineURL = "./engine_optimized.wasm", guiURL = "./gui_optimized.wasm") {
     promise = loader.instantiateStreaming<GameEngine>(fetch(engineURL), {
         env: env,
         console: engineConsole,
-        listener: listener
+        listener: {
+            onUpdate(player: number, state: number) {
+                listener.onUpdate(player, state);
+            },
+            onGameOver(player: number) {
+                setTimeout(() => {
+                    onGameOver(player);
+                }, 500);
+            }
+        }
     }).then(engine => {
         engineConsole.init(engine);
         listener.init(engine);

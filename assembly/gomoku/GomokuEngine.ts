@@ -173,8 +173,18 @@ class GomokuEngine extends GameEngine {
             console.log("Not your turn.")
             return false;
         }
-        if (this.putChessOn(state[0], state[1])) {
+        let row: i32 = state[0];
+        let col: i32 = state[1];
+        if (this.putChessOn(row, col)) {
             listener.onUpdate(player, state);
+            this.lastAction = {
+                row,
+                col,
+                player: this.currentPlayer
+            };
+            if (!this.checkLastAction()) {
+                this.currentPlayer = constants.rivalPlayer(this.currentPlayer);
+            }
             return true;
         }
         return false;
@@ -204,14 +214,7 @@ class GomokuEngine extends GameEngine {
     private putChessOn(row: i32, col: i32): boolean {
         if (constants.validRowAndCol(row, col) && !this.chessboard.hasChess(row, col)) {
             this.chessboard.putChess(row, col, constants.chessOfPlayer(this.currentPlayer));
-            this.lastAction = {
-                row,
-                col,
-                player: this.currentPlayer
-            }
-            if (!this.checkLastAction()) {
-                this.currentPlayer = constants.rivalPlayer(this.currentPlayer);
-            }
+
             return true
         }
         return false
