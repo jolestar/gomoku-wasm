@@ -834,46 +834,52 @@ parcelRequire = function (e, r, t, n) {
                 var t = null !== n && n.apply(this, arguments) || this;
                 return t.onUpdate = function (n, e) {
                     console.log("listener onUpdate", n, t.getArray(Int8Array, e))
-                }, t.onGameOver = function (t) {
-                    console.log("listener onGameOver", t), alert("Game Over Winner is:" + t)
                 }, t
             }
 
             return t(e, n), e
-        }(c), g = new s, p = new s, y = new f;
+        }(c), p = new s, g = new s, y = new f;
 
-        function d(t, n, e, r, c) {
-            return void 0 === e && (e = !1), void 0 === r && (r = "./engine_optimized.wasm"), void 0 === c && (c = "./gui_optimized.wasm"), i = u.instantiateStreaming(fetch(r), {
+        function d(t, n, e, r, c, s) {
+            return void 0 === r && (r = !1), void 0 === c && (c = "./engine_optimized.wasm"), void 0 === s && (s = "./gui_optimized.wasm"), i = u.instantiateStreaming(fetch(c), {
                 env: l,
-                console: g,
-                listener: y
+                console: p,
+                listener: {
+                    onUpdate: function (t, n) {
+                        y.onUpdate(t, n)
+                    }, onGameOver: function (t) {
+                        setTimeout(function () {
+                            e(t)
+                        }, 500)
+                    }
+                }
             }).then(function (t) {
-                return g.init(t), y.init(t), t.init(), t
-            }).then(function (r) {
-                return a.instantiateStreaming(fetch(c), {
-                    env: l, console: p, engine: {
+                return p.init(t), y.init(t), t.init(), t
+            }).then(function (e) {
+                return a.instantiateStreaming(fetch(s), {
+                    env: l, console: g, engine: {
                         update: function (t, n) {
-                            var e = r.newArray(o.getArray(Int8Array, n));
-                            return r.update(t, e)
+                            var r = e.newArray(o.getArray(Int8Array, n));
+                            return e.update(t, r)
                         }, loadState: function (t) {
                             var n = o.getArray(Int8Array, t);
                             console.log("engine adapter loadState", n);
-                            var e = r.newArray(n);
-                            r.loadState(e)
+                            var r = e.newArray(n);
+                            e.loadState(r)
                         }, getState: function () {
-                            return o.newArray(r.getArray(Int8Array, r.getState()))
+                            return o.newArray(e.getArray(Int8Array, e.getState()))
                         }, isGameOver: function () {
-                            return r.isGameOver()
+                            return e.isGameOver()
                         }
                     }
-                }).then(function (r) {
-                    o = r, p.init(r);
+                }).then(function (e) {
+                    o = e, g.init(e);
                     var i = document.querySelector("#as2d").getContext("2d");
                     return i.canvas.addEventListener("click", function (t) {
-                        var e = t.target.getBoundingClientRect(), o = r.onClick(t.clientX - e.left, t.clientY - e.top),
-                            i = r.getArray(Int8Array, o);
-                        i.length > 0 && n(i, r)
-                    }), r.useContext("main", i), r.init(t, e), r.draw(), r
+                        var r = t.target.getBoundingClientRect(), o = e.onClick(t.clientX - r.left, t.clientY - r.top),
+                            i = e.getArray(Int8Array, o);
+                        i.length > 0 && n(i, e)
+                    }), e.useContext("main", i), e.init(t, r), e.draw(), e
                 })
             })
         }
@@ -902,23 +908,25 @@ parcelRequire = function (e, r, t, n) {
             return t.default = e, t
         };
         Object.defineProperty(exports, "__esModule", {value: !0});
-        var t = e(require("./vm")), r = "gomoku", a = {};
+        var t = e(require("./vm")), r = "gomoku", o = {};
         t.init(1, function (e, t) {
             console.log("state update", e);
-            var o = t.getState(), l = t.getArray(Int8Array, o);
-            a = {state: Array.from(l)};
-            var n = JSON.stringify(a);
+            var a = t.getState(), l = t.getArray(Int8Array, a);
+            o = {state: Array.from(l)};
+            var n = JSON.stringify(o);
             localStorage.setItem(r, n), console.log("update storage value", n)
+        }, function (e) {
+            confirm("Game over, winner is:" + e + ", restart again?") && (console.log("remove storage."), localStorage.removeItem(r), location.reload())
         }, !0).then(function (e) {
             try {
                 var t = localStorage.getItem(r);
                 if (null != t) {
                     console.log("storage value", t);
-                    var a = JSON.parse(t);
-                    console.log("stateObject", a);
-                    var o = Int8Array.from(a.state);
-                    console.log("typedArray length", o.length);
-                    var l = e.newArray(o);
+                    var o = JSON.parse(t);
+                    console.log("stateObject", o);
+                    var a = Int8Array.from(o.state);
+                    console.log("typedArray length", a.length);
+                    var l = e.newArray(a);
                     e.loadState(l)
                 }
             } catch (n) {
@@ -928,4 +936,4 @@ parcelRequire = function (e, r, t, n) {
         });
     }, {"./vm": "F+7o"}]
 }, {}, ["9B6d"], null)
-//# sourceMappingURL=src.48249a15.js.map
+//# sourceMappingURL=src.99201e6f.js.map

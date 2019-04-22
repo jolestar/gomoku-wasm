@@ -12,8 +12,8 @@
  (import "env" "abort" (func $~lib/env/abort (param i32 i32 i32 i32)))
  (import "console" "log" (func $assembly/game/console/console.log (param i32)))
  (import "console" "logAction" (func $assembly/game/console/console.logAction (param i32 i32 i32)))
- (import "listener" "onGameOver" (func $assembly/game/GameEngine/listener.onGameOver (param i32)))
  (import "listener" "onUpdate" (func $assembly/game/GameEngine/listener.onUpdate (param i32 i32)))
+ (import "listener" "onGameOver" (func $assembly/game/GameEngine/listener.onGameOver (param i32)))
  (memory $0 1)
  (data (i32.const 8) "\16\00\00\00~\00l\00i\00b\00/\00a\00l\00l\00o\00c\00a\00t\00o\00r\00/\00t\00l\00s\00f\00.\00t\00s")
  (data (i32.const 56) "\1b\00\00\00~\00l\00i\00b\00/\00i\00n\00t\00e\00r\00n\00a\00l\00/\00t\00y\00p\00e\00d\00a\00r\00r\00a\00y\00.\00t\00s")
@@ -1572,7 +1572,49 @@
    unreachable
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 32 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 32 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+  (local $3 i32)
+  local.get $1
+  local.get $2
+  call $assembly/gomoku/constants/constants.validRowAndCol
+  local.tee $3
+  if (result i32)
+   local.get $0
+   i32.load
+   local.get $1
+   local.get $2
+   call $assembly/gomoku/GomokuEngine/Chessboard#hasChess
+   i32.eqz
+  else   
+   local.get $3
+  end
+  if
+   local.get $0
+   i32.load
+   local.get $1
+   local.get $2
+   local.get $0
+   i32.load offset=8
+   local.tee $0
+   i32.const 1
+   i32.eq
+   if (result i32)
+    i32.const 1
+   else    
+    i32.const 2
+    i32.const 0
+    local.get $0
+    i32.const 2
+    i32.eq
+    select
+   end
+   call $assembly/gomoku/GomokuEngine/Chessboard#putChess
+   i32.const 1
+   return
+  end
+  i32.const 0
+ )
+ (func $assembly/gomoku/GomokuEngine/Chessboard#getChess (; 33 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
@@ -1593,7 +1635,7 @@
    i32.const 0
   end
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkRow (; 33 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkRow (; 34 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   loop $repeat|0
@@ -1646,7 +1688,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkColumn (; 34 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkColumn (; 35 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   loop $repeat|0
@@ -1699,7 +1741,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkMainDiagonal (; 35 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkMainDiagonal (; 36 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -1795,7 +1837,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkSubDiagonal (; 36 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkSubDiagonal (; 37 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -1887,7 +1929,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 37 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction (; 38 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -1955,80 +1997,9 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn (; 38 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
-  (local $3 i32)
-  local.get $1
-  local.get $2
-  call $assembly/gomoku/constants/constants.validRowAndCol
-  local.tee $3
-  if (result i32)
-   local.get $0
-   i32.load
-   local.get $1
-   local.get $2
-   call $assembly/gomoku/GomokuEngine/Chessboard#hasChess
-   i32.eqz
-  else   
-   local.get $3
-  end
-  if
-   local.get $0
-   i32.load
-   local.get $1
-   local.get $2
-   local.get $0
-   i32.load offset=8
-   local.tee $3
-   i32.const 1
-   i32.eq
-   if (result i32)
-    i32.const 1
-   else    
-    i32.const 2
-    i32.const 0
-    local.get $3
-    i32.const 2
-    i32.eq
-    select
-   end
-   call $assembly/gomoku/GomokuEngine/Chessboard#putChess
-   i32.const 12
-   call $~lib/allocator/tlsf/__memory_allocate
-   local.tee $3
-   local.get $1
-   i32.store
-   local.get $3
-   local.get $2
-   i32.store offset=4
-   local.get $3
-   local.get $0
-   i32.load offset=8
-   i32.store offset=8
-   local.get $0
-   local.get $3
-   i32.store offset=4
-   local.get $0
-   call $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction
-   i32.eqz
-   if
-    local.get $0
-    local.get $0
-    i32.load offset=8
-    i32.const 2
-    i32.eq
-    if (result i32)
-     i32.const 1
-    else     
-     i32.const 2
-    end
-    i32.store offset=8
-   end
-   i32.const 1
-   return
-  end
-  i32.const 0
- )
  (func $assembly/gomoku/GomokuEngine/GomokuEngine#update (; 39 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+  (local $3 i32)
+  (local $4 i32)
   local.get $0
   i32.load8_u offset=12
   if
@@ -2069,6 +2040,7 @@
   i32.shl
   i32.const 24
   i32.shr_s
+  local.tee $3
   local.get $2
   i32.const 1
   call $~lib/internal/typedarray/TypedArray<i8>#__get
@@ -2076,11 +2048,43 @@
   i32.shl
   i32.const 24
   i32.shr_s
+  local.tee $4
   call $assembly/gomoku/GomokuEngine/GomokuEngine#putChessOn
   if
    local.get $1
    local.get $2
    call $assembly/game/GameEngine/listener.onUpdate
+   i32.const 12
+   call $~lib/allocator/tlsf/__memory_allocate
+   local.tee $1
+   local.get $3
+   i32.store
+   local.get $1
+   local.get $4
+   i32.store offset=4
+   local.get $1
+   local.get $0
+   i32.load offset=8
+   i32.store offset=8
+   local.get $0
+   local.get $1
+   i32.store offset=4
+   local.get $0
+   call $assembly/gomoku/GomokuEngine/GomokuEngine#checkLastAction
+   i32.eqz
+   if
+    local.get $0
+    local.get $0
+    i32.load offset=8
+    i32.const 2
+    i32.eq
+    if (result i32)
+     i32.const 1
+    else     
+     i32.const 2
+    end
+    i32.store offset=8
+   end
    i32.const 1
    return
   end
