@@ -16,7 +16,6 @@ class Position {
 
     static fromIndex(idx: i32): Position {
         if (idx < 0 || idx >= constants.boardSize) {
-            console.log("Invalid index");
             throw ERROR("Invalid index")
         }
         return new Position(idx / constants.boardDimension, idx % constants.boardDimension)

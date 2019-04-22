@@ -12,8 +12,8 @@ let game = new GomokuGUI();
 let aiPlayer: BigbenAI;
 let myRole: PlayerRole;
 let rivalRole: PlayerRole;
-let playWithAI: boolean = false;
-let gameBegin: boolean = false;
+let playWithAI = false;
+let gameBegin = false;
 
 export function isGameOver(): boolean {
     return game.isGameOver()

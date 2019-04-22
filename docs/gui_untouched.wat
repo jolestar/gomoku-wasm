@@ -54,17 +54,14 @@
  (data (i32.const 1232) "\0e\00\00\00~\00l\00i\00b\00/\00s\00t\00r\00i\00n\00g\00.\00t\00s\00")
  (data (i32.const 1264) "\00\00\00\00")
  (data (i32.const 1272) "\0d\00\00\00,\00 \00r\00i\00v\00a\00l\00C\00h\00e\00s\00s\00:\00")
- (data (i32.const 1304) "\n\00\00\00d\00r\00a\00w\00C\00h\00e\00s\00s\00:\00")
- (data (i32.const 1328) "(\00\00\00G\00a\00m\00e\00 \00n\00o\00t\00 \00b\00e\00g\00i\00n\00,\00 \00b\00u\00t\00 \00r\00e\00c\00e\00i\00v\00e\00 \00r\00i\00v\00a\00l\00U\00p\00d\00a\00t\00e\00.\00")
- (data (i32.const 1416) "\1f\00\00\00a\00s\00s\00e\00m\00b\00l\00y\00/\00g\00o\00m\00o\00k\00u\00/\00G\00o\00m\00o\00k\00u\00E\00n\00g\00i\00n\00e\00.\00t\00s\00")
- (data (i32.const 1488) "\0d\00\00\00I\00n\00v\00a\00l\00i\00d\00 \00i\00n\00d\00e\00x\00")
- (data (i32.const 1520) "\t\00\00\00A\00t\00t\00a\00c\00k\00:\00 \00(\00")
- (data (i32.const 1544) "\01\00\00\00:\00")
- (data (i32.const 1552) "\04\00\00\00)\00 \00s\00:\00")
- (data (i32.const 1568) "\t\00\00\00D\00e\00f\00e\00n\00d\00:\00 \00(\00")
- (data (i32.const 1592) "\08\00\00\00B\00i\00g\00b\00e\00n\00A\00I\00")
- (data (i32.const 1616) "\0f\00\00\00G\00a\00m\00e\00 \00n\00o\00t\00 \00b\00e\00g\00i\00n\00.\00")
- (data (i32.const 1656) "\07\00\00\00o\00n\00C\00l\00i\00c\00k\00")
+ (data (i32.const 1304) "(\00\00\00G\00a\00m\00e\00 \00n\00o\00t\00 \00b\00e\00g\00i\00n\00,\00 \00b\00u\00t\00 \00r\00e\00c\00e\00i\00v\00e\00 \00r\00i\00v\00a\00l\00U\00p\00d\00a\00t\00e\00.\00")
+ (data (i32.const 1392) "\1f\00\00\00a\00s\00s\00e\00m\00b\00l\00y\00/\00g\00o\00m\00o\00k\00u\00/\00G\00o\00m\00o\00k\00u\00E\00n\00g\00i\00n\00e\00.\00t\00s\00")
+ (data (i32.const 1464) "\t\00\00\00A\00t\00t\00a\00c\00k\00:\00 \00(\00")
+ (data (i32.const 1488) "\01\00\00\00:\00")
+ (data (i32.const 1496) "\04\00\00\00)\00 \00s\00:\00")
+ (data (i32.const 1512) "\t\00\00\00D\00e\00f\00e\00n\00d\00:\00 \00(\00")
+ (data (i32.const 1536) "\08\00\00\00B\00i\00g\00b\00e\00n\00A\00I\00")
+ (data (i32.const 1560) "\0f\00\00\00G\00a\00m\00e\00 \00n\00o\00t\00 \00b\00e\00g\00i\00n\00.\00")
  (table $0 2 funcref)
  (elem (i32.const 0) $null $assembly/gui/init~anonymous|0)
  (global $node_modules/as2d/src/shared/CanvasDirection/CanvasDirection.ltr i32 (i32.const 0))
@@ -195,7 +192,7 @@
  (global $~lib/builtins/u8.MAX_VALUE i32 (i32.const 255))
  (global $~lib/argc (mut i32) (i32.const 0))
  (global $~lib/builtins/i32.MAX_VALUE i32 (i32.const 2147483647))
- (global $~lib/memory/HEAP_BASE i32 (i32.const 1676))
+ (global $~lib/memory/HEAP_BASE i32 (i32.const 1596))
  (export "memory" (memory $0))
  (export "table" (table $0))
  (export "__use_context" (func $node_modules/as2d/assembly/internal/getContext/__use_context))
@@ -5325,22 +5322,14 @@
   i32.store
  )
  (func $assembly/game/GamePlayer/GamePlayer#constructor (; 86 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
-  block (result i32)
-   local.get $0
-   i32.eqz
-   if
-    i32.const 8
-    call $~lib/memory/memory.allocate
-    local.set $0
-   end
-   local.get $0
-   i32.const 0
-   i32.store
-   local.get $0
-   i32.const 0
-   i32.store offset=4
-   local.get $0
+  local.get $0
+  i32.eqz
+  if
+   i32.const 8
+   call $~lib/memory/memory.allocate
+   local.set $0
   end
+  local.get $0
   local.get $1
   i32.store
   local.get $0
@@ -12095,10 +12084,6 @@
    unreachable
   end
   local.set $4
-  i32.const 1304
-  local.get $4
-  call $~lib/string/String.__concat
-  call $assembly/game/console/console.log
   local.get $0
   i32.load offset=4
   local.set $5
@@ -12196,7 +12181,7 @@
    call $assembly/gomoku/GomokuGUI/GomokuGUI#update
    drop
   else   
-   i32.const 1328
+   i32.const 1304
    call $assembly/game/console/console.log
   end
  )
@@ -12347,8 +12332,8 @@
    call $~lib/internal/typedarray/TypedArray<i8>#__set
   else   
    i32.const 0
-   i32.const 1416
-   i32.const 79
+   i32.const 1392
+   i32.const 78
    i32.const 12
    call $~lib/env/abort
    unreachable
@@ -12474,8 +12459,8 @@
     return
    else    
     i32.const 0
-    i32.const 1416
-    i32.const 139
+    i32.const 1392
+    i32.const 138
     i32.const 12
     call $~lib/env/abort
     unreachable
@@ -12515,11 +12500,9 @@
    i32.ge_s
   end
   if
-   i32.const 1488
-   call $assembly/game/console/console.log
    i32.const 0
-   i32.const 1416
-   i32.const 20
+   i32.const 1392
+   i32.const 19
    i32.const 12
    call $~lib/env/abort
    unreachable
@@ -13880,7 +13863,7 @@
   local.get $0
   i32.load
   call $~lib/number/I32#toString
-  i32.const 1544
+  i32.const 1488
   call $~lib/string/String.__concat
   local.get $0
   i32.load offset=4
@@ -14376,11 +14359,11 @@
    local.get $8
    call $assembly/gomoku/GomokuEngine/Position#constructor
    local.set $1
-   i32.const 1520
+   i32.const 1464
    local.get $1
    call $assembly/gomoku/GomokuEngine/Position#toString
    call $~lib/string/String.__concat
-   i32.const 1552
+   i32.const 1496
    call $~lib/string/String.__concat
    local.get $2
    block $assembly/gomoku/ai/BigbenAI/idxByRowCol|inlined.12 (result i32)
@@ -14426,11 +14409,11 @@
     local.get $3
     call $assembly/gomoku/GomokuEngine/Position#constructor
     local.set $1
-    i32.const 1568
+    i32.const 1512
     local.get $1
     call $assembly/gomoku/GomokuEngine/Position#toString
     call $~lib/string/String.__concat
-    i32.const 1552
+    i32.const 1496
     call $~lib/string/String.__concat
     local.get $2
     block $assembly/gomoku/ai/BigbenAI/idxByRowCol|inlined.15 (result i32)
@@ -14456,11 +14439,11 @@
     local.get $8
     call $assembly/gomoku/GomokuEngine/Position#constructor
     local.set $1
-    i32.const 1520
+    i32.const 1464
     local.get $1
     call $assembly/gomoku/GomokuEngine/Position#toString
     call $~lib/string/String.__concat
-    i32.const 1552
+    i32.const 1496
     call $~lib/string/String.__concat
     local.get $2
     block $assembly/gomoku/ai/BigbenAI/idxByRowCol|inlined.16 (result i32)
@@ -14556,7 +14539,7 @@
   local.get $1
   call $assembly/gomoku/GomokuEngine/Position#toState
   local.set $5
-  i32.const 1592
+  i32.const 1536
   local.get $0
   i32.load
   local.get $5
@@ -20720,11 +20703,6 @@
   i32.const 24
   i32.shr_s
   call $~lib/internal/typedarray/TypedArray<i8>#__set
-  i32.const 1656
-  local.get $0
-  i32.load
-  local.get $5
-  call $assembly/game/console/console.logAction
   local.get $0
   i32.load
   local.get $5
@@ -20782,7 +20760,7 @@
   global.get $assembly/gui/gameBegin
   i32.eqz
   if
-   i32.const 1616
+   i32.const 1560
    call $assembly/game/console/console.error
    i32.const 0
    i32.const 0
@@ -20910,8 +20888,8 @@
   i32.eqz
   if
    i32.const 0
-   i32.const 1416
-   i32.const 118
+   i32.const 1392
+   i32.const 117
    i32.const 8
    call $~lib/env/abort
    unreachable
