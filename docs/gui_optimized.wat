@@ -15,12 +15,8 @@
  (import "env" "abort" (func $~lib/env/abort (param i32 i32 i32 i32)))
  (import "engine" "isGameOver" (func $assembly/game/GameGUI/engine.isGameOver (result i32)))
  (import "engine" "getState" (func $assembly/game/GameGUI/engine.getState (result i32)))
- (import "console" "log" (func $assembly/game/console/console.log (param i32)))
  (import "engine" "update" (func $assembly/game/GameGUI/engine.update (param i32 i32) (result i32)))
  (import "__canvas_sys" "render" (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/render (param i32 i32)))
- (import "console" "logi" (func $assembly/game/console/console.logi (param i32 i32)))
- (import "console" "logAction" (func $assembly/game/console/console.logAction (param i32 i32 i32)))
- (import "console" "error" (func $assembly/game/console/console.error (param i32)))
  (import "engine" "loadState" (func $assembly/game/GameGUI/engine.loadState (param i32)))
  (memory $0 1)
  (data (i32.const 8) "\04\00\00\00#\000\000\000")
@@ -38,23 +34,7 @@
  (data (i32.const 424) "\04\00\00\00#\00f\000\000")
  (data (i32.const 440) "\04\00\00\00m\00a\00i\00n")
  (data (i32.const 456) "1\00\00\00n\00o\00d\00e\00_\00m\00o\00d\00u\00l\00e\00s\00/\00a\00s\002\00d\00/\00a\00s\00s\00e\00m\00b\00l\00y\00/\00i\00n\00t\00e\00r\00n\00a\00l\00/\00g\00e\00t\00C\00o\00n\00t\00e\00x\00t\00.\00t\00s")
- (data (i32.const 560) "\0c\00\00\00G\00a\00m\00e\00G\00U\00I\00 \00i\00n\00i\00t")
- (data (i32.const 592) "\11\00\00\00B\00i\00g\00b\00e\00n\00A\00I\00 \00m\00y\00C\00h\00e\00s\00s\00:")
- (data (i32.const 632) "\01\00\00\000")
- (data (i32.const 640) "\17\00\00\00~\00l\00i\00b\00/\00i\00n\00t\00e\00r\00n\00a\00l\00/\00s\00t\00r\00i\00n\00g\00.\00t\00s")
- (data (i32.const 696) "\90\01\00\00\00\00\00\000\000\000\001\000\002\000\003\000\004\000\005\000\006\000\007\000\008\000\009\001\000\001\001\001\002\001\003\001\004\001\005\001\006\001\007\001\008\001\009\002\000\002\001\002\002\002\003\002\004\002\005\002\006\002\007\002\008\002\009\003\000\003\001\003\002\003\003\003\004\003\005\003\006\003\007\003\008\003\009\004\000\004\001\004\002\004\003\004\004\004\005\004\006\004\007\004\008\004\009\005\000\005\001\005\002\005\003\005\004\005\005\005\006\005\007\005\008\005\009\006\000\006\001\006\002\006\003\006\004\006\005\006\006\006\007\006\008\006\009\007\000\007\001\007\002\007\003\007\004\007\005\007\006\007\007\007\008\007\009\008\000\008\001\008\002\008\003\008\004\008\005\008\006\008\007\008\008\008\009\009\000\009\001\009\002\009\003\009\004\009\005\009\006\009\007\009\008\009\009")
- (data (i32.const 1208) "\b8\02\00\00d")
- (data (i32.const 1216) "\04\00\00\00n\00u\00l\00l")
- (data (i32.const 1232) "\0e\00\00\00~\00l\00i\00b\00/\00s\00t\00r\00i\00n\00g\00.\00t\00s")
- (data (i32.const 1272) "\0d\00\00\00,\00 \00r\00i\00v\00a\00l\00C\00h\00e\00s\00s\00:")
- (data (i32.const 1304) "(\00\00\00G\00a\00m\00e\00 \00n\00o\00t\00 \00b\00e\00g\00i\00n\00,\00 \00b\00u\00t\00 \00r\00e\00c\00e\00i\00v\00e\00 \00r\00i\00v\00a\00l\00U\00p\00d\00a\00t\00e\00.")
- (data (i32.const 1392) "\1f\00\00\00a\00s\00s\00e\00m\00b\00l\00y\00/\00g\00o\00m\00o\00k\00u\00/\00G\00o\00m\00o\00k\00u\00E\00n\00g\00i\00n\00e\00.\00t\00s")
- (data (i32.const 1464) "\t\00\00\00A\00t\00t\00a\00c\00k\00:\00 \00(")
- (data (i32.const 1488) "\01\00\00\00:")
- (data (i32.const 1496) "\04\00\00\00)\00 \00s\00:")
- (data (i32.const 1512) "\t\00\00\00D\00e\00f\00e\00n\00d\00:\00 \00(")
- (data (i32.const 1536) "\08\00\00\00B\00i\00g\00b\00e\00n\00A\00I")
- (data (i32.const 1560) "\0f\00\00\00G\00a\00m\00e\00 \00n\00o\00t\00 \00b\00e\00g\00i\00n\00.")
+ (data (i32.const 560) "\1f\00\00\00a\00s\00s\00e\00m\00b\00l\00y\00/\00g\00o\00m\00o\00k\00u\00/\00G\00o\00m\00o\00k\00u\00E\00n\00g\00i\00n\00e\00.\00t\00s")
  (table $0 2 funcref)
  (elem (i32.const 0) $null $assembly/gui/init~anonymous|0)
  (global $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/defaultBlack (mut i32) (i32.const 8))
@@ -89,7 +69,7 @@
  (export "rivalUpdate" (func $assembly/gui/rivalUpdate))
  (export "loadState" (func $assembly/gui/loadState))
  (start $start)
- (func $~lib/allocator/tlsf/Root#setSLMap (; 10 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/allocator/tlsf/Root#setSLMap (; 6 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -109,7 +89,7 @@
   local.get $2
   i32.store offset=4
  )
- (func $~lib/allocator/tlsf/Root#setHead (; 11 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $~lib/allocator/tlsf/Root#setHead (; 7 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -144,7 +124,7 @@
   local.get $3
   i32.store offset=96
  )
- (func $~lib/allocator/tlsf/Block#get:right (; 12 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/Block#get:right (; 8 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   i32.const -4
@@ -178,7 +158,7 @@
   end
   local.get $0
  )
- (func $~lib/allocator/tlsf/fls<usize> (; 13 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/fls<usize> (; 9 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -194,7 +174,7 @@
   i32.clz
   i32.sub
  )
- (func $~lib/allocator/tlsf/Root#getHead (; 14 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#getHead (; 10 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -228,7 +208,7 @@
   i32.add
   i32.load offset=96
  )
- (func $~lib/allocator/tlsf/Root#getSLMap (; 15 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#getSLMap (; 11 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $1
   i32.const 22
   i32.ge_u
@@ -247,7 +227,7 @@
   i32.add
   i32.load offset=4
  )
- (func $~lib/allocator/tlsf/Root#remove (; 16 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/allocator/tlsf/Root#remove (; 12 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -376,7 +356,7 @@
    end
   end
  )
- (func $~lib/allocator/tlsf/Block#get:left (; 17 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/Block#get:left (; 13 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.load
   i32.const 2
@@ -406,7 +386,7 @@
   end
   local.get $0
  )
- (func $~lib/allocator/tlsf/Root#setJump (; 18 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/allocator/tlsf/Root#setJump (; 14 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   i32.load
   i32.const 1
@@ -451,7 +431,7 @@
   local.get $0
   i32.store
  )
- (func $~lib/allocator/tlsf/Root#insert (; 19 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/allocator/tlsf/Root#insert (; 15 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -681,7 +661,7 @@
   i32.or
   call $~lib/allocator/tlsf/Root#setSLMap
  )
- (func $~lib/allocator/tlsf/Root#addMemory (; 20 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/allocator/tlsf/Root#addMemory (; 16 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   local.get $1
@@ -804,7 +784,7 @@
   local.get $1
   call $~lib/allocator/tlsf/Root#insert
  )
- (func $~lib/allocator/tlsf/ffs<usize> (; 21 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/ffs<usize> (; 17 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -818,7 +798,7 @@
   local.get $0
   i32.ctz
  )
- (func $~lib/allocator/tlsf/Root#search (; 22 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#search (; 18 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   local.get $1
@@ -930,7 +910,7 @@
    end
   end
  )
- (func $~lib/allocator/tlsf/Root#use (; 23 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/allocator/tlsf/Root#use (; 19 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   (local $4 i32)
   local.get $1
@@ -1041,7 +1021,7 @@
   i32.const 8
   i32.add
  )
- (func $~lib/allocator/tlsf/__memory_allocate (; 24 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/allocator/tlsf/__memory_allocate (; 20 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -1067,14 +1047,14 @@
    if
     unreachable
    end
-   i32.const 1600
+   i32.const 632
    local.set $2
-   i32.const 1600
+   i32.const 632
    global.set $~lib/allocator/tlsf/ROOT
    i32.const 2912
    i32.const 0
    i32.store
-   i32.const 1600
+   i32.const 632
    i32.const 0
    i32.store
    i32.const 0
@@ -1084,7 +1064,7 @@
     i32.const 22
     i32.lt_u
     if
-     i32.const 1600
+     i32.const 632
      local.get $1
      i32.const 0
      call $~lib/allocator/tlsf/Root#setSLMap
@@ -1095,7 +1075,7 @@
       i32.const 32
       i32.lt_u
       if
-       i32.const 1600
+       i32.const 632
        local.get $1
        local.get $3
        i32.const 0
@@ -1114,8 +1094,8 @@
      br $repeat|0
     end
    end
-   i32.const 1600
-   i32.const 4520
+   i32.const 632
+   i32.const 3552
    current_memory
    i32.const 16
    i32.shl
@@ -1211,7 +1191,7 @@
   local.get $1
   call $~lib/allocator/tlsf/Root#use
  )
- (func $~lib/internal/arraybuffer/allocateUnsafe (; 25 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/internal/arraybuffer/allocateUnsafe (; 21 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
   i32.const 1073741816
@@ -1238,7 +1218,7 @@
   i32.store
   local.get $1
  )
- (func $~lib/internal/memory/memset (; 26 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/memory/memset (; 22 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i64)
   local.get $2
@@ -1473,11 +1453,11 @@
    end
   end
  )
- (func $~lib/memory/memory.allocate (; 27 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/memory/memory.allocate (; 23 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   call $~lib/allocator/tlsf/__memory_allocate
  )
- (func $~lib/internal/typedarray/TypedArray<f64>#constructor (; 28 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/internal/typedarray/TypedArray<f64>#constructor (; 24 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   i32.const 0
   call $~lib/internal/arraybuffer/allocateUnsafe
@@ -1514,7 +1494,7 @@
   i32.store offset=8
   local.get $0
  )
- (func $~lib/arraybuffer/ArrayBuffer#constructor (; 29 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/arraybuffer/ArrayBuffer#constructor (; 25 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $0
   i32.const 1073741816
@@ -1542,7 +1522,7 @@
   end
   local.get $2
  )
- (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#clear (; 30 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#clear (; 26 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   i32.const 16
   i32.const 0
@@ -1566,7 +1546,7 @@
   i32.const 0
   i32.store offset=20
  )
- (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#constructor (; 31 ;) (type $FUNCSIG$i) (result i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#constructor (; 27 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   i32.const 24
   call $~lib/allocator/tlsf/__memory_allocate
@@ -1592,7 +1572,7 @@
   call $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#clear
   local.get $0
  )
- (func $node_modules/as2d/assembly/internal/Buffer/Buffer<i32>#constructor (; 32 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $node_modules/as2d/assembly/internal/Buffer/Buffer<i32>#constructor (; 28 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -1610,7 +1590,7 @@
   i32.store offset=4
   local.get $0
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferIdentity (; 33 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/setArrayBufferIdentity (; 29 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   local.get $0
   f64.const 1
   f64.store offset=8
@@ -1641,7 +1621,7 @@
   f64.store offset=8
   local.get $0
  )
- (func $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#constructor (; 34 ;) (type $FUNCSIG$i) (result i32)
+ (func $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#constructor (; 30 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   i32.const 1020
@@ -1669,7 +1649,7 @@
   call $~lib/internal/memory/memset
   local.get $0
  )
- (func $node_modules/as2d/assembly/internal/Path2DElement/Path2DElement#constructor (; 35 ;) (type $FUNCSIG$i) (result i32)
+ (func $node_modules/as2d/assembly/internal/Path2DElement/Path2DElement#constructor (; 31 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   i32.const 128
   call $~lib/allocator/tlsf/__memory_allocate
@@ -1726,7 +1706,7 @@
   f64.store offset=120
   local.get $0
  )
- (func $~lib/internal/memory/memcpy (; 36 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/memory/memcpy (; 32 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -2573,7 +2553,7 @@
    i32.store8
   end
  )
- (func $~lib/internal/memory/memmove (; 37 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/memory/memmove (; 33 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   local.get $0
@@ -2771,7 +2751,7 @@
    end
   end
  )
- (func $~lib/allocator/tlsf/__memory_free (; 38 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/allocator/tlsf/__memory_free (; 34 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -2809,7 +2789,7 @@
    end
   end
  )
- (func $~lib/internal/arraybuffer/reallocateUnsafe (; 39 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/internal/arraybuffer/reallocateUnsafe (; 35 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   (local $3 i32)
   local.get $1
@@ -2894,7 +2874,7 @@
   end
   local.get $0
  )
- (func $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#__set (; 40 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#__set (; 36 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   local.get $1
@@ -2940,7 +2920,7 @@
   local.get $2
   i32.store offset=8
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/createPathElements (; 41 ;) (type $FUNCSIG$i) (result i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/createPathElements (; 37 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   call $~lib/array/Array<node_modules/as2d/assembly/internal/Path2DElement/Path2DElement>#constructor
@@ -2975,7 +2955,7 @@
   i32.store8 offset=60
   local.get $1
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#constructor (; 42 ;) (type $FUNCSIG$i) (result i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#constructor (; 38 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   (local $1 i32)
   i32.const 268
@@ -3271,7 +3251,7 @@
   i32.store offset=264
   local.get $0
  )
- (func $~lib/internal/hash/hashStr (; 43 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/internal/hash/hashStr (; 39 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -3306,7 +3286,7 @@
   end
   local.get $2
  )
- (func $~lib/internal/string/compareUnsafe (; 44 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/internal/string/compareUnsafe (; 40 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   loop $continue|0
    local.get $2
@@ -3339,7 +3319,7 @@
   end
   local.get $3
  )
- (func $~lib/string/String.__eq (; 45 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__eq (; 41 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $0
   local.get $1
@@ -3378,7 +3358,7 @@
   call $~lib/internal/string/compareUnsafe
   i32.eqz
  )
- (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#find (; 46 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#find (; 42 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.load
   local.get $0
@@ -3421,7 +3401,7 @@
   end
   i32.const 0
  )
- (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#rehash (; 47 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#rehash (; 43 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -3528,7 +3508,7 @@
   i32.load offset=20
   i32.store offset=16
  )
- (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#set (; 48 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#set (; 44 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -3620,7 +3600,7 @@
    i32.store offset=8
   end
  )
- (func $node_modules/as2d/assembly/internal/getContext/__use_context (; 49 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/internal/getContext/__use_context (; 45 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#constructor
   local.tee $2
@@ -3633,7 +3613,7 @@
   local.get $2
   call $~lib/map/Map<~lib/string/String,node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D>#set
  )
- (func $node_modules/as2d/assembly/renderer/Image/__image_loaded (; 50 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $node_modules/as2d/assembly/renderer/Image/__image_loaded (; 46 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $0
   i32.const 4
   i32.add
@@ -3650,7 +3630,7 @@
   i32.const 1
   i32.store8
  )
- (func $~lib/internal/memory/memcmp (; 51 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/internal/memory/memcmp (; 47 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $0
   local.get $1
@@ -3700,20 +3680,20 @@
    i32.const 0
   end
  )
- (func $~lib/memory/memory.compare (; 52 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $~lib/memory/memory.compare (; 48 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   local.get $1
   local.get $2
   call $~lib/internal/memory/memcmp
  )
- (func $~lib/memory/memory.free (; 53 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/memory/memory.free (; 49 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $~lib/allocator/tlsf/__memory_free
  )
- (func $~lib/memory/memory.reset (; 54 ;) (type $FUNCSIG$v)
+ (func $~lib/memory/memory.reset (; 50 ;) (type $FUNCSIG$v)
   unreachable
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#constructor (; 55 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#constructor (; 51 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $1
   i32.const 1073741816
@@ -3761,13 +3741,13 @@
   i32.store offset=8
   local.get $0
  )
- (func $~lib/typedarray/Int8Array#constructor (; 56 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $~lib/typedarray/Int8Array#constructor (; 52 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   i32.const 12
   call $~lib/allocator/tlsf/__memory_allocate
   local.get $0
   call $~lib/internal/typedarray/TypedArray<i8>#constructor
  )
- (func $assembly/gomoku/GomokuGUI/Config#constructor (; 57 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/gomoku/GomokuGUI/Config#constructor (; 53 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   i32.const 32
   call $~lib/allocator/tlsf/__memory_allocate
@@ -3797,7 +3777,7 @@
   i32.store offset=28
   local.get $0
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#constructor (; 58 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#constructor (; 54 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   i32.const 12
   call $~lib/allocator/tlsf/__memory_allocate
@@ -3819,15 +3799,15 @@
   i32.store offset=8
   local.get $0
  )
- (func $assembly/gui/isGameOver (; 59 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/gui/isGameOver (; 55 ;) (type $FUNCSIG$i) (result i32)
   call $assembly/game/GameGUI/engine.isGameOver
   i32.const 0
   i32.ne
  )
- (func $assembly/gui/getState (; 60 ;) (type $FUNCSIG$i) (result i32)
+ (func $assembly/gui/getState (; 56 ;) (type $FUNCSIG$i) (result i32)
   call $assembly/game/GameGUI/engine.getState
  )
- (func $node_modules/as2d/assembly/internal/getContext/getContextById (; 61 ;) (type $FUNCSIG$i) (result i32)
+ (func $node_modules/as2d/assembly/internal/getContext/getContextById (; 57 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
   global.get $node_modules/as2d/assembly/internal/getContext/map
   i32.const 440
@@ -3856,7 +3836,7 @@
    unreachable
   end
  )
- (func $assembly/game/GamePlayer/GamePlayer#constructor (; 62 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/game/GamePlayer/GamePlayer#constructor (; 58 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.eqz
   if
@@ -3872,311 +3852,7 @@
   i32.store offset=4
   local.get $0
  )
- (func $~lib/internal/number/decimalCount32 (; 63 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  i32.const 100000
-  i32.lt_u
-  if (result i32)
-   local.get $0
-   i32.const 100
-   i32.lt_u
-   if (result i32)
-    i32.const 1
-    i32.const 2
-    local.get $0
-    i32.const 10
-    i32.lt_u
-    select
-   else    
-    i32.const 3
-    i32.const 4
-    i32.const 5
-    local.get $0
-    i32.const 10000
-    i32.lt_u
-    select
-    local.get $0
-    i32.const 1000
-    i32.lt_u
-    select
-   end
-  else   
-   local.get $0
-   i32.const 10000000
-   i32.lt_u
-   if (result i32)
-    i32.const 6
-    i32.const 7
-    local.get $0
-    i32.const 1000000
-    i32.lt_u
-    select
-   else    
-    i32.const 8
-    i32.const 9
-    i32.const 10
-    local.get $0
-    i32.const 1000000000
-    i32.lt_u
-    select
-    local.get $0
-    i32.const 100000000
-    i32.lt_u
-    select
-   end
-  end
- )
- (func $~lib/internal/string/allocateUnsafe (; 64 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  (local $1 i32)
-  local.get $0
-  i32.const 0
-  i32.gt_s
-  local.tee $1
-  if
-   local.get $0
-   i32.const 536870910
-   i32.le_s
-   local.set $1
-  end
-  local.get $1
-  i32.eqz
-  if
-   i32.const 0
-   i32.const 640
-   i32.const 14
-   i32.const 2
-   call $~lib/env/abort
-   unreachable
-  end
-  local.get $0
-  i32.const 1
-  i32.shl
-  i32.const 4
-  i32.add
-  call $~lib/allocator/tlsf/__memory_allocate
-  local.tee $1
-  local.get $0
-  i32.store
-  local.get $1
- )
- (func $~lib/internal/number/utoa32_lut (; 65 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  i32.const 1208
-  i32.load
-  local.set $3
-  loop $continue|0
-   local.get $1
-   i32.const 10000
-   i32.ge_u
-   if
-    local.get $1
-    i32.const 10000
-    i32.rem_u
-    local.set $4
-    local.get $1
-    i32.const 10000
-    i32.div_u
-    local.set $1
-    local.get $2
-    i32.const 4
-    i32.sub
-    local.tee $2
-    i32.const 1
-    i32.shl
-    local.get $0
-    i32.add
-    local.get $3
-    local.get $4
-    i32.const 100
-    i32.div_u
-    i32.const 2
-    i32.shl
-    i32.add
-    i64.load32_u offset=8
-    local.get $3
-    local.get $4
-    i32.const 100
-    i32.rem_u
-    i32.const 2
-    i32.shl
-    i32.add
-    i64.load32_u offset=8
-    i64.const 32
-    i64.shl
-    i64.or
-    i64.store offset=4
-    br $continue|0
-   end
-  end
-  local.get $1
-  i32.const 100
-  i32.ge_u
-  if
-   local.get $1
-   i32.const 100
-   i32.rem_u
-   local.set $4
-   local.get $1
-   i32.const 100
-   i32.div_u
-   local.set $1
-   local.get $2
-   i32.const 2
-   i32.sub
-   local.tee $2
-   i32.const 1
-   i32.shl
-   local.get $0
-   i32.add
-   local.get $3
-   local.get $4
-   i32.const 2
-   i32.shl
-   i32.add
-   i32.load offset=8
-   i32.store offset=4
-  end
-  local.get $1
-  i32.const 10
-  i32.ge_u
-  if
-   local.get $2
-   i32.const 2
-   i32.sub
-   i32.const 1
-   i32.shl
-   local.get $0
-   i32.add
-   local.get $3
-   local.get $1
-   i32.const 2
-   i32.shl
-   i32.add
-   i32.load offset=8
-   i32.store offset=4
-  else   
-   local.get $2
-   i32.const 1
-   i32.sub
-   i32.const 1
-   i32.shl
-   local.get $0
-   i32.add
-   local.get $1
-   i32.const 48
-   i32.add
-   i32.store16 offset=4
-  end
- )
- (func $~lib/internal/number/itoa32 (; 66 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  (local $1 i32)
-  (local $2 i32)
-  (local $3 i32)
-  local.get $0
-  i32.eqz
-  if
-   i32.const 632
-   return
-  end
-  local.get $0
-  i32.const 0
-  i32.lt_s
-  local.tee $1
-  if
-   i32.const 0
-   local.get $0
-   i32.sub
-   local.set $0
-  end
-  local.get $0
-  call $~lib/internal/number/decimalCount32
-  local.get $1
-  i32.add
-  local.tee $3
-  call $~lib/internal/string/allocateUnsafe
-  local.tee $2
-  local.get $0
-  local.get $3
-  call $~lib/internal/number/utoa32_lut
-  local.get $1
-  if
-   local.get $2
-   i32.const 45
-   i32.store16 offset=4
-  end
-  local.get $2
- )
- (func $~lib/internal/string/copyUnsafe (; 67 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
-  local.get $1
-  i32.const 1
-  i32.shl
-  local.get $0
-  i32.add
-  i32.const 4
-  i32.add
-  local.get $2
-  i32.const 4
-  i32.add
-  local.get $3
-  i32.const 1
-  i32.shl
-  call $~lib/internal/memory/memmove
- )
- (func $~lib/string/String#concat (; 68 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  (local $2 i32)
-  (local $3 i32)
-  (local $4 i32)
-  local.get $0
-  i32.eqz
-  if
-   i32.const 0
-   i32.const 1232
-   i32.const 110
-   i32.const 4
-   call $~lib/env/abort
-   unreachable
-  end
-  local.get $0
-  i32.load
-  local.tee $3
-  local.get $1
-  i32.const 1216
-  local.get $1
-  select
-  local.tee $1
-  i32.load
-  local.tee $4
-  i32.add
-  local.tee $2
-  i32.eqz
-  if
-   i32.const 1264
-   return
-  end
-  local.get $2
-  call $~lib/internal/string/allocateUnsafe
-  local.tee $2
-  i32.const 0
-  local.get $0
-  local.get $3
-  call $~lib/internal/string/copyUnsafe
-  local.get $2
-  local.get $3
-  local.get $1
-  local.get $4
-  call $~lib/internal/string/copyUnsafe
-  local.get $2
- )
- (func $~lib/string/String.__concat (; 69 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
-  local.get $0
-  i32.const 1216
-  local.get $0
-  select
-  local.get $1
-  call $~lib/string/String#concat
- )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#constructor (; 70 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#constructor (; 59 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   i32.const 20
@@ -4196,9 +3872,6 @@
   i32.const 4
   call $~lib/allocator/tlsf/__memory_allocate
   local.tee $2
-  i32.const 0
-  i32.store
-  local.get $2
   i32.const 225
   call $~lib/typedarray/Int8Array#constructor
   i32.store
@@ -4241,21 +3914,9 @@
    select
   end
   i32.store offset=16
-  i32.const 592
-  local.get $1
-  i32.load offset=12
-  call $~lib/internal/number/itoa32
-  call $~lib/string/String.__concat
-  i32.const 1272
-  call $~lib/string/String.__concat
-  local.get $1
-  i32.load offset=16
-  call $~lib/internal/number/itoa32
-  call $~lib/string/String.__concat
-  call $assembly/game/console/console.log
   local.get $1
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 71 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__get (; 60 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $1
   local.get $0
   i32.load offset=8
@@ -4277,7 +3938,7 @@
   i32.add
   i32.load8_s offset=8
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#save (; 72 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#save (; 61 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -4734,7 +4395,7 @@
   local.get $8
   i32.store8 offset=12
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#arc (; 73 ;) (type $FUNCSIG$vidddd) (param $0 i32) (param $1 f64) (param $2 f64) (param $3 f64) (param $4 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#arc (; 62 ;) (type $FUNCSIG$vidddd) (param $0 i32) (param $1 f64) (param $2 f64) (param $3 f64) (param $4 f64)
   (local $5 i32)
   (local $6 i32)
   (local $7 i32)
@@ -4880,7 +4541,7 @@
   i32.add
   i32.store offset=260
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:fillStyle (; 74 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:fillStyle (; 63 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   local.get $1
   i32.const 0
@@ -4914,13 +4575,13 @@
   local.get $1
   i32.store offset=8
  )
- (func $~lib/string/String.__ne (; 75 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $~lib/string/String.__ne (; 64 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   local.get $0
   local.get $1
   call $~lib/string/String.__eq
   i32.eqz
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#_updateTransform (; 76 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#_updateTransform (; 65 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -5165,7 +4826,7 @@
    f64.store offset=8
   end
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill (; 77 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fill (; 66 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -6582,7 +6243,7 @@
   local.get $4
   i32.store offset=4
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#restore (; 78 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#restore (; 67 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -6928,7 +6589,7 @@
   local.get $1
   i32.store8 offset=12
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit (; 79 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit (; 68 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -6969,7 +6630,7 @@
   i32.const 0
   i32.store offset=4
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess (; 80 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess (; 69 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   (local $4 i32)
   (local $5 i32)
   local.get $3
@@ -7049,7 +6710,7 @@
   local.get $3
   call $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#commit
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#updateGUI (; 81 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#updateGUI (; 70 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $0
   local.get $2
   i32.const 0
@@ -7080,7 +6741,7 @@
   end
   call $assembly/gomoku/GomokuGUI/GomokuGUI#drawChess
  )
- (func $assembly/gui/rivalUpdate (; 82 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gui/rivalUpdate (; 71 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   global.get $assembly/gui/gameBegin
@@ -7097,17 +6758,13 @@
     local.get $0
     call $assembly/gomoku/GomokuGUI/GomokuGUI#updateGUI
    end
-  else   
-   i32.const 1304
-   call $assembly/game/console/console.log
   end
  )
- (func $assembly/gui/init~anonymous|0 (; 83 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gui/init~anonymous|0 (; 72 ;) (type $FUNCSIG$vi) (param $0 i32)
   local.get $0
   call $assembly/gui/rivalUpdate
  )
- (func $assembly/gui/init (; 84 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
-  (local $2 i32)
+ (func $assembly/gui/init (; 73 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $1
   i32.const 0
   i32.ne
@@ -7122,18 +6779,13 @@
   select
   global.set $assembly/gui/rivalRole
   call $node_modules/as2d/assembly/internal/getContext/getContextById
-  local.set $1
-  global.get $assembly/gui/game
   local.set $0
-  global.get $assembly/gui/myRole
-  local.set $2
-  i32.const 560
-  call $assembly/game/console/console.log
+  global.get $assembly/gui/game
+  local.tee $1
   local.get $0
-  local.get $1
   i32.store offset=4
-  local.get $0
-  local.get $2
+  local.get $1
+  global.get $assembly/gui/myRole
   i32.store
   global.get $assembly/gui/playWithAI
   if
@@ -7142,7 +6794,7 @@
    global.set $assembly/gui/aiPlayer
   end
  )
- (func $assembly/gomoku/constants/constants.validRowAndCol (; 85 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gomoku/constants/constants.validRowAndCol (; 74 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
   local.get $0
   i32.const 0
@@ -7171,7 +6823,7 @@
   end
   local.get $0
  )
- (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 86 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
+ (func $~lib/internal/typedarray/TypedArray<i8>#__set (; 75 ;) (type $FUNCSIG$viii) (param $0 i32) (param $1 i32) (param $2 i32)
   local.get $1
   local.get $0
   i32.load offset=8
@@ -7194,7 +6846,7 @@
   local.get $2
   i32.store8 offset=8
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 87 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#putChess (; 76 ;) (type $FUNCSIG$viiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32)
   local.get $1
   local.get $2
   call $assembly/gomoku/constants/constants.validRowAndCol
@@ -7210,14 +6862,14 @@
    call $~lib/internal/typedarray/TypedArray<i8>#__set
   else   
    i32.const 0
-   i32.const 1392
-   i32.const 78
+   i32.const 560
+   i32.const 73
    i32.const 12
    call $~lib/env/abort
    unreachable
   end
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#first (; 88 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#first (; 77 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   local.get $0
   i32.load offset=8
@@ -7243,7 +6895,7 @@
   i32.load offset=4
   call_indirect (type $FUNCSIG$vi)
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#nextPlayer (; 89 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#nextPlayer (; 78 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -7300,8 +6952,8 @@
     i32.const 2
    else    
     i32.const 0
-    i32.const 1392
-    i32.const 138
+    i32.const 560
+    i32.const 134
     i32.const 12
     call $~lib/env/abort
     unreachable
@@ -7310,7 +6962,7 @@
    i32.const 1
   end
  )
- (func $assembly/gomoku/GomokuEngine/Position.fromIndex (; 90 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Position.fromIndex (; 79 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   local.get $0
   i32.const 0
@@ -7326,7 +6978,7 @@
   local.get $1
   if
    i32.const 0
-   i32.const 1392
+   i32.const 560
    i32.const 19
    i32.const 12
    call $~lib/env/abort
@@ -7341,7 +6993,7 @@
   i32.rem_s
   call $assembly/game/GamePlayer/GamePlayer#constructor
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#findPosition (; 91 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#findPosition (; 80 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -7376,7 +7028,7 @@
   end
   local.get $3
  )
- (func $~lib/typedarray/Int8Array#fill (; 92 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $~lib/typedarray/Int8Array#fill (; 81 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -7433,7 +7085,7 @@
    call $~lib/internal/memory/memset
   end
  )
- (func $~lib/typedarray/Int8Array#fill|trampoline (; 93 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $~lib/typedarray/Int8Array#fill|trampoline (; 82 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   block $2of2
    block $1of2
@@ -7452,7 +7104,7 @@
   local.get $1
   call $~lib/typedarray/Int8Array#fill
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle (; 94 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfStyle (; 83 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.const 5
   i32.eq
@@ -7514,7 +7166,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle (; 95 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#scoreOfRivalStyle (; 84 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   local.get $0
   i32.const 5
   i32.eq
@@ -7576,7 +7228,7 @@
   end
   i32.const 0
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#computeScore (; 96 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#computeScore (; 85 ;) (type $FUNCSIG$iiiii) (param $0 i32) (param $1 i32) (param $2 i32) (param $3 i32) (result i32)
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
@@ -8367,18 +8019,7 @@
   local.get $9
   i32.add
  )
- (func $assembly/gomoku/GomokuEngine/Position#toString (; 97 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
-  local.get $0
-  i32.load
-  call $~lib/internal/number/itoa32
-  i32.const 1488
-  call $~lib/string/String.__concat
-  local.get $0
-  i32.load offset=4
-  call $~lib/internal/number/itoa32
-  call $~lib/string/String.__concat
- )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextPosition (; 98 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextPosition (; 86 ;) (type $FUNCSIG$ii) (param $0 i32) (result i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -8388,10 +8029,10 @@
   (local $7 i32)
   i32.const 225
   call $~lib/typedarray/Int8Array#constructor
-  local.set $6
+  local.set $5
   i32.const 1
   global.set $~lib/argc
-  local.get $6
+  local.get $5
   call $~lib/typedarray/Int8Array#fill|trampoline
   loop $repeat|0
    block $break|0
@@ -8431,7 +8072,7 @@
        local.get $0
        i32.load offset=16
        call $~lib/internal/typedarray/TypedArray<i8>#__set
-       local.get $6
+       local.get $5
        local.get $3
        i32.const 15
        i32.mul
@@ -8487,7 +8128,7 @@
       i32.const 15
       i32.ge_s
       br_if $break|3
-      local.get $6
+      local.get $5
       local.get $2
       i32.const 15
       i32.mul
@@ -8498,7 +8139,7 @@
       i32.shl
       i32.const 24
       i32.shr_s
-      local.get $6
+      local.get $5
       local.get $3
       i32.const 15
       i32.mul
@@ -8532,10 +8173,10 @@
   end
   i32.const 225
   call $~lib/typedarray/Int8Array#constructor
-  local.set $5
+  local.set $6
   i32.const 1
   global.set $~lib/argc
-  local.get $5
+  local.get $6
   call $~lib/typedarray/Int8Array#fill|trampoline
   i32.const 0
   local.set $2
@@ -8577,7 +8218,7 @@
        local.get $0
        i32.load offset=12
        call $~lib/internal/typedarray/TypedArray<i8>#__set
-       local.get $5
+       local.get $6
        local.get $2
        i32.const 15
        i32.mul
@@ -8635,7 +8276,7 @@
       i32.const 15
       i32.ge_s
       br_if $break|7
-      local.get $5
+      local.get $6
       local.get $0
       i32.const 15
       i32.mul
@@ -8646,7 +8287,7 @@
       i32.shl
       i32.const 24
       i32.shr_s
-      local.get $5
+      local.get $6
       local.get $2
       i32.const 15
       i32.mul
@@ -8678,7 +8319,7 @@
     br $repeat|6
    end
   end
-  local.get $5
+  local.get $6
   local.get $2
   i32.const 15
   i32.mul
@@ -8689,31 +8330,13 @@
   i32.and
   i32.const 100
   i32.eq
-  if
-   i32.const 1464
+  if (result i32)
    i32.const 0
    local.get $2
    local.get $1
    call $assembly/game/GamePlayer/GamePlayer#constructor
-   local.tee $0
-   call $assembly/gomoku/GomokuEngine/Position#toString
-   call $~lib/string/String.__concat
-   i32.const 1496
-   call $~lib/string/String.__concat
-   local.get $5
-   local.get $2
-   i32.const 15
-   i32.mul
-   local.get $1
-   i32.add
-   call $~lib/internal/typedarray/TypedArray<i8>#__get
-   i32.const 24
-   i32.shl
-   i32.const 24
-   i32.shr_s
-   call $assembly/game/console/console.logi
   else   
-   local.get $6
+   local.get $5
    local.get $3
    i32.const 15
    i32.mul
@@ -8726,57 +8349,20 @@
    i32.shr_s
    i32.const 20
    i32.ge_s
-   if
-    i32.const 1512
+   if (result i32)
     i32.const 0
     local.get $3
     local.get $4
     call $assembly/game/GamePlayer/GamePlayer#constructor
-    local.tee $0
-    call $assembly/gomoku/GomokuEngine/Position#toString
-    call $~lib/string/String.__concat
-    i32.const 1496
-    call $~lib/string/String.__concat
-    local.get $5
-    local.get $2
-    i32.const 15
-    i32.mul
-    local.get $1
-    i32.add
-    call $~lib/internal/typedarray/TypedArray<i8>#__get
-    i32.const 24
-    i32.shl
-    i32.const 24
-    i32.shr_s
-    call $assembly/game/console/console.logi
    else    
-    i32.const 1464
     i32.const 0
     local.get $2
     local.get $1
     call $assembly/game/GamePlayer/GamePlayer#constructor
-    local.tee $0
-    call $assembly/gomoku/GomokuEngine/Position#toString
-    call $~lib/string/String.__concat
-    i32.const 1496
-    call $~lib/string/String.__concat
-    local.get $5
-    local.get $2
-    i32.const 15
-    i32.mul
-    local.get $1
-    i32.add
-    call $~lib/internal/typedarray/TypedArray<i8>#__get
-    i32.const 24
-    i32.shl
-    i32.const 24
-    i32.shr_s
-    call $assembly/game/console/console.logi
    end
   end
-  local.get $0
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextAction (; 99 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#nextAction (; 87 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   local.get $0
@@ -8814,11 +8400,6 @@
   local.get $1
   i32.load offset=4
   call $~lib/internal/typedarray/TypedArray<i8>#__set
-  i32.const 1536
-  local.get $0
-  i32.load
-  local.get $2
-  call $assembly/game/console/console.logAction
   i32.const 1
   global.set $~lib/argc
   local.get $2
@@ -8826,7 +8407,7 @@
   i32.load offset=4
   call_indirect (type $FUNCSIG$vi)
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#startGame (; 100 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#startGame (; 88 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -8883,13 +8464,13 @@
    end
   end
  )
- (func $assembly/gui/startGame (; 101 ;) (type $FUNCSIG$v)
+ (func $assembly/gui/startGame (; 89 ;) (type $FUNCSIG$v)
   i32.const 1
   global.set $assembly/gui/gameBegin
   global.get $assembly/gui/aiPlayer
   call $assembly/gomoku/ai/BigbenAI/BigbenAI#startGame
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fillRect (; 102 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#fillRect (; 90 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -9556,7 +9137,7 @@
   local.get $5
   i32.store offset=4
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#moveTo (; 103 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#moveTo (; 91 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -9687,7 +9268,7 @@
   i32.add
   i32.store offset=260
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#lineTo (; 104 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#lineTo (; 92 ;) (type $FUNCSIG$vidd) (param $0 i32) (param $1 f64) (param $2 f64)
   (local $3 i32)
   (local $4 i32)
   (local $5 i32)
@@ -9818,7 +9399,7 @@
   i32.add
   i32.store offset=260
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:strokeStyle (; 105 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#set:strokeStyle (; 93 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   local.get $1
   i32.const 0
@@ -9852,7 +9433,7 @@
   local.get $1
   i32.store offset=8
  )
- (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#stroke (; 106 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $node_modules/as2d/assembly/renderer/CanvasRenderingContext2D/CanvasRenderingContext2D#stroke (; 94 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -11672,7 +11253,7 @@
   local.get $0
   i32.store offset=4
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#draw (; 107 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#draw (; 95 ;) (type $FUNCSIG$vi) (param $0 i32)
   (local $1 i32)
   (local $2 i32)
   (local $3 i32)
@@ -11802,11 +11383,11 @@
   call $assembly/game/GameGUI/engine.getState
   drop
  )
- (func $assembly/gui/draw (; 108 ;) (type $FUNCSIG$v)
+ (func $assembly/gui/draw (; 96 ;) (type $FUNCSIG$v)
   global.get $assembly/gui/game
   call $assembly/gomoku/GomokuGUI/GomokuGUI#draw
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#onClick (; 109 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#onClick (; 97 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
   local.get $1
   local.get $0
@@ -11875,7 +11456,7 @@
   end
   global.get $assembly/gomoku/GomokuGUI/EmptyState
  )
- (func $assembly/gomoku/ai/BigbenAI/BigbenAI#update (; 110 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $assembly/gomoku/ai/BigbenAI/BigbenAI#update (; 98 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   local.get $0
   i32.load offset=8
   local.get $1
@@ -11898,12 +11479,10 @@
   local.get $0
   call $assembly/gomoku/ai/BigbenAI/BigbenAI#nextAction
  )
- (func $assembly/gui/onClick (; 111 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
+ (func $assembly/gui/onClick (; 99 ;) (type $FUNCSIG$iii) (param $0 i32) (param $1 i32) (result i32)
   global.get $assembly/gui/gameBegin
   i32.eqz
   if
-   i32.const 1560
-   call $assembly/game/console/console.error
    i32.const 0
    call $~lib/typedarray/Int8Array#constructor
    return
@@ -11929,7 +11508,7 @@
   end
   local.get $1
  )
- (func $assembly/gomoku/GomokuGUI/GomokuGUI#loadState (; 112 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $assembly/gomoku/GomokuGUI/GomokuGUI#loadState (; 100 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   (local $4 i32)
@@ -11976,27 +11555,24 @@
    end
   end
  )
- (func $assembly/gomoku/GomokuEngine/Chessboard#load (; 113 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
+ (func $assembly/gomoku/GomokuEngine/Chessboard#load (; 101 ;) (type $FUNCSIG$vii) (param $0 i32) (param $1 i32)
   (local $2 i32)
   (local $3 i32)
   local.get $0
   i32.load
   i32.load offset=8
+  local.tee $3
   local.get $1
   i32.load offset=8
   i32.ne
   if
    i32.const 0
-   i32.const 1392
-   i32.const 117
+   i32.const 560
+   i32.const 113
    i32.const 8
    call $~lib/env/abort
    unreachable
   end
-  local.get $0
-  i32.load
-  i32.load offset=8
-  local.set $3
   loop $repeat|0
    block $break|0
     local.get $2
@@ -12022,7 +11598,7 @@
    end
   end
  )
- (func $assembly/gui/loadState (; 114 ;) (type $FUNCSIG$vi) (param $0 i32)
+ (func $assembly/gui/loadState (; 102 ;) (type $FUNCSIG$vi) (param $0 i32)
   global.get $assembly/gui/game
   local.get $0
   call $assembly/gomoku/GomokuGUI/GomokuGUI#loadState
@@ -12034,7 +11610,7 @@
    call $assembly/gomoku/GomokuEngine/Chessboard#load
   end
  )
- (func $start (; 115 ;) (type $FUNCSIG$v)
+ (func $start (; 103 ;) (type $FUNCSIG$v)
   i32.const 12
   call $~lib/allocator/tlsf/__memory_allocate
   call $~lib/internal/typedarray/TypedArray<f64>#constructor
@@ -12047,7 +11623,7 @@
   call $assembly/gomoku/GomokuGUI/GomokuGUI#constructor
   global.set $assembly/gui/game
  )
- (func $null (; 116 ;) (type $FUNCSIG$v)
+ (func $null (; 104 ;) (type $FUNCSIG$v)
   nop
  )
 )

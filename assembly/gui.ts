@@ -5,7 +5,7 @@ import {GomokuGUI} from "./gomoku/GomokuGUI";
 import {PlayerRole} from "./game/GameEngine";
 import {BigbenAI} from "./gomoku/ai/BigbenAI";
 import {constants} from "./gomoku/constants";
-import {console} from "./game/console";
+// import {console} from "./game/console";
 
 let game = new GomokuGUI();
 
@@ -47,7 +47,7 @@ export function draw(): void {
 
 export function onClick(x: i32, y: i32): Int8Array {
     if (!gameBegin) {
-        console.error("Game not begin.");
+        // console.error("Game not begin.");
         return new Int8Array(0);
     }
     let state = game.onClick(x, y);
@@ -61,7 +61,7 @@ export function rivalUpdate(newState: Int8Array): void {
     if (gameBegin) {
         game.update(rivalRole, newState)
     } else {
-        console.log("Game not begin, but receive rivalUpdate.")
+        // console.log("Game not begin, but receive rivalUpdate.")
     }
 }
 

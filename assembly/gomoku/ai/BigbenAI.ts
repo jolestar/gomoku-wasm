@@ -2,7 +2,7 @@ import {GamePlayer} from "../../game/GamePlayer";
 import {PlayerRole} from "../../game/GameEngine";
 import {Chess, constants} from "../constants";
 import {Chessboard, Position} from "../GomokuEngine";
-import {console} from "../../game/console";
+// import {console} from "../../game/console";
 
 
 /**
@@ -75,7 +75,7 @@ export class BigbenAI extends GamePlayer {
         this.chessboard = new Chessboard();
         this.myChess = constants.chessOfPlayer(role);
         this.rivalChess = constants.chessOfRival(role);
-        console.log("BigbenAI myChess:" + this.myChess.toString() + ", rivalChess:" + this.rivalChess.toString())
+        // console.log("BigbenAI myChess:" + this.myChess.toString() + ", rivalChess:" + this.rivalChess.toString())
 
     }
 
@@ -120,7 +120,7 @@ export class BigbenAI extends GamePlayer {
         let position = this.nextPosition();
         this.chessboard.put(position.row, position.col, this.myChess);
         let newState = position.toState();
-        console.logAction("BigbenAI", this.role, newState);
+        // console.logAction("BigbenAI", this.role, newState);
         this.newStateCallback(newState);
     }
 
@@ -166,15 +166,15 @@ export class BigbenAI extends GamePlayer {
         if (scores[idxByRowCol(I, J)] == 100) {
             //直接获胜
             newPosition = new Position(I, J)
-            console.logi("Attack: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
+            // console.logi("Attack: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
         } else if (rivalScores[idxByRowCol(rI, rJ)] >= 20) {
             //若出现危险棋局, 选择防守策略
             newPosition = new Position(rI, rJ)
-            console.logi("Defend: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
+            // console.logi("Defend: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
         } else {
             //进攻
             newPosition = new Position(I, J)
-            console.logi("Attack: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
+            // console.logi("Attack: (" + newPosition.toString() + ") s:", scores[idxByRowCol(I, J)]);
         }
         return newPosition
     }
@@ -191,7 +191,7 @@ export class BigbenAI extends GamePlayer {
                     let oppositeRow: i32 = position.row > row ? position.row + (position.row - row) : position.row - (row - position.row);
                     let oppositeCol: i32 = position.col > col ? position.col + (position.col - col) : position.col - (col - position.col);
                     if (this.chessboard.getChess(oppositeRow, oppositeCol) == this.rivalChess) {
-                        console.log("return best position:" + oppositeRow.toString() + ":" + oppositeCol.toString());
+                        // console.log("return best position:" + oppositeRow.toString() + ":" + oppositeCol.toString());
                         return newPosition
                     }
                 }

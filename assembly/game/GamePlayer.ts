@@ -8,7 +8,7 @@ export abstract class GamePlayer {
     ) {}
 
     update(state: Int8Array): boolean {
-        console.log("GameEngine update");
+        // console.log("GameEngine update");
         return false
     }
 }
