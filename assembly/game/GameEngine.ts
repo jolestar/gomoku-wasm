@@ -31,7 +31,7 @@ export abstract class GameEngine {
      * @return is update success.
      */
     update(player: PlayerRole, state: Int8Array): boolean {
-        console.log("GameEngine update");
+        // console.log("GameEngine update");
         return false
     }
 

@@ -1,12 +1,12 @@
 import {PlayerRole} from "../game/GameEngine";
 import {engine, GameGUI} from "../game/GameGUI";
-import {console} from "../game/console";
+// import {console} from "../game/console";
 import {Chess, constants} from "./constants";
 import {Position} from "./GomokuEngine";
 
-const Black: string = "#111"
-const White: string = "#EEE"
-let EmptyState: Int8Array = new Int8Array(0)
+const Black = "#111"
+const White = "#EEE"
+let EmptyState = new Int8Array(0)
 
 // @ts-ignore
 @inline
@@ -96,7 +96,7 @@ class GomokuGUI extends GameGUI {
         let state = new Int8Array(2);
         state[0] = row;
         state[1] = col;
-        console.logAction("onClick", this.player, state);
+        // console.logAction("onClick", this.player, state);
         if (engine.update(this.player, state)) {
             this.drawChess(row, col, constants.chessOfPlayer(this.player))
             return state
@@ -109,7 +109,7 @@ class GomokuGUI extends GameGUI {
             return
         }
         let color = chessOfColor(chess)
-        console.log("drawChess:" + color)
+        // console.log("drawChess:" + color)
         let ctx = this.ctx;
         let gridSize = this.cfg.gridSize;
         ctx.save();

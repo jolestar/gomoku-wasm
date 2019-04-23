@@ -32,7 +32,7 @@ export abstract class GameGUI {
     ctx: CanvasRenderingContext2D;
 
     init(ctx: CanvasRenderingContext2D, player: PlayerRole): void {
-        console.log("GameGUI init");
+        // console.log("GameGUI init");
         this.ctx = ctx;
         this.player = player;
     }
