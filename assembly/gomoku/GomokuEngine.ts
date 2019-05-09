@@ -203,7 +203,11 @@ class GomokuEngine extends GameEngine {
 
     @inline
     getWinner(): PlayerRole {
-        return this.currentPlayer;
+        if (this.gameIsOver) {
+            return this.currentPlayer;
+        } else {
+            return PlayerRole.None
+        }
     }
 
     private putChessOn(row: i32, col: i32): boolean {
