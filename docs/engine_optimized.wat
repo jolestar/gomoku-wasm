@@ -2186,8 +2186,16 @@
   i32.store offset=8
  )
  (func $assembly/engine/getWinner (; 43 ;) (type $FUNCSIG$i) (result i32)
+  (local $0 i32)
   global.get $assembly/engine/engine
-  i32.load offset=8
+  local.tee $0
+  i32.load8_u offset=12
+  if (result i32)
+   local.get $0
+   i32.load offset=8
+  else   
+   i32.const 0
+  end
  )
  (func $~lib/internal/memory/memcmp (; 44 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)

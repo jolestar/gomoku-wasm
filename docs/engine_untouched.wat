@@ -2844,10 +2844,24 @@
  )
  (func $assembly/engine/getWinner (; 55 ;) (type $FUNCSIG$i) (result i32)
   (local $0 i32)
-  global.get $assembly/engine/engine
-  local.set $0
-  local.get $0
-  i32.load offset=8
+  block $assembly/gomoku/GomokuEngine/GomokuEngine#getWinner|inlined.0 (result i32)
+   global.get $assembly/engine/engine
+   local.set $0
+   local.get $0
+   i32.load8_u offset=12
+   i32.const 0
+   i32.ne
+   if
+    local.get $0
+    i32.load offset=8
+    br $assembly/gomoku/GomokuEngine/GomokuEngine#getWinner|inlined.0
+   else    
+    global.get $assembly/game/GameEngine/PlayerRole.None
+    br $assembly/gomoku/GomokuEngine/GomokuEngine#getWinner|inlined.0
+   end
+   unreachable
+   unreachable
+  end
  )
  (func $~lib/internal/memory/memcmp (; 56 ;) (type $FUNCSIG$iiii) (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
